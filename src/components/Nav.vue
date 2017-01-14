@@ -1,7 +1,10 @@
 <template>
 	<div class="nav">
-		<router-link to="/" class="nav-link">Projects</router-link>
-		<router-link to="/about" class="nav-link">About</router-link>
+    <div class="hidden"></div>
+    <router-link to="/" class="logo"><img src="../assets/images/logo-home-2x.png" alt="stephen richard portfolio 2017"></router-link>
+    <div class="nav-links">
+      <router-link to="/about" class="nav-link">About</router-link>
+    </div>
 	</div>
 </template>
 
@@ -20,22 +23,41 @@
 	
   .nav
     position: absolute
+    display: flex
+    align-items: center
+    justify-content: space-between
     top: 0
+    left: 60px
     right: 60px
     padding: 40px 0
+    text-align: center
+    z-index: 4
 
-    .nav-link
-      padding: 0 5px
-      color: #fff
-      text-decoration: none
-      text-transform: lowercase
+    .logo
+      display: inline-block
+      margin-right: -45px
+      text-align: center
+      
+      img
+        width: 50%
+        height: auto
 
-      &:hover 
-        text-decoration: underline
+    a
+      color: #fefefe
+    
+    .nav-links
 
-      &.router-link-active
-        text-decoration: underline
-        
+      .nav-link
+        display: inline-block
+        padding: 0 5px
+        text-decoration: none
+        text-transform: lowercase
 
+        &:hover 
+          text-decoration: underline
+
+        &.router-link-active
+          text-decoration: underline
+    
 
 </style>

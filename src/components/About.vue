@@ -1,7 +1,6 @@
 <template>
-  <div class="about">
+  <div class="page page-about">
     <h1>{{ msg }}</h1>
-    
   </div>
 </template>
 
@@ -23,5 +22,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="sass" scoped>
-
+  
+  .page-about
+    
 </style>

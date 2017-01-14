@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <!-- <bgCanvas></bgCanvas> -->
-    <navbar></navbar>
-    <router-view></router-view>
+    <navbar v-if="isIntroSkipped"></navbar>
+    <intro v-if="!isIntroSkipped"></intro>
+    <router-view v-if="isIntroSkipped"></router-view>
     <loader v-bind:isLoading="isLoading"></loader>
   </div>
 </template>
@@ -11,84 +12,41 @@
   import NavBar from './components/Nav'
   import BGCanvas from './components/BGCanvas'
   import Loader from './components/Loader'
+  import Intro from './components/Intro'
+
+  import { mapGetters } from 'vuex'
 
   export default {
     name: 'app',
-    data () {
-      return {
-        isLoading: false
-      }
+    computed: {
+      ...mapGetters([
+        'isLoading',
+        'isIntroSkipped'
+      ])
     },
     components: {
+      Intro,
       navbar: NavBar,
       Loader,
       bgCanvas: BGCanvas
     },
     mounted () {
-      this.isLoading = false
       console.log('App mounted')
     },
     beforeMount () {
-      this.isLoading = true
+      // this.$store.commit('SET_IS_LOADING', true)
     }
   }
 </script>
 
 <style lang="sass">
-  /*// http://meyerweb.com/eric/tools/css/reset/
-  // v2.0 | 20110126
-  // License: none (public domain)*/
-
-  html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-  
-
-  // HTML5 display-role reset for older browsers
-  article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section
-    display: block;
-  
-  body
-    line-height: 1;
-
-  ol, ul
-    list-style: none;
-
-  blockquote, q
-    quotes: none;
-
-  blockquote
-    &:before, &:after
-      content: "";
-      content: none;
-
-
-  q
-    &:before, &:after
-      content: "";
-      content: none;
-
-
-  table
-    border-collapse: collapse;
-    border-spacing: 0;
-
-
-  @font-face
-      font-family: 'antonregular'
-      src: url('./assets/fonts/anton-webfont.woff2') format('woff2'), url('./assets/fonts/anton-webfont.woff') format('woff')
-      font-weight: normal
-      font-style: normal
+  @import './stylesheets/main'
   
   body
     width: 100%
     height: 100vh
     overflow-x: scroll
-    background: #090909
+    background: $bg-color
     margin: 0
   
   #app 
@@ -96,7 +54,7 @@
     -webkit-font-smoothing: antialiased
     -moz-osx-font-smoothing: grayscale
     text-align: center
-    color: #2c3e50
+    color: $bg-color
 
   .container
     max-width: 1280px

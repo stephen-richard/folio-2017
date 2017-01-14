@@ -1,26 +1,22 @@
 <template>
-  <div class="home">
-      <ul class="projects-container" v-el="projectsContainer">
-        <li 
-          v-for="(project, index) in projectsDatas" 
-          class="projects-container__item" 
-          :data-work="index"
-          v-el="projectItem">
-          <router-link 
-            :to="{ name: 'project', params: { project_name: project.slug, project_id: index } }" :class="'project project-' + index" 
-            v-bind:style="{ 'background-image': 'url(../static/'+ project.media_home +')'}">
-            <p>{{ project.name }}</p>
-          </router-link>
-        </li>    
-      </ul>
-    
-    <div>{{projectsDatas.projects}}</div>
-    <!-- <div id="pixiContainer"></div> -->
-  </div>
+  <transition
+    v-on:before-enter="beforeEnter"
+    v-on:enter="enter"
+    v-on:after-enter="afterEnter"
+
+    v-on:before-leave="beforeLeave"
+    v-on:leave="leave">
+    <div class="page page-home">
+      <projects></projects>
+      <!-- <div id="pixiContainer"></div> -->
+      <a class="address" href="mailto:stephen.richard44@gmail.com">stephen.richard44@gmail.com</a>
+    </div>
+  </transition>
 </template>
 
 <script>
   import projectsData from '../assets/datas.json'
+  import ProjectSlider from '../components/Projects'
   import 'pixi.js'
   import 'pixi-filters'
 
@@ -30,12 +26,14 @@
       return {
         projectsDatas: projectsData.projects,
         renderer: null,
-        stage: null
+        stage: null,
+        currentWorkIndex: 0
       }
     },
+    components: {
+      projects: ProjectSlider
+    },
     mounted () {
-      console.log(this.$$.projectsContainer.width)
-
       // console.log('Mounted home, ready to PIXI')
       // var PIXI = window.PIXI
       // console.log(PIXI)
@@ -82,6 +80,21 @@
 
         // console.log('Mouse is ' + mousePosX + ' : ' + mousePosY)
         // window.requestAnimationFrame(this.renderPixi)
+      },
+      // ENTERING
+      beforeEnter: function (el) {
+      },
+      enter: function (el, done) {
+        console.log('entered home')
+        done()
+      },
+      afterEnter: function (el) {
+      },
+      // LEAVING
+      beforeLeave: function (el) {
+      },
+      leave: function (el, done) {
+        done()
       }
     }
   }
@@ -92,54 +105,12 @@
 
   @import '../stylesheets/common/_vars'
 
-  .home
+  .page-home
     position: absolute
     left: 0
     top: 0
     width: 100%
     height: 100%
-  
-  .container
-    display: block
-    margin: 0 auto
-
-  .projects-container
-    position: absolute
-    top: 0
-    left: 0
-    bottom: 0
-    overflow: hidden
-    white-space: nowrap
-
-    &__item
-      position: relative
-      display: inline-block
-      text-align: center
-      vertical-align: middle
-      height: 100%
-      width: 49vw
-
-  .project 
-    position: relative
-    display: block
-    font-size: 90px
-    margin: 0
-    padding: 50px 0
-    letter-spacing: 4px
-    text-transform: uppercase
-    -webkit-background-clip: text
-    background-clip: text
-    background-position: center center
-    color: transparent
-    transition: background .7s ease
-
-    &.project-0
-      background-image: url(../assets/images/psg-home.jpg)
-
-    &:hover 
-      color: #fefefe;
-      -webkit-background-clip: border-box;
-      background-clip: border-box;
 
   #pixiContainer
     position: absolute

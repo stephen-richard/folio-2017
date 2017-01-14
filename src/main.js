@@ -6,6 +6,7 @@ import App from './App'
 import Home from './components/Home'
 import Project from './components/Project'
 import About from './components/About'
+import store from './store'
 
 Vue.use(VueRouter)
 
@@ -27,5 +28,6 @@ const router = new VueRouter({
 /* eslint-disable no-new */
 const app = new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')
