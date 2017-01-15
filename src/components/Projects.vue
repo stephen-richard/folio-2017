@@ -1,92 +1,119 @@
 <template>
 	<div class="projects">
-      <ul class="projects-container" ref="projectsContainer" v-bind:style="styleContainer">
-        <project-home
-          v-for="(project, index) in projectsDatas" 
-          v-bind:currentWorkIndex="currentWorkIndex"
-          v-bind:dataWork="index">
-        </project-home> 
-      </ul>
-      <div class="work-BG" :style="{ 'background-image': 'url(../static/'+ projectsDatas[currentWorkIndex].media_home +')' }"></div>
+    
+    <prev-work v-if="hasPrevWork" ref="dragPrevWork"></prev-work>
 
-      <div class="controls">
-        <div class="left controls__item" v-on:click="goPrev()"></div>
-        <div class="right controls__item" v-on:click="goNext()"></div>
+    <router-link 
+      class="current-work" 
+      :to="{ name: 'project', params: { project_name: projectsDatas[getCurrentWork].slug, project_id: getCurrentWork } }"
+      ref="workDropZone">
+
+      <div class="current-work__bg" :style="{ 'background-image': 'url(../static/'+ projectsDatas[getCurrentWork].media_home +')' }"></div>
+
+      <div class="current-work__datas">
+        <h1>{{ projectsDatas[getCurrentWork].name }}</h1>
+        <p class="link">Discover</p>
       </div>
+    </router-link>
+
+    <next-work v-if="hasNextWork" ref="dragNextWork"></next-work>
+
   </div>
 </template>
 
 <script>
   import projectsData from '../assets/datas.json'
-  import ProjectHomeLink from '../components/ProjectHomeLink'
+  import PrevWork from '../components/PrevWork'
+  import NextWork from '../components/NextWork'
   import { TweenMax, Power4 } from 'gsap'
+  import Draggable from '../../node_modules/gsap/src/minified/utils/Draggable.min.js'
+
+  import { mapGetters } from 'vuex'
 
   export default {
     name: 'projects-slider',
     components: {
-      'project-home': ProjectHomeLink
+      PrevWork,
+      NextWork
     },
     data () {
       return {
         projectsDatas: projectsData.projects,
-        projectsCount: projectsData.projects.length,
-        currentWorkIndex: 0,
         sliderPosition: 0,
         screenWidth: 0,
         projectWidth: window.innerWidth / 2
       }
     },
     mounted () {
+      var that = this
+
       this.sliderPosition = (window.innerWidth / 4)
       this.screenWidth = window.innerWidth
+
+      // Handle arrow navigation
+      document.addEventListener('keyup', function (e) {
+        if (e.keyCode === 37) {
+          that.goPrev()
+        }
+
+        if (e.keyCode === 39) {
+          that.goNext()
+        }
+      }, false)
+
+      // Make next/prev indicators daraggable
+      Draggable.create(this.$refs.dragNextWork, {
+        type: 'x',
+        bound: that.$refs.workDropZone,
+        edgeResistance: 1,
+        dragResistance: 0.2,
+        onDrag: function (e) {
+          console.log('Hey look at me im moving :D')
+        },
+        onDragEnd: function (e) {
+        }
+      })
     },
     watch: {
       sliderPosition: function (newPosition) {
         this.sliderPosition = newPosition
-      },
-      currentWorkIndex: function (newIndex) {
-        this.currentWorkIndex = newIndex
       }
     },
     computed: {
-      styleContainer: function () {
-        return {
-          transform: TweenMax.to('.projects-container', 1, { x: this.sliderPosition, y: 0, z: 0, ease: Power4.easeOut })
-        }
-      }
+      ...mapGetters([
+        'getCurrentWork',
+        'getWorkCount',
+        'hasPrevWork',
+        'hasNextWork'
+      ])
     },
     methods: {
       goNext () {
-        this.goTo(this.currentWorkIndex + 1)
+        this.goTo(this.getCurrentWork + 1, 'next')
       },
       goPrev () {
-        this.goTo(this.currentWorkIndex - 1)
+        this.goTo(this.getCurrentWork - 1, 'prev')
       },
-      goTo (index) {
+      goTo (index, direction) {
         console.log('Go to project: ' + index)
-
-        this.newIndex = 0
-        if (index >= 0) {
-          this.newIndex = index
-        }
-
-        if (index > this.currentWorkIndex) {
-          if (index < this.projectsCount) {
-            this.sliderPosition = this.sliderPosition - this.projectWidth
+        // NEXT
+        if (direction === 'next') {
+          if (index < this.getWorkCount) {
+            // Switch next project if it's not the last one
+            this.$store.commit('CHANGE_CURRENT_WORK', index)
           } else {
-            this.sliderPosition = (window.innerWidth / 4)
-            this.newIndex = 0
+            // If it's the last project reset to the first one
+            this.$store.commit('CHANGE_CURRENT_WORK', 0)
           }
         }
 
-        if (index < this.currentWorkIndex) {
-          if (index > 0) {
-            this.sliderPosition = this.sliderPosition + this.projectWidth
+        // PREV
+        if (direction === 'prev') {
+          if (index >= 0) {
+            // Switch to left previous work
+            this.$store.commit('CHANGE_CURRENT_WORK', index)
           }
         }
-
-        this.currentWorkIndex = this.newIndex
-        console.log(this.sliderPosition)
       }
     }
   }
@@ -104,44 +131,82 @@
     bottom: 0
     overflow: hidden
     white-space: nowrap
+    text-align: center
     z-index: 2
 
-  .work-BG
+  .current-work
     position: absolute
     width: 74%
     height: 670px
     top: 50%
     left: 50%
     transform: translate3d(-50%, -50%, 0)
-    background-size: cover
-    background-position: center center
+    text-decoration: none
+    overflow: hidden
     z-index: 1
 
-    &:before
-      position: absolute
-      content: ''
-      left: 0
-      top: 0
+    &:hover
+      
+      .current-work__bg
+        transform: scale(1.1)
+
+      .link
+
+        &:before
+          transform: translateX(-10px)
+
+        &:after
+          transform: translateX(10px)
+
+    &__bg
       width: 100%
       height: 100%
-      background-color: rgba($black, .3)
-      z-index: 2
+      background-size: cover
+      background-position: center center
+      transition: transform .7s cubic-bezier(0.86, 0, 0.07, 1)
 
-  .controls
-    
-    &__item
-      position: absolute
-      top: 50%
-      transform: translateY(-50%)
-      width: 100px
-      height: 100px  
-      background-color: red
-      z-index: 4
-
-      &.left
+      &:before
+        position: absolute
+        content: ''
         left: 0
+        top: 0
+        width: 100%
+        height: 100%
+        background-color: rgba($black, .3)
+        z-index: 2
 
-      &.right
-        right: 0
+    &__datas
+      position: relative
+      margin-top: -180px
+      color: $white
+      z-index: 3
+
+      h1
+        font-size: 45px
+
+      .link
+        position: relative
+        display: inline-block
+        margin-top: 10px
+        font-size: 18px
+        text-decoration: none
+        color: $white
+
+        &:before,
+        &:after
+          position: absolute
+          content: ''
+          top: 9px 
+          width: 120px
+          height: 1px
+          border-radius: 10px
+          background-color: $white
+          transition: transform .3s ease
+        
+        &:before
+          left: -130px
+
+        &:after
+          left: 80px
 
 </style>

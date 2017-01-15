@@ -1,0 +1,73 @@
+<template>
+    <div class="next-prev-work prev-work">
+      <div class="next-prev-work__image">
+        <span class="current" :style="{ 'background-image': 'url(../static/'+ projectDatas[getPrevWork].media_home +')' }"></span>
+      </div>
+      <p class="next-prev-work__name">{{ projectDatas[getPrevWork].name }}</p>
+    </div>
+</template>
+
+<script>
+  import projectsData from '../assets/datas.json'
+  import { mapGetters } from 'vuex'
+
+  export default {
+    name: 'prev-work',
+    data () {
+      return {
+        projectDatas: projectsData.projects
+      }
+    },
+    mounted () {
+      console.log(this.indicatorDirection)
+    },
+    computed: {
+      ...mapGetters([
+        'getPrevWork',
+        'getNextWork'
+      ])
+    }
+  }
+</script>
+
+<style lang="sass">
+  @import '../stylesheets/common/vars'
+
+  .next-prev-work
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+    text-align: left
+    z-index: 5
+
+    &.prev-work
+      left: -15px
+    
+    &__image
+      position: relative
+      height: 85px
+      width: 315px
+
+      &:before
+        position: absolute
+        content: ''
+        left: 0
+        top: 0
+        width: 100%
+        height: 100%
+        background-color: rgba($bg-color, .4)
+
+      span
+        display: inline-block
+        width: 100%
+        height: 100%
+        background-size: cover
+
+    &__name
+      position: absolute
+      display: inline-block
+      margin-top: 15px
+      color: $white
+      font-size: 20px
+
+</style>

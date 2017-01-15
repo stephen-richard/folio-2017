@@ -9,7 +9,6 @@
     <div class="page page-home">
       <projects></projects>
       <!-- <div id="pixiContainer"></div> -->
-      <a class="address" href="mailto:stephen.richard44@gmail.com">stephen.richard44@gmail.com</a>
     </div>
   </transition>
 </template>
@@ -111,6 +110,8 @@
     top: 0
     width: 100%
     height: 100%
+    overflow: hidden
+    background-color: $bg-color
 
   #pixiContainer
     position: absolute

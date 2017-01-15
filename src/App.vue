@@ -1,9 +1,12 @@
 <template>
   <div id="app">
     <!-- <bgCanvas></bgCanvas> -->
+    <burgerMenu v-if="isIntroSkipped"></burgerMenu>
     <navbar v-if="isIntroSkipped"></navbar>
     <intro v-if="!isIntroSkipped"></intro>
     <router-view v-if="isIntroSkipped"></router-view>
+    <footerElement></footer>
+
     <loader v-bind:isLoading="isLoading"></loader>
   </div>
 </template>
@@ -13,6 +16,8 @@
   import BGCanvas from './components/BGCanvas'
   import Loader from './components/Loader'
   import Intro from './components/Intro'
+  import BurgerMenu from './components/BurgerMenu'
+  import Footer from './components/FooterElement'
 
   import { mapGetters } from 'vuex'
 
@@ -26,9 +31,11 @@
     },
     components: {
       Intro,
+      burgerMenu: BurgerMenu,
       navbar: NavBar,
       Loader,
-      bgCanvas: BGCanvas
+      bgCanvas: BGCanvas,
+      footerElement: Footer
     },
     mounted () {
       console.log('App mounted')
@@ -44,20 +51,24 @@
   
   body
     width: 100%
-    height: 100vh
     overflow-x: scroll
-    background: $bg-color
     margin: 0
   
   #app 
-    font-family: 'antonregular', Helvetica, Arial, sans-serif
+    width: 100%
+    height: 100%
+    // font-family: 'antonregular', Helvetica, Arial, sans-serif
     -webkit-font-smoothing: antialiased
     -moz-osx-font-smoothing: grayscale
     text-align: center
-    color: $bg-color
+    background-color: $bg-color
 
   .container
     max-width: 1280px
     margin: 0 auto
+
+  a
+    text-decoration: none
+    color: $white
 
 </style>
