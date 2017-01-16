@@ -2,8 +2,9 @@
   <div id="burger-menu">
     <transition>
       <div class="wrapper">
-        <div class="menu-toggle" v-on:click="toggleMenu">
+        <div :class="menuClasses" v-on:click="toggleMenu">
           <div class="menu-work-indicator"><span class="current">{{ getCurrentWork + 1 }}</span> /{{ getWorkCount }}</div>
+          <div class="menu-work-close"></div>
         </div>
 
         <div class="menu-work-list" v-show="isMenuOpen">
@@ -13,13 +14,14 @@
             ref="workBg"></span>
 
           <ul>
-            <li 
+            <li
               v-for="(work, index) in projectsDatas"
               v-on:mouseover="hoverMenuLink"
               v-on:mouseleave="hoverLeaveMenuLink"
+              v-on:click="closeMenu"
               :data-index="index">
               <span class="work-id">{{ index + 1 }}</span>
-              <h3 :data-color="work.color">{{ work.name }}</h3>
+              <router-link :to="{ name: 'project', params: { project_name: projectsDatas[index].slug } }" :data-color="work.color">{{ work.name }}</router-link>
             </li>
           </ul>
         </div>
@@ -48,24 +50,39 @@
       }
     },
     computed: {
+      menuClasses: function () {
+        return {
+          'menu-toggle': true,
+          'open': this.isMenuOpen
+        }
+      },
       ...mapGetters([
         'getCurrentWork',
         'getWorkCount',
         'isMenuOpen'
       ])
     },
-    mounted () {
-    },
     beforeMount () {
       // this.$store.commit('SET_IS_LOADING', true)
       this.$store.commit('SET_WORK_COUNT', this.projectsDatas.length)
+    },
+    mounted () {
+      var that = this
+      window.addEventListener('keyup', function (e) {
+        if (e.keyCode === 27) {
+          that.closeMenu()
+        }
+      })
+    },
+    beforeDestroy () {
+      window.removeEventListener('keyup', function (e) {})
     },
     methods: {
       toggleMenu: function (e) {
         // Set the currentWork already active
         if (this.isMenuOpen) {
           // If menu is open, close it
-          this.$store.commit('SET_IS_MENU_OPEN', false)
+          this.closeMenu()
         } else {
           // If not, open it
           this.$store.commit('SET_IS_MENU_OPEN', true)
@@ -81,23 +98,26 @@
       hoverMenuLink: function (e) {
         var that = this
         var elem = e.target
-        var links = elem.parentNode.querySelectorAll('li')
-        var workId = elem.getAttribute('data-index')
-        var workName = elem.querySelector('h3')
-        var linkColor = workName.getAttribute('data-color')
 
-        // Remove class active from all links
-        this.removeAllActive(links)
+        if (elem.tagName === 'LI') {
+          var links = elem.parentNode.querySelectorAll('li')
+          var workId = elem.getAttribute('data-index')
+          var workName = elem.querySelector('a')
+          var linkColor = workName.getAttribute('data-color')
 
-        // Add active for current hovered link
-        elem.classList += ' active'
+          // Remove class active from all links
+          this.removeAllActive(links)
 
-        this.$refs.workBg.classList += ' changing'
-        this.lastHoveredWork = workId
-        workName.style.color = linkColor
+          // Add active for current hovered link
+          elem.classList += ' active'
+
+          this.$refs.workBg.classList += ' changing'
+          this.lastHoveredWork = workId
+          workName.style.color = linkColor
+        }
       },
       hoverLeaveMenuLink: function (e) {
-        var workName = e.target.querySelector('h3')
+        var workName = e.target.querySelector('a')
         workName.style.color = '#828282'
 
         this.$refs.workBg.className = 'work-bg'
@@ -106,6 +126,9 @@
         for (var i = 0; i < links.length; i++) {
           links[i].className = ''
         }
+      },
+      closeMenu: function () {
+        this.$store.commit('SET_IS_MENU_OPEN', false)
       }
     }
   }
@@ -119,29 +142,68 @@
     // z-index: 10
 
     .menu-toggle
-      position: absolute
-      left: 40px
+      position: fixed
+      left: 30px
       top: 50%
       transform: translateY(-50%)
       color: $white
-      padding: 10px
+      padding: 0 10px 10px 10px
       cursor: pointer
       z-index: 10
 
+      &.open
+
+        .menu-work-indicator
+          transform: translateX(-120px)
+        
+        .menu-work-close
+          transform: translateX(0)
+
+          &:before
+            transform: rotate(45deg)
+            // transition-delay: 0s
+
+          &:after
+            transform: rotate(-45deg)
+            // transition-delay: 0s
+
       .menu-work-indicator
         font-size: 26px
+        transition: transform .3s ease .3s
 
         .current
           font-size: 75px
+
+      .menu-work-close
+        position: absolute
+        top: 16px
+        left: 20px
+        display: block
+        width: 40px
+        height: 40px
+        z-index: 10
+        transform: translateX(-100px)
+        transition: transform .3s ease .4s
+
+        &:before,
+        &:after
+          position: absolute
+          content: ''
+          left: 10px
+          top: 28px
+          width: 36px
+          height: 1px
+          background-color: $white
+          transition: transform .4s ease .2s
   
   .menu-work-list
-    position: absolute
+    position: fixed
     display: flex
     justify-content: center
     align-items: center
-    width: 74%
-    height: 70%
-    max-height: 670px
+    width: 100%
+    height: 100%
+    // max-height: 670px
     top: 50%
     left: 50%
     transform: translate3d(-50%, -50%, 0)
@@ -163,8 +225,14 @@
     .work-bg
       position: absolute
       display: block
-      width: 100%
-      height: 100%
+      top: 40px
+      left: 40px
+      bottom: 40px
+      right: 40px
+      
+      // width: 74%
+      
+      // max-height: 670px
       background-size: cover
       background-position: center center
       transform: scale(1)
@@ -187,7 +255,7 @@
 
         &:hover,
         &.active
-          h3
+          a
             &:before,
             &:after
               opacity: 1
@@ -200,13 +268,12 @@
           color: $title-color
           pointer-events: none
 
-        h3
+        a
           position: relative
           display: inline-block
           font-size: 25px
           font-family: $moha
           color: $title-color
-          pointer-events: none
 
           &:before,
           &:after

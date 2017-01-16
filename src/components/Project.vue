@@ -56,6 +56,8 @@
     },
     mounted () {
       this.$store.commit('SET_PAGE', 'detail')
+
+      document.removeEventListener('keyup', function (e) {})
     },
     beforeMount () {
       var pageFound = false

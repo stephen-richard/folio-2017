@@ -1,5 +1,5 @@
 <template>
-    <div class="next-prev-work prev-work">
+    <div :class="classObject">
       <div class="next-prev-work__image">
         <span class="current" :style="{ 'background-image': 'url(../static/'+ projectDatas[getPrevWork].media_home +')' }" ref="prevWork"></span>
       </div>
@@ -23,6 +23,13 @@
     updated () {
     },
     computed: {
+      classObject: function () {
+        return {
+          'next-prev-work': true,
+          'prev-work': true,
+          'hidden': this.isMenuOpen
+        }
+      },
       ...mapGetters([
         'getPrevWork',
         'getNextWork',
@@ -40,10 +47,20 @@
     top: 50%
     transform: translateY(-50%)
     text-align: left
+    transition: transform .7s cubic-bezier(0.86, 0, 0.07, 1)
     z-index: 5
 
     &.prev-work
       left: -15px
+
+      &.hidden
+        transform: translateY(-50%) translateX(-100%)
+
+    &.next-work
+      right: -15px
+
+      &.hidden
+        transform: translateY(-50%) translateX(100%)
 
     &:hover
       cursor: move

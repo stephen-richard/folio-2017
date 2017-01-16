@@ -1,5 +1,5 @@
 <template>
-    <div class="next-prev-work next-work">
+    <div :class="classObject">
       <div class="next-prev-work__image">
         <span class="current" :style="{ 'background-image': 'url(../static/'+ projectDatas[getNextWork].media_home +')' }"></span>
       </div>
@@ -21,8 +21,16 @@
     mounted () {
     },
     computed: {
+      classObject: function () {
+        return {
+          'next-prev-work': true,
+          'next-work': true,
+          'hidden': this.isMenuOpen
+        }
+      },
       ...mapGetters([
-        'getNextWork'
+        'getNextWork',
+        'isMenuOpen'
       ])
     }
   }
@@ -30,8 +38,4 @@
 
 <style lang="sass" scoped>
   @import '../stylesheets/common/vars'
-
-  .next-work
-      right: -15px
-
 </style>

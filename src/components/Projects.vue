@@ -5,7 +5,7 @@
 
     <router-link 
       class="current-work" 
-      :to="{ name: 'project', params: { project_name: projectsDatas[getCurrentWork].slug, project_id: getCurrentWork } }"
+      :to="{ name: 'project', params: { project_name: projectsDatas[getCurrentWork].slug } }"
       ref="workDropZone">
 
       <div class="current-work__bg" :style="{ 'background-image': 'url(../static/'+ projectsDatas[getCurrentWork].media_home +')' }"></div>
@@ -73,6 +73,9 @@
       //   onDragEnd: function (e) {
       //   }
       // })
+    },
+    detroy () {
+      console.log('destroyed')
     },
     watch: {
       sliderPosition: function (newPosition) {
