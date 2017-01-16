@@ -3,7 +3,7 @@
     <div class="hidden"></div>
     <router-link to="/" class="logo"><img src="../assets/images/logo-home-2x.png" alt="stephen richard portfolio 2017"></router-link>
     <div class="nav-links">
-      <router-link to="/about" class="nav-link">About</router-link>
+      <router-link to="/about" class="nav-link link">About</router-link>
     </div>
 	</div>
 </template>
@@ -20,6 +20,7 @@
 </script>
 
 <style lang="sass" scoped>
+  @import '../stylesheets/common/vars'
 	
   .nav
     position: absolute
@@ -41,9 +42,6 @@
       img
         width: 50%
         height: auto
-
-    a
-      color: #fefefe
     
     .nav-links
 
@@ -52,9 +50,10 @@
         padding: 0 5px
         text-decoration: none
         text-transform: lowercase
+        color: #fefefe
 
         &:hover 
-          text-decoration: underline
+          color: $bg-color
 
         &.router-link-active
           text-decoration: underline

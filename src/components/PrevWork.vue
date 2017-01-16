@@ -1,7 +1,7 @@
 <template>
     <div class="next-prev-work prev-work">
       <div class="next-prev-work__image">
-        <span class="current" :style="{ 'background-image': 'url(../static/'+ projectDatas[getPrevWork].media_home +')' }"></span>
+        <span class="current" :style="{ 'background-image': 'url(../static/'+ projectDatas[getPrevWork].media_home +')' }" ref="prevWork"></span>
       </div>
       <p class="next-prev-work__name">{{ projectDatas[getPrevWork].name }}</p>
     </div>
@@ -19,12 +19,14 @@
       }
     },
     mounted () {
-      console.log(this.indicatorDirection)
+    },
+    updated () {
     },
     computed: {
       ...mapGetters([
         'getPrevWork',
-        'getNextWork'
+        'getNextWork',
+        'isMenuOpen'
       ])
     }
   }
@@ -42,11 +44,19 @@
 
     &.prev-work
       left: -15px
+
+    &:hover
+      cursor: move
+
+      .next-prev-work__image
+        &:before
+          background-color: rgba($bg-color, 0)
     
     &__image
       position: relative
       height: 85px
       width: 315px
+      overflow: hidden
 
       &:before
         position: absolute
@@ -55,19 +65,27 @@
         top: 0
         width: 100%
         height: 100%
-        background-color: rgba($bg-color, .4)
+        background-color: rgba($bg-color, .3)
+        transition: background .7s ease
 
       span
         display: inline-block
         width: 100%
         height: 100%
         background-size: cover
+        transition: filter .3s ease
 
     &__name
       position: absolute
       display: inline-block
-      margin-top: 15px
+      padding-top: 15px
       color: $white
       font-size: 20px
+
+  @keyframes swipe-from-left
+    0% 
+      transform: translateX(100%)
+    100%
+      transform: translateX(0)
 
 </style>

@@ -1,6 +1,6 @@
 <template>
 	<div class="footer">
-  <a class="address" :href="'mailto:' + email">{{ email }}</a>
+  <a class="address link" :href="'mailto:' + email">{{ email }}</a>
 	</div>
 </template>
 

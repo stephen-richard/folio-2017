@@ -50,7 +50,7 @@
     },
     mounted () {
       var that = this
-      var overlapThreshold = '90%'
+      var overlapThreshold = '70%'
       var dropArea = this.$refs.targetCircle
 
       Draggable.create(this.$refs.topCircle, {
@@ -71,7 +71,7 @@
         onDragEnd: function (e) {
           if (!this.target.classList.contains('dropped')) {
             TweenMax.to(this.target, 1, {
-              x: 0,
+              x: -10,
               ease: Power4.easeOut
             })
 
@@ -118,6 +118,10 @@
   @import '../stylesheets/common/vars'
 
   #intro
+    position: absolute
+    width: 100%
+    height: 100%
+    background-color: $bg-color
 
     .logo
       position: absolute
@@ -146,7 +150,8 @@
           display: inline-block
           width: 21px
           height: 21px
-          background-color: $black
+          padding: 10px 10px 8px 0px
+          box-sizing: initial
           border-radius: 50%
           z-index: 2
           
@@ -167,6 +172,7 @@
         .line
           position: relative
           width: 160px
+          pointer-events: none
 
           .dot
             display: inline-block

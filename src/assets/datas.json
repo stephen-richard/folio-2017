@@ -8,14 +8,11 @@
 			"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec iaculis odio, non egestas ligula. Praesent gravida rhoncus dolor porttitor egestas. Sed sed nunc porttitor, sodales urna non, rhoncus tellus. Sed ipsum tortor, dictum vitae consectetur ac, dapibus in odio. Maecenas bibendum a mi ut ultrices.",
 			"context": "Freelance",
 			"role": "Front/Back-end developer",
-			"techno": [
-				"Wordpress",
-				"Scss",
-				"Gulp",
-				"Ajax"
-			],
+			"techno": "Wordpress, Scss, Gulp, Ajax",
 			"media_home": "psg-home.jpg",
+			"color": "#FE0317",
 			"medias": [
+				"psg-home.jpg",
 				"psg-home.jpg",
 				"psg-home.jpg"
 			]
@@ -28,13 +25,9 @@
 			"description": "Vestibulum vel orci lacus. Cras sit amet erat ullamcorper, imperdiet diam a, feugiat urna. Cras faucibus in arcu et posuere. Cras quis magna diam. Ut porta velit ut posuere lacinia. Vestibulum urna purus, egestas eget leo vitae, laoreet malesuada metus. Etiam id sem ultricies, rutrum nulla at, efficitur augue. Maecenas nec consectetur nunc, tincidunt iaculis tortor. Morbi sem odio, molestie et consectetur at, ornare ultrices mauris.",
 			"context": "School project",
 			"role": "Front-end developer",
-			"techno": [
-				"React",
-				"TweenMax",
-				"Interact.js",
-				"Scss"
-			],
+			"techno": "React, TweenMax, Interact.js, Scss",
 			"media_home": "edw-home.png",
+			"color": "#602592",
 			"medias": []
 		},
 		{
@@ -45,12 +38,9 @@
 			"description": "Cras sit amet erat ullamcorper, imperdiet diam a, feugiat urna. Cras faucibus in arcu et posuere. Cras quis magna diam. Ut porta velit ut posuere lacinia. Vestibulum urna purus, egestas eget leo vitae, laoreet malesuada metus. Etiam id sem ultricies, rutrum nulla at, efficitur augue. Maecenas nec consectetur nunc, tincidunt iaculis tortor. Morbi sem odio, molestie et consectetur at, ornare ultrices mauris.",
 			"context": "/w Agency FCINQ",
 			"role": "Front/Back-end developer",
-			"techno": [
-				"Wordpress",
-				"TweenMax",
-				"Google Maps API"	
-			],
+			"techno": "Wordpress, TweenMax, Google Maps API",
 			"media_home": "sorop-home.jpg",
+			"color": "#3c70be",
 			"medias": []
 		},
 		{
@@ -61,11 +51,9 @@
 			"description": "Imperdiet diam a, feugiat urna. Cras faucibus in arcu et posuere. Cras quis magna diam. Ut porta velit ut posuere lacinia. Vestibulum urna purus, egestas eget leo vitae, laoreet malesuada metus. Etiam id sem ultricies, rutrum nulla at, efficitur augue. Maecenas nec consectetur nunc, tincidunt iaculis tortor. Morbi sem odio, molestie et consectetur at, ornare ultrices mauris.",
 			"context": "Freelance",
 			"role": "Integrator / Front-end developer",
-			"techno": [
-				"Meteor",
-				""
-			],
+			"techno": "Meteor",
 			"media_home": "skyyart-home.png",
+			"color": "#FFC540",
 			"medias": []
 		},
 		{
@@ -76,12 +64,9 @@
 			"description": "Sed sit amet elit id ligula egestas consequat sed non nisl. Mauris molestie pharetra diam at tempus. In faucibus nunc in tincidunt consequat. Sed pretium elit nunc, vitae hendrerit ipsum mollis sit amet. Fusce libero nunc, commodo ut accumsan sit amet, viverra eu quam. Aliquam consequat varius sapien, euismod auctor sapien egestas eu.",
 			"context": "School project",
 			"role": "Integrator / Front-end developer",
-			"techno": [
-				"Gulp",
-				"Handlebars",
-				"Scss"
-			],
-			"media_home": "omauvaisbuisson-home.png",
+			"techno": "Gulp, Handlebars, Scss",
+			"media_home": "geek-art-home.png",
+			"color": "#84B9F7",
 			"medias": []
 		},
 		{
@@ -92,11 +77,9 @@
 			"description": "Mauris sed viverra leo. Duis at malesuada mi. Sed non nibh id orci maximus dapibus. Duis porttitor nulla quis auctor sollicitudin. Vivamus aliquam justo erat, non laoreet metus ultrices id. Vivamus sodales velit a massa placerat maximus. Etiam ultricies diam tempus libero porttitor dictum. Fusce dapibus venenatis elementum. Cras rutrum dolor a justo laoreet, ac accumsan massa porttitor. Pellentesque vestibulum efficitur neque, nec sollicitudin leo.",
 			"context": "Freelance",
 			"role": "Front/Back-end developer",
-			"techno": [
-				"Wordpress",
-				"Scss"	
-			],
-			"media_home": "edw-home.png",
+			"techno": "Wordpress, Scss",
+			"media_home": "omauvaisbuisson-home.png",
+			"color": "#FF435A",
 			"medias": []
 		}
 	]

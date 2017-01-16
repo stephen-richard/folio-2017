@@ -5,3 +5,21 @@
   font-weight: normal;
   font-style: normal;
 }
+
+@font-face {
+    font-family: 'mohavebold';
+    src: url('./assets/fonts/mohave-bold-webfont.woff2') format('woff2'),
+         url('./assets/fonts/mohave-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'plantagenet';
+    src: url('./assets/fonts/plantagenetcherokee-webfont.woff2') format('woff2'),
+         url('./assets/fonts/plantagenetcherokee-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}

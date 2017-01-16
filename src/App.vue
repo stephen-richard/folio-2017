@@ -5,7 +5,7 @@
     <navbar v-if="isIntroSkipped"></navbar>
     <intro v-if="!isIntroSkipped"></intro>
     <router-view v-if="isIntroSkipped"></router-view>
-    <footerElement></footer>
+    <footerElement v-if="isIntroSkipped" v-show="getPage != 'detail'"></footerElement>
 
     <loader v-bind:isLoading="isLoading"></loader>
   </div>
@@ -26,7 +26,8 @@
     computed: {
       ...mapGetters([
         'isLoading',
-        'isIntroSkipped'
+        'isIntroSkipped',
+        'getPage'
       ])
     },
     components: {
@@ -49,6 +50,8 @@
 <style lang="sass">
   @import './stylesheets/main'
   
+  *
+    box-sizing: border-box
   body
     width: 100%
     overflow-x: scroll
@@ -57,7 +60,7 @@
   #app 
     width: 100%
     height: 100%
-    // font-family: 'antonregular', Helvetica, Arial, sans-serif
+    font-family: 'plantagenet', Helvetica, Arial, sans-serif
     -webkit-font-smoothing: antialiased
     -moz-osx-font-smoothing: grayscale
     text-align: center
@@ -70,5 +73,26 @@
   a
     text-decoration: none
     color: $white
+
+    &.link
+      position: relative
+      
+      &:before
+        position: absolute
+        content: ''
+        bottom: 0
+        left: 0
+        width: 100%
+        height: 0
+        background-color: $white
+        z-index: -1
+        transition: height .3s ease
+
+      &:hover
+        color: $bg-color
+
+        &:before
+          height: 100%
+
 
 </style>

@@ -4,10 +4,10 @@
       <span class="project__main-picture" :style="{'background-image': 'url(./static/' + currentProject.media_home + ')'}"></span>
       
       <div class="project__datas">
-        <h1>{{ currentProject.name }}</h1>
+        <h1 ref="title">{{ currentProject.name }}</h1>
         <h2>{{ currentProject.role }}</h2>
 
-        <div>
+        <div class="project-data-container">
           <div>
             <p class="title">Description</p>
             <p>{{ currentProject.description }}</p>
@@ -21,7 +21,7 @@
             <p>{{ currentProject.year }}</p>
 
             <p class="title">Techno / tools</p>
-            <p></p>
+            <p>{{ currentProject.techno }}</p>
 
             <p class="title">Link</p>
             <a :href="currentProject.url" target="_blank">See the project</a>
@@ -54,6 +54,9 @@
         projectsDatas: projectsData.projects
       }
     },
+    mounted () {
+      this.$store.commit('SET_PAGE', 'detail')
+    },
     beforeMount () {
       var pageFound = false
       var counter = 0
@@ -66,17 +69,18 @@
         }
       }
 
-      console.log(this.project_id)
       if (!pageFound) {
         this.$router.push('/')
       }
     },
+    beforeDestroy () {
+      this.$store.commit('SET_PAGE', 'home')
+    },
     methods: {
       onEnter (e) {
-        var title = e.querySelector('h1')
-        TweenMax.to(title, 2, {
-          scale: 2
-        })
+        // TweenMax.to(this.$refs.title, 2, {
+        //   scale: 2
+        // })
       }
     }
   }
@@ -95,15 +99,20 @@
     p
       font-size: 16px
       color: $font-color
+      line-height: 27px
 
     .title
       font-size: 20px
       color: $title-color
+      font-family: 'mohavebold'
+      text-transform: none
+      
 
     &__main-picture
       display: block
       width: 100%
       height: 600px
+      background-size: cover
 
     &__datas
       display: block
@@ -111,16 +120,52 @@
 
       h1
         font-size: 45px
+        font-family: 'mohavebold'
 
       h2
         font-size: 20px
+        color: $title-color
 
-  .medias 
+      .project-data-container
+        margin-top: 80px
+        text-align: left
+        overflow: hidden
+
+        div:first-child
+          float: left
+          width: 75%
+          padding-right: 20px
+
+          .title
+            margin-bottom: 10px
+
+        div:last-child
+          float: right
+          width: 25%
+
+          .title
+            margin-top: 10px
+
+            &:first-child
+              margin-top: 0
+
+  .medias
+    display: block
+    margin-top: 100px
     overflow: hidden
 
     .picture
-      width: 50%
+      width: calc(50% - 6px)
       float: left
+
+      &:first-child
+        width: 100%
+        margin-bottom: 60px
+        padding: 40px
+        background-color: red
+
+      &:nth-child(even)
+        margin-right: 12px
 
       img 
         width: 100%

@@ -11,7 +11,7 @@
       <div class="current-work__bg" :style="{ 'background-image': 'url(../static/'+ projectsDatas[getCurrentWork].media_home +')' }"></div>
 
       <div class="current-work__datas">
-        <h1>{{ projectsDatas[getCurrentWork].name }}</h1>
+        <h1 :style="{ 'color': projectsDatas[getCurrentWork].color }">{{ projectsDatas[getCurrentWork].name }}</h1>
         <p class="link">Discover</p>
       </div>
     </router-link>
@@ -62,17 +62,17 @@
       }, false)
 
       // Make next/prev indicators daraggable
-      Draggable.create(this.$refs.dragNextWork, {
-        type: 'x',
-        bound: that.$refs.workDropZone,
-        edgeResistance: 1,
-        dragResistance: 0.2,
-        onDrag: function (e) {
-          console.log('Hey look at me im moving :D')
-        },
-        onDragEnd: function (e) {
-        }
-      })
+      // Draggable.create(this.$refs.dragNextWork, {
+      //   type: 'x',
+      //   bound: that.$refs.workDropZone,
+      //   edgeResistance: 1,
+      //   dragResistance: 0.2,
+      //   onDrag: function (e) {
+      //     console.log('Hey look at me im moving :D')
+      //   },
+      //   onDragEnd: function (e) {
+      //   }
+      // })
     },
     watch: {
       sliderPosition: function (newPosition) {
@@ -84,23 +84,28 @@
         'getCurrentWork',
         'getWorkCount',
         'hasPrevWork',
-        'hasNextWork'
+        'hasNextWork',
+        'isMenuOpen'
       ])
     },
     methods: {
       goNext () {
-        this.goTo(this.getCurrentWork + 1, 'next')
+        this.goTo('next')
       },
       goPrev () {
-        this.goTo(this.getCurrentWork - 1, 'prev')
+        this.goTo('prev')
       },
-      goTo (index, direction) {
-        console.log('Go to project: ' + index)
+      goTo (direction) {
+        // If menu is open close it
+        if (this.isMenuOpen) {
+          this.$store.commit('SET_IS_MENU_OPEN', false)
+        }
+
         // NEXT
         if (direction === 'next') {
-          if (index < this.getWorkCount) {
+          if (this.getCurrentWork + 1 < this.getWorkCount) {
             // Switch next project if it's not the last one
-            this.$store.commit('CHANGE_CURRENT_WORK', index)
+            this.$store.commit('CHANGE_CURRENT_WORK', this.getCurrentWork + 1)
           } else {
             // If it's the last project reset to the first one
             this.$store.commit('CHANGE_CURRENT_WORK', 0)
@@ -109,11 +114,13 @@
 
         // PREV
         if (direction === 'prev') {
-          if (index >= 0) {
+          if (this.getCurrentWork - 1 >= 0) {
             // Switch to left previous work
-            this.$store.commit('CHANGE_CURRENT_WORK', index)
+            this.$store.commit('CHANGE_CURRENT_WORK', this.getCurrentWork - 1)
           }
         }
+
+        console.log('Switched to work: ' + this.getCurrentWork)
       }
     }
   }
@@ -137,7 +144,8 @@
   .current-work
     position: absolute
     width: 74%
-    height: 670px
+    height: 70%
+    max-height: 670px
     top: 50%
     left: 50%
     transform: translate3d(-50%, -50%, 0)
@@ -172,7 +180,7 @@
         top: 0
         width: 100%
         height: 100%
-        background-color: rgba($black, .3)
+        background-color: rgba($black, 0.1)
         z-index: 2
 
     &__datas
@@ -182,7 +190,8 @@
       z-index: 3
 
       h1
-        font-size: 45px
+        font-size: 55px
+        font-family: 'mohavebold'
 
       .link
         position: relative
