@@ -11,10 +11,13 @@
 			"techno": "Wordpress, Scss, Gulp, Ajax",
 			"media_home": "psg-home.jpg",
 			"color": "#FE0317",
+			"first_media": [
+				"/psg/psg-01.png",
+				"vertical"
+			],
 			"medias": [
-				"psg-home.jpg",
-				"psg-home.jpg",
-				"psg-home.jpg"
+				"/psg/psg-02.png",
+				"/psg/psg-03.png"
 			]
 		},
 		{
@@ -27,8 +30,15 @@
 			"role": "Front-end developer",
 			"techno": "React, TweenMax, Interact.js, Scss",
 			"media_home": "edw-home.png",
-			"color": "#602592",
-			"medias": []
+			"color": "#E1BEE7",
+			"first_media": [
+				"/edw/edw-01.png",
+				"horizontal"
+			],
+			"medias": [
+				"/edw/edw-02.png",
+				"/edw/edw-03.png"
+			]
 		},
 		{
 			"name": "Soroptimist Europe",
@@ -41,7 +51,14 @@
 			"techno": "Wordpress, TweenMax, Google Maps API",
 			"media_home": "sorop-home.jpg",
 			"color": "#3c70be",
-			"medias": []
+			"first_media": [
+				"/sorop/sorop-01.png",
+				"vertical"
+			],
+			"medias": [
+				"/sorop/sorop-02.png",
+				"/sorop/sorop-03.png"
+			]
 		},
 		{
 			"name": "Skyyart",
@@ -54,7 +71,14 @@
 			"techno": "Meteor",
 			"media_home": "skyyart-home.png",
 			"color": "#FFC540",
-			"medias": []
+			"first_media": [
+				"/skyyart/skyyart-01.png",
+				"horizontal"
+			],
+			"medias": [
+				"/skyyart/skyyart-02.png",
+				"/skyyart/skyyart-03.png"
+			]
 		},
 		{
 			"name": "Geek art",
@@ -67,7 +91,14 @@
 			"techno": "Gulp, Handlebars, Scss",
 			"media_home": "geek-art-home.png",
 			"color": "#84B9F7",
-			"medias": []
+			"first_media": [
+				"/geek-art/geek-art-01.png",
+				"horizontal"
+			],
+			"medias": [
+				"/geek-art/geek-art-02.png",
+				"/geek-art/geek-art-03.png"
+			]
 		},
 		{
 			"name": "O Mauvais Buisson",
@@ -80,6 +111,10 @@
 			"techno": "Wordpress, Scss",
 			"media_home": "omauvaisbuisson-home.png",
 			"color": "#FF435A",
+			"first_media": [
+				"",
+				"horizontal"
+			],
 			"medias": []
 		}
 	]

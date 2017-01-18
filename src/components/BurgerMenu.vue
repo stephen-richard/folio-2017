@@ -18,10 +18,10 @@
               v-for="(work, index) in projectsDatas"
               v-on:mouseover="hoverMenuLink"
               v-on:mouseleave="hoverLeaveMenuLink"
-              v-on:click="closeMenu"
+              v-on:click="clickMenuLink"
               :data-index="index">
               <span class="work-id">{{ index + 1 }}</span>
-              <router-link :to="{ name: 'project', params: { project_name: projectsDatas[index].slug } }" :data-color="work.color">{{ work.name }}</router-link>
+              <router-link :to="{ name: 'project', params: { project_name: projectsDatas[index].slug } }" :data-index="index" :data-color="work.color">{{ work.name }}</router-link>
             </li>
           </ul>
         </div>
@@ -74,9 +74,6 @@
         }
       })
     },
-    beforeDestroy () {
-      window.removeEventListener('keyup', function (e) {})
-    },
     methods: {
       toggleMenu: function (e) {
         // Set the currentWork already active
@@ -126,6 +123,12 @@
         for (var i = 0; i < links.length; i++) {
           links[i].className = ''
         }
+      },
+      clickMenuLink: function (e) {
+        var link = e.target
+
+        this.$store.commit('CHANGE_CURRENT_WORK', parseInt(link.getAttribute('data-index')))
+        this.closeMenu()
       },
       closeMenu: function () {
         this.$store.commit('SET_IS_MENU_OPEN', false)
@@ -207,7 +210,6 @@
     top: 50%
     left: 50%
     transform: translate3d(-50%, -50%, 0)
-    background-color: $bg-color
     text-decoration: none
     overflow: hidden
     z-index: 5
@@ -285,6 +287,7 @@
             border-radius: 10px
             background-color: $white
             opacity: 0
+            pointer-events: none
           
           &:before
             left: -140px

@@ -6,6 +6,10 @@
     <intro v-if="!isIntroSkipped"></intro>
     <router-view v-if="isIntroSkipped"></router-view>
     <footerElement v-if="isIntroSkipped" v-show="getPage != 'detail'"></footerElement>
+    <video v-if="getPage != 'detail'" id="video-bg" autoplay loop>
+      <source src="./static/video/background.mp4" type="video/mp4">
+      <source src="./static/video/background.webm" type="video/webm">
+    </video>
 
     <loader v-bind:isLoading="isLoading"></loader>
   </div>
@@ -25,6 +29,8 @@
     name: 'app',
     computed: {
       ...mapGetters([
+        'getCurrentWork',
+        'getWorkCount',
         'isLoading',
         'isIntroSkipped',
         'getPage'
@@ -40,9 +46,56 @@
     },
     mounted () {
       console.log('App mounted')
+
+      var that = this
+      // Handle arrow navigation
+      document.addEventListener('keyup', function (e) {
+        if (e.keyCode === 37) {
+          that.goPrev()
+        }
+
+        if (e.keyCode === 39) {
+          that.goNext()
+        }
+      }, false)
     },
     beforeMount () {
       // this.$store.commit('SET_IS_LOADING', true)
+    },
+    methods: {
+      goNext () {
+        this.goTo('next')
+      },
+      goPrev () {
+        this.goTo('prev')
+      },
+      goTo (direction) {
+        // If menu is open close it
+        if (this.isMenuOpen) {
+          this.$store.commit('SET_IS_MENU_OPEN', false)
+        }
+
+        // NEXT
+        if (direction === 'next') {
+          if (this.getCurrentWork + 1 < this.getWorkCount) {
+            // Switch next project if it's not the last one
+            this.$store.commit('CHANGE_CURRENT_WORK', this.getCurrentWork + 1)
+          } else {
+            // If it's the last project reset to the first one
+            this.$store.commit('CHANGE_CURRENT_WORK', 0)
+          }
+        }
+
+        // PREV
+        if (direction === 'prev') {
+          if (this.getCurrentWork - 1 >= 0) {
+            // Switch to left previous work
+            this.$store.commit('CHANGE_CURRENT_WORK', this.getCurrentWork - 1)
+          }
+        }
+
+        console.log('Switched to work: ' + this.getCurrentWork)
+      }
     }
   }
 </script>
@@ -65,6 +118,16 @@
     -moz-osx-font-smoothing: grayscale
     text-align: center
     background-color: $bg-color
+
+  #video-bg
+    position: fixed
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    background-image: url("../static/background-poster.png")
+    background-size: cover
+    z-index: 1
 
   .container
     max-width: 1280px

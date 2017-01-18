@@ -11,8 +11,8 @@
       <div class="current-work__bg" :style="{ 'background-image': 'url(../static/'+ projectsDatas[getCurrentWork].media_home +')' }"></div>
 
       <div class="current-work__datas">
-        <h1 :style="{ 'color': projectsDatas[getCurrentWork].color }">{{ projectsDatas[getCurrentWork].name }}</h1>
-        <p class="link">Discover</p>
+        <h1>{{ projectsDatas[getCurrentWork].name }}</h1>
+        <p class="link"><img src="../assets/images/line.png" class="line before"/>Discover <img src="../assets/images/line.png" class="line after"/></p>
       </div>
     </router-link>
 
@@ -39,7 +39,6 @@
     data () {
       return {
         projectsDatas: projectsData.projects,
-        sliderPosition: 0,
         screenWidth: 0,
         projectWidth: window.innerWidth / 2
       }
@@ -47,20 +46,7 @@
     mounted () {
       var that = this
 
-      this.sliderPosition = (window.innerWidth / 4)
       this.screenWidth = window.innerWidth
-
-      // Handle arrow navigation
-      document.addEventListener('keyup', function (e) {
-        if (e.keyCode === 37) {
-          that.goPrev()
-        }
-
-        if (e.keyCode === 39) {
-          that.goNext()
-        }
-      }, false)
-
       // Make next/prev indicators daraggable
       // Draggable.create(this.$refs.dragNextWork, {
       //   type: 'x',
@@ -74,13 +60,9 @@
       //   }
       // })
     },
-    detroy () {
+    beforeDetroy () {
       console.log('destroyed')
-    },
-    watch: {
-      sliderPosition: function (newPosition) {
-        this.sliderPosition = newPosition
-      }
+      document.removeEventListener('keyup', function (e) {})
     },
     computed: {
       ...mapGetters([
@@ -90,41 +72,6 @@
         'hasNextWork',
         'isMenuOpen'
       ])
-    },
-    methods: {
-      goNext () {
-        this.goTo('next')
-      },
-      goPrev () {
-        this.goTo('prev')
-      },
-      goTo (direction) {
-        // If menu is open close it
-        if (this.isMenuOpen) {
-          this.$store.commit('SET_IS_MENU_OPEN', false)
-        }
-
-        // NEXT
-        if (direction === 'next') {
-          if (this.getCurrentWork + 1 < this.getWorkCount) {
-            // Switch next project if it's not the last one
-            this.$store.commit('CHANGE_CURRENT_WORK', this.getCurrentWork + 1)
-          } else {
-            // If it's the last project reset to the first one
-            this.$store.commit('CHANGE_CURRENT_WORK', 0)
-          }
-        }
-
-        // PREV
-        if (direction === 'prev') {
-          if (this.getCurrentWork - 1 >= 0) {
-            // Switch to left previous work
-            this.$store.commit('CHANGE_CURRENT_WORK', this.getCurrentWork - 1)
-          }
-        }
-
-        console.log('Switched to work: ' + this.getCurrentWork)
-      }
     }
   }
 </script>
@@ -151,10 +98,10 @@
     max-height: 670px
     top: 50%
     left: 50%
-    transform: translate3d(-50%, -50%, 0)
+    transform: translateX(-50%) translateY(-50%)
     text-decoration: none
     overflow: hidden
-    z-index: 1
+    z-index: 2
 
     &:hover
       
@@ -163,10 +110,10 @@
 
       .link
 
-        &:before
+        .before
           transform: translateX(-10px)
 
-        &:after
+        .after
           transform: translateX(10px)
 
     &__bg
@@ -188,7 +135,7 @@
 
     &__datas
       position: relative
-      margin-top: -180px
+      margin-top: -140px
       color: $white
       z-index: 3
 
@@ -204,21 +151,20 @@
         text-decoration: none
         color: $white
 
-        &:before,
-        &:after
+        img.line,
           position: absolute
           content: ''
           top: 9px 
-          width: 120px
-          height: 1px
+          width: calc(210px / 2)
+          height: auto
+          // height: 1px
           border-radius: 10px
-          background-color: $white
           transition: transform .3s ease
         
-        &:before
-          left: -130px
+          &.before
+            left: -120px
 
-        &:after
-          left: 80px
+          &.after
+            left: 80px
 
 </style>

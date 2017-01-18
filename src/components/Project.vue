@@ -1,47 +1,56 @@
 <template>
   <transition name="fade" v-on:enter="onEnter">
     <div class="project container">
-      <span class="project__main-picture" :style="{'background-image': 'url(./static/' + currentProject.media_home + ')'}"></span>
+      <span class="project__main-picture" :style="{'background-image': 'url(./static/' + projectsDatas[getCurrentWork].media_home + ')'}"></span>
       
       <div class="project__datas">
-        <h1 ref="title">{{ currentProject.name }}</h1>
-        <h2>{{ currentProject.role }}</h2>
+        <h1 ref="title" :style="{ 'color': projectsDatas[getCurrentWork].color }">{{ projectsDatas[getCurrentWork].name }}</h1>
+        <h2>{{ projectsDatas[getCurrentWork].role }}</h2>
 
         <div class="project-data-container">
           <div>
             <p class="title">Description</p>
-            <p>{{ currentProject.description }}</p>
+            <p>{{ projectsDatas[getCurrentWork].description }}</p>
           </div>
 
           <div>
             <p class="title">Client / context</p>
-            <p>{{ currentProject.context }}</p>
+            <p>{{ projectsDatas[getCurrentWork].context }}</p>
 
             <p class="title">Year</p>
-            <p>{{ currentProject.year }}</p>
+            <p>{{ projectsDatas[getCurrentWork].year }}</p>
 
             <p class="title">Techno / tools</p>
-            <p>{{ currentProject.techno }}</p>
+            <p>{{ projectsDatas[getCurrentWork].techno }}</p>
 
             <p class="title">Link</p>
-            <a :href="currentProject.url" target="_blank">See the project</a>
+            <a :href="projectsDatas[getCurrentWork].url" target="_blank">See the project</a>
           </div>
         </div>
         
       </div>
 
       <div class="medias">
-        <div v-for="picture in currentProject.medias" class="picture">
+        <div :class="'picture picture-first ' + projectsDatas[getCurrentWork].first_media[1]" :style="{ 'background-color': projectsDatas[getCurrentWork].color }">
+          <img :src="'../static/' + projectsDatas[getCurrentWork].first_media[0]" alt="">
+        </div>
+        <div v-for="(picture, index) in projectsDatas[getCurrentWork].medias" class="picture">
           <img :src="'../static/' + picture" alt="">
         </div>
       </div>
+
+      <project-switcher v-if="hasNextWork"></project-switcher>
     </div>
   </transition>
 </template>
 
 <script>
   import projectsData from '../assets/datas.json'
+  import ProjectSwitcher from '../components/ProjectSwitcher'
+
   import TweenMax from 'gsap'
+
+  import { mapGetters } from 'vuex'
 
   export default {
     name: 'project',
@@ -49,25 +58,35 @@
       return {
         msg: 'Projects page',
         param: this.$route.params.project_name,
-        project_id: null,
-        currentProject: {},
         projectsDatas: projectsData.projects
       }
+    },
+    computed: {
+      ...mapGetters([
+        'getCurrentWork',
+        'getWorkCount',
+        'hasNextWork'
+      ])
+    },
+    components: {
+      ProjectSwitcher
     },
     mounted () {
       this.$store.commit('SET_PAGE', 'detail')
 
-      document.removeEventListener('keyup', function (e) {})
+      // document.removeEventListener('keyup', function (e) {})
     },
     beforeMount () {
+      // @TODO method appelée au updated
+      // Regarder changement du param
+      // RELOAD LE TOUT E L'ECOUTE DU CHANGEMENT DE CURRENT WORK
+      // @TODO
       var pageFound = false
       var counter = 0
 
       for (var i = 0; i < this.projectsDatas.length; i++) {
         if (this.projectsDatas[i].slug === this.param) {
           pageFound = true
-          this.project_id = i
-          this.currentProject = this.projectsDatas[i]
         }
       }
 
@@ -93,10 +112,12 @@
   @import '../stylesheets/common/vars'
 
   .project
+    position: relative
     width: 74%
     padding-top: 115px
     padding-bottom: 100px
     color: white
+    z-index: 2
 
     p
       font-size: 16px
@@ -125,6 +146,7 @@
         font-family: 'mohavebold'
 
       h2
+        padding-top: 5px
         font-size: 20px
         color: $title-color
 
@@ -160,11 +182,19 @@
       width: calc(50% - 6px)
       float: left
 
-      &:first-child
+      &.picture-first
         width: 100%
         margin-bottom: 60px
-        padding: 40px
-        background-color: red
+
+        &.horizontal
+          padding: 60px
+
+        &.vertical
+          padding: 60px 60px 0 60px
+        
+        img
+          margin-bottom: -3px
+          box-shadow: 0 2px 35px 0 rgba(0, 0, 0, 0.44)
 
       &:nth-child(even)
         margin-right: 12px
