@@ -12,6 +12,8 @@ module.exports = {
   ],
   // add your custom rules here
   'rules': {
+    // 'indent': ['2', 'tab'],
+    // 'no-tabs': 0,
     // allow paren-less arrow functions
     'arrow-parens': 0,
     // allow async-await

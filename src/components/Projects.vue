@@ -1,14 +1,19 @@
 <template>
-	<div class="projects">
+	<div class="projects" ref="projectsContainer">
     
-    <prev-work v-if="hasPrevWork" ref="dragPrevWork"></prev-work>
+    <prev-work v-if="hasPrevWork"></prev-work>
 
     <router-link 
       class="current-work" 
       :to="{ name: 'project', params: { project_name: projectsDatas[getCurrentWork].slug } }"
       ref="workDropZone">
 
-      <div class="current-work__bg" :style="{ 'background-image': 'url(../static/'+ projectsDatas[getCurrentWork].media_home +')' }"></div>
+      <!-- <div class="current-work__bg" :style="{ 'background-image': 'url(../static/'+ projectsDatas[getCurrentWork].media_home +')' }" ref="workBg"></div> -->
+
+      <div class="current-work__bg" ref="workBg"></div>
+      <div class="current-work__drop-cover" ref="workDropCover">
+        <p>Drop it like it's hot</p>
+      </div>
 
       <div class="current-work__datas">
         <h1>{{ projectsDatas[getCurrentWork].name }}</h1>
@@ -16,7 +21,7 @@
       </div>
     </router-link>
 
-    <next-work v-if="hasNextWork" ref="dragNextWork"></next-work>
+    <next-work v-if="hasNextWork"></next-work>
 
   </div>
 </template>
@@ -27,6 +32,8 @@
   import NextWork from '../components/NextWork'
   import { TweenMax, Power4 } from 'gsap'
   import Draggable from '../../node_modules/gsap/src/minified/utils/Draggable.min.js'
+  import $ from 'jquery'
+  import '../../node_modules/jquery.ripples/jquery.ripples-min.js'
 
   import { mapGetters } from 'vuex'
 
@@ -46,22 +53,22 @@
     mounted () {
       var that = this
 
-      this.screenWidth = window.innerWidth
-      // Make next/prev indicators daraggable
-      // Draggable.create(this.$refs.dragNextWork, {
-      //   type: 'x',
-      //   bound: that.$refs.workDropZone,
-      //   edgeResistance: 1,
-      //   dragResistance: 0.2,
-      //   onDrag: function (e) {
-      //     console.log('Hey look at me im moving :D')
-      //   },
-      //   onDragEnd: function (e) {
-      //   }
-      // })
+      this.$store.commit('CHANGE_INDICATORS_STATE', false)
+
+      $('.current-work__bg').ripples({
+        imageUrl: '../static/' + this.projectsDatas[this.getCurrentWork].media_home,
+        dropRadius: 30,
+        perturbance: 0.015,
+        interactive: true
+      })
     },
-    beforeDetroy () {
-      console.log('destroyed')
+    updated () {
+      $('.current-work__bg').ripples('set', 'imageUrl', '../static/' + this.projectsDatas[this.getCurrentWork].media_home)
+    },
+    beforeDestroy () {
+      $('.current-work__bg').ripples('destroy')
+      // Hide menu items with the nice animation
+      this.$store.commit('CHANGE_INDICATORS_STATE', true)
       document.removeEventListener('keyup', function (e) {})
     },
     computed: {
@@ -70,7 +77,8 @@
         'getWorkCount',
         'hasPrevWork',
         'hasNextWork',
-        'isMenuOpen'
+        'isMenuOpen',
+        'webGlContextInitiated'
       ])
     }
   }
@@ -96,6 +104,7 @@
     width: 74%
     height: 70%
     max-height: 670px
+    max-width: 1280px
     top: 50%
     left: 50%
     transform: translateX(-50%) translateY(-50%)
@@ -106,7 +115,7 @@
     &:hover
       
       .current-work__bg
-        transform: scale(1.1)
+        // transform: scale(1.05)
 
       .link
 
@@ -116,12 +125,19 @@
         .after
           transform: translateX(10px)
 
+    &.get-dropped
+
+      .current-work__drop-cover
+        opacity: 1
+        z-index: 4
+
     &__bg
       width: 100%
       height: 100%
       background-size: cover
       background-position: center center
-      transition: transform .7s cubic-bezier(0.86, 0, 0.07, 1)
+      transition: transform 1.2s cubic-bezier(0.86, 0, 0.07, 1)
+      z-index: 1
 
       &:before
         position: absolute
@@ -132,6 +148,23 @@
         height: 100%
         background-color: rgba($black, 0.1)
         z-index: 2
+
+    &__drop-cover
+      position: absolute
+      content: ''
+      display: flex
+      justify-content: center
+      align-items: center
+      left: 0
+      top: 0
+      width: 100%
+      height: 100%
+      background-color: rgba($black, 0.7)
+      font-family: 'mohavebold'
+      font-size: 20px
+      opacity: 0
+      z-index: 0
+      transition: opacity .3s ease
 
     &__datas
       position: relative

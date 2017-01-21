@@ -4,7 +4,9 @@ const state = {
   loading: false,
   introSkipped: false,
   page: '',
-  menuOpen: false
+  menuOpen: false,
+  videoIntroPlay: false,
+  indicatorsHidden: true
 }
 
 const getters = {
@@ -19,6 +21,12 @@ const getters = {
   },
   isMenuOpen: state => {
     return state.menuOpen
+  },
+  shouldPlay: state => {
+    return state.videoIntroPlay
+  },
+  isIndicatorHidden: state => {
+    return state.indicatorsHidden
   }
 }
 
@@ -34,6 +42,12 @@ const mutations = {
   },
   [types.SET_IS_MENU_OPEN] (state, menuState) {
     state.menuOpen = menuState
+  },
+  [types.BACKGROUND_VIDEO_STATE] (state, videoState) {
+    state.videoIntroPlay = videoState
+  },
+  [types.CHANGE_INDICATORS_STATE] (state, indicatorState) {
+    state.indicatorsHidden = indicatorState
   }
 }
 

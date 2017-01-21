@@ -1,14 +1,17 @@
 <template>
-    <div :class="classObject">
-      <div class="next-prev-work__image">
-        <span class="current" :style="{ 'background-image': 'url(../static/'+ projectDatas[getPrevWork].media_home +')' }" ref="prevWork"></span>
+    <transition>
+      <div :class="classObject">
+        <div class="next-prev-work__image" ref="prevWork">
+          <span class="current" :style="{ 'background-image': 'url(../static/'+ projectDatas[getPrevWork].media_home +')' }" ref="prevWork"></span>
+        </div>
+        <p class="next-prev-work__name">{{ projectDatas[getPrevWork].name }}</p>
       </div>
-      <p class="next-prev-work__name">{{ projectDatas[getPrevWork].name }}</p>
-    </div>
+    </transition>
 </template>
 
 <script>
   import projectsData from '../assets/datas.json'
+  import { TweenMax, Power2, Draggable } from 'gsap'
   import { mapGetters } from 'vuex'
 
   export default {
@@ -18,23 +21,56 @@
         projectDatas: projectsData.projects
       }
     },
-    mounted () {
-    },
-    updated () {
-    },
     computed: {
       classObject: function () {
         return {
           'next-prev-work': true,
           'prev-work': true,
-          'hidden': this.isMenuOpen
+          'hidden': this.isIndicatorHidden
         }
       },
       ...mapGetters([
         'getPrevWork',
-        'getNextWork',
-        'isMenuOpen'
+        'isMenuOpen',
+        'isIndicatorHidden'
       ])
+    },
+    mounted () {
+      var that = this
+      var overlapThreshold = '90%'
+      var dropArea = this.$parent.$refs.workDropZone.$el
+      var itemDrop = this.$refs.prevWork
+
+      Draggable.create(itemDrop, {
+        onDrag: function (e) {
+          if (this.hitTest(dropArea, overlapThreshold)) {
+            if (!this.target.classList.contains('dropped')) {
+              this.target.className += ' dropped'
+              dropArea.className += ' get-dropped'
+            }
+          } else {
+            this.target.className = 'next-prev-work__image'
+            dropArea.className = 'current-work'
+          }
+        },
+        onDragEnd: function (e) {
+          if (this.target.classList.contains('dropped')) {
+            // If user droppped the project on central zone
+            // Switch to next project
+            that.$store.commit('CHANGE_CURRENT_WORK', that.getPrevWork)
+          } else {
+            itemDrop.className = 'next-prev-work__image'
+          }
+
+          // Whatever happen remove droppped class on image container
+          dropArea.className = 'current-work'
+          TweenMax.to(this.target, 0.7, {
+            x: 0,
+            y: 0,
+            ease: Power2.easeOut
+          })
+        }
+      })
     }
   }
 </script>
@@ -63,8 +99,6 @@
         transform: translateY(-50%) translateX(100%)
 
     &:hover
-      cursor: move
-
       .next-prev-work__image
         &:before
           background-color: rgba($bg-color, 0)
@@ -74,6 +108,9 @@
       height: 85px
       width: 315px
       overflow: hidden
+
+      &:hover
+        cursor: move
 
       &:before
         position: absolute

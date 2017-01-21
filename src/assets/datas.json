@@ -12,7 +12,7 @@
 			"media_home": "psg-home.jpg",
 			"color": "#FE0317",
 			"first_media": [
-				"/psg/psg-01.png",
+				"psg/psg-01.png",
 				"vertical"
 			],
 			"medias": [
@@ -32,12 +32,12 @@
 			"media_home": "edw-home.png",
 			"color": "#E1BEE7",
 			"first_media": [
-				"/edw/edw-01.png",
+				"edw/edw-01.png",
 				"horizontal"
 			],
 			"medias": [
-				"/edw/edw-02.png",
-				"/edw/edw-03.png"
+				"edw/edw-02.png",
+				"edw/edw-03.png"
 			]
 		},
 		{
@@ -52,12 +52,12 @@
 			"media_home": "sorop-home.jpg",
 			"color": "#3c70be",
 			"first_media": [
-				"/sorop/sorop-01.png",
+				"sorop/sorop-01.png",
 				"vertical"
 			],
 			"medias": [
-				"/sorop/sorop-02.png",
-				"/sorop/sorop-03.png"
+				"sorop/sorop-02.png",
+				"sorop/sorop-03.png"
 			]
 		},
 		{
@@ -72,12 +72,12 @@
 			"media_home": "skyyart-home.png",
 			"color": "#FFC540",
 			"first_media": [
-				"/skyyart/skyyart-01.png",
+				"skyyart/skyyart-01.png",
 				"horizontal"
 			],
 			"medias": [
-				"/skyyart/skyyart-02.png",
-				"/skyyart/skyyart-03.png"
+				"skyyart/skyyart-02.png",
+				"skyyart/skyyart-03.png"
 			]
 		},
 		{
@@ -92,12 +92,12 @@
 			"media_home": "geek-art-home.png",
 			"color": "#84B9F7",
 			"first_media": [
-				"/geek-art/geek-art-01.png",
+				"geek-art/geek-art-01.png",
 				"horizontal"
 			],
 			"medias": [
-				"/geek-art/geek-art-02.png",
-				"/geek-art/geek-art-03.png"
+				"geek-art/geek-art-02.png",
+				"geek-art/geek-art-03.png"
 			]
 		},
 		{

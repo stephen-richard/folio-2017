@@ -1,13 +1,17 @@
 <template>
-  <div id="burger-menu">
-    <transition>
+  <transition
+    v-on:enter="onEnter">
+    <div id="burger-menu">
       <div class="wrapper">
-        <div :class="menuClasses" v-on:click="toggleMenu">
+        <div :class="menuClasses" v-on:click="toggleMenu" ref="menuToggle">
           <div class="menu-work-indicator"><span class="current">{{ getCurrentWork + 1 }}</span> /{{ getWorkCount }}</div>
-          <div class="menu-work-close"></div>
+          <div class="menu-work-close">
+            <img src="../assets/images/line_1.svg" alt="" class="line before">
+            <img src="../assets/images/line_1.svg" alt="" class="line after">
+          </div>
         </div>
 
-        <div class="menu-work-list" v-show="isMenuOpen">
+        <div class="menu-work-list" v-show="isMenuOpen" ref="menuPanel">
           <span 
             class="work-bg" 
             :style="{ 'background-image': 'url(../static/'+ projectsDatas[lastHoveredWork].media_home +')' }"
@@ -21,17 +25,18 @@
               v-on:click="clickMenuLink"
               :data-index="index">
               <span class="work-id">{{ index + 1 }}</span>
-              <router-link :to="{ name: 'project', params: { project_name: projectsDatas[index].slug } }" :data-index="index" :data-color="work.color">{{ work.name }}</router-link>
+              <router-link :to="{ name: 'project', params: { project_name: projectsDatas[index].slug } }" :data-index="index" :data-color="work.color"><img src="../assets/images/line.png" alt="" class="line-before">{{ work.name }}<img src="../assets/images/line.png" class="line-after"/></router-link>
             </li>
           </ul>
         </div>
       </div>
-    </transition>
-  </div>
+    </div>
+  </transition>
 </template>
 
 <script>
   import projectsData from '../assets/datas.json'
+  import { TweenMax, TimelineLite, Power2 } from 'gsap'
   
   import { mapGetters } from 'vuex'
 
@@ -75,6 +80,10 @@
       })
     },
     methods: {
+      onEnter: function (el) {
+        TweenMax.set(this.$refs.menuToggle, { x: -100 })
+        TweenMax.to(this.$refs.menuToggle, 0.7, { x: 0, delay: 0.7, ease: Power2.easeInOut })
+      },
       toggleMenu: function (e) {
         // Set the currentWork already active
         if (this.isMenuOpen) {
@@ -83,6 +92,9 @@
         } else {
           // If not, open it
           this.$store.commit('SET_IS_MENU_OPEN', true)
+          this.$store.commit('CHANGE_INDICATORS_STATE', true)
+
+          TweenMax.to(this.$refs.menuPanel, 0.7, { opacity: 1 })
 
           // HERE I change the menu background
           this.lastHoveredWork = this.getCurrentWork
@@ -131,7 +143,13 @@
         this.closeMenu()
       },
       closeMenu: function () {
-        this.$store.commit('SET_IS_MENU_OPEN', false)
+        var that = this
+        var tl = new TimelineLite()
+        tl.to(this.$refs.menuPanel, 0.4, { opacity: 0 })
+          .add(function () {
+            that.$store.commit('SET_IS_MENU_OPEN', false)
+            that.$store.commit('CHANGE_INDICATORS_STATE', false)
+          })
       }
     }
   }
@@ -162,13 +180,15 @@
         .menu-work-close
           transform: translateX(0)
 
-          &:before
+          &:before,
+          .before
             transform: rotate(45deg)
-            // transition-delay: 0s
+            transition-delay: 0s
 
-          &:after
+          &:after,
+          .after
             transform: rotate(-45deg)
-            // transition-delay: 0s
+            transition-delay: 0s
 
       .menu-work-indicator
         font-size: 26px
@@ -182,22 +202,30 @@
         top: 16px
         left: 20px
         display: block
-        width: 40px
-        height: 40px
+        width: 42px
+        height: 42px
         z-index: 10
-        transform: translateX(-100px)
+        transform: translateX(-120px)
         transition: transform .3s ease .4s
 
-        &:before,
-        &:after
+        .line
           position: absolute
-          content: ''
-          left: 10px
-          top: 28px
-          width: 36px
-          height: 1px
-          background-color: $white
+          left: 0
+          width: 60px
+          // width: 42px
+          // height: 2px
           transition: transform .4s ease .2s
+
+        // &:before,
+        // &:after
+        //   position: absolute
+        //   content: ''
+        //   left: 10px
+        //   top: 28px
+        //   width: 36px
+        //   height: 1px
+        //   background-color: $white
+        //   transition: transform .4s ease .2s
   
   .menu-work-list
     position: fixed
@@ -212,6 +240,7 @@
     transform: translate3d(-50%, -50%, 0)
     text-decoration: none
     overflow: hidden
+    opacity: 0
     z-index: 5
 
     &:before
@@ -227,12 +256,14 @@
     .work-bg
       position: absolute
       display: block
-      top: 40px
-      left: 40px
-      bottom: 40px
-      right: 40px
+      // top: 80px
+      // left: 80px
+      // bottom: 80px
+      // right: 80px
       
-      // width: 74%
+      width: 80%
+      height: 90%
+      // max-height: 670px
       
       // max-height: 670px
       background-size: cover
@@ -258,8 +289,8 @@
         &:hover,
         &.active
           a
-            &:before,
-            &:after
+            .line-before,
+            .line-after
               opacity: 1
 
         .work-id
@@ -277,28 +308,42 @@
           font-family: $moha
           color: $title-color
 
-          &:before,
-          &:after
+          .line-before,
+          .line-after
             position: absolute
-            content: ''
-            top: 13px 
             width: 120px
-            height: 1px
-            border-radius: 10px
-            background-color: $white
+            top: 13px
             opacity: 0
-            pointer-events: none
-          
-          &:before
+
+          .line-before
             left: -140px
 
-          &:after
+          .line-after
             right: -140px
+
+          // &:before,
+          // &:after
+          //   position: absolute
+          //   content: ''
+          //   top: 13px 
+          //   width: 120px
+          //   height: 1px
+          //   border-radius: 10px
+          //   // background-color: $white
+          //   background-image: url("../assets/images/line.svg")
+          //   opacity: 0
+          //   pointer-events: none
+          
+          // &:before
+          //   left: -140px
+
+          // &:after
+          //   right: -140px
 
   @keyframes reduce
     0%
-      opacity: 0.2
-      transform: scale(1.2)
+      opacity: 0.5
+      transform: scale(1.1)
     100%
       opacity: 1
       transform: scale(1)

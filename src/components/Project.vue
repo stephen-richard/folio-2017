@@ -1,11 +1,11 @@
 <template>
-  <transition name="fade" v-on:enter="onEnter">
-    <div class="project container">
-      <span class="project__main-picture" :style="{'background-image': 'url(./static/' + projectsDatas[getCurrentWork].media_home + ')'}"></span>
+  <transition v-on:enter="onEnter">
+    <div class="project container" ref="workContainer">
+      <span class="project__main-picture" ref="workMainPicture" :style="{'background-image': 'url(./static/' + projectsDatas[getCurrentWork].media_home + ')'}"></span>
       
       <div class="project__datas">
-        <h1 ref="title" :style="{ 'color': projectsDatas[getCurrentWork].color }">{{ projectsDatas[getCurrentWork].name }}</h1>
-        <h2>{{ projectsDatas[getCurrentWork].role }}</h2>
+        <h1 ref="workName" :style="{ 'color': projectsDatas[getCurrentWork].color }">{{ projectsDatas[getCurrentWork].name }}</h1>
+        <h2 ref="workRole">{{ projectsDatas[getCurrentWork].role }}</h2>
 
         <div class="project-data-container">
           <div>
@@ -48,7 +48,7 @@
   import projectsData from '../assets/datas.json'
   import ProjectSwitcher from '../components/ProjectSwitcher'
 
-  import TweenMax from 'gsap'
+  import { TweenMax, TimelineLite, Power1 } from 'gsap'
 
   import { mapGetters } from 'vuex'
 
@@ -77,10 +77,6 @@
       // document.removeEventListener('keyup', function (e) {})
     },
     beforeMount () {
-      // @TODO method appelée au updated
-      // Regarder changement du param
-      // RELOAD LE TOUT E L'ECOUTE DU CHANGEMENT DE CURRENT WORK
-      // @TODO
       var pageFound = false
       var counter = 0
 
@@ -99,9 +95,8 @@
     },
     methods: {
       onEnter (e) {
-        // TweenMax.to(this.$refs.title, 2, {
-        //   scale: 2
-        // })
+        TweenMax.set(this.$refs.workContainer, { y: 100, opacity: 0 })
+        TweenMax.to(this.$refs.workContainer, 1, { y: 0, opacity: 1, ease: Power1.easeOut })
       }
     }
   }
@@ -129,13 +124,15 @@
       color: $title-color
       font-family: 'mohavebold'
       text-transform: none
-      
 
     &__main-picture
+      position: relative
       display: block
       width: 100%
       height: 600px
       background-size: cover
+      background-position: center center
+      overflow: hidden
 
     &__datas
       display: block

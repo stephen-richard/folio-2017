@@ -17,7 +17,7 @@
   import projectsData from '../assets/datas.json'
   import ProjectSlider from '../components/Projects'
   import 'pixi.js'
-  import 'pixi-filters'
+  // import 'pixi-filters'
 
   export default {
     name: 'home',

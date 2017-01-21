@@ -34,7 +34,7 @@
             <span class="circle circle-blink"></span>
           </div>
         </div>
-        <div class="intro-desc">
+        <div class="intro-desc" ref="introDesc">
           <p>Drag and drop to enter website</p>
         </div>
       </div>
@@ -43,8 +43,9 @@
 </template>
 
 <script>
-  import { TweenMax, Power4, TimelineLite, Draggable } from 'gsap'
+  import { TweenMax, Power4, TimelineLite, Draggable, SteppedEase } from 'gsap'
   import bodyMovin from 'bodymovin'
+  import dataAnimation from '../assets/data-animation-logo.json'
 
   export default {
     name: 'intro',
@@ -97,18 +98,27 @@
         }
       })
 
-      var animationData = '{"assets":[{"id":"image_0","w":110,"h":105,"u":"../static/","p":"img_0.png"}],"layers":[{"ddd":0,"ind":0,"ty":2,"nm":"Logo_StephenRichard.ai","cl":"ai","refId":"image_0","ks":{"o":{"k":100},"r":{"k":0},"p":{"k":[110,105,0]},"a":{"k":[55,52.5,0]},"s":{"k":[200,200,100]}},"ao":0,"hasMask":true,"masksProperties":[{"inv":false,"mode":"n","pt":{"k":{"i":[[0,0],[-3.54,-4.72],[-9.542,12.957],[0.125,0],[13.119,6.186],[-3,4],[-11.828,-1.224],[0.125,-2.875]],"o":[[0,0],[2.625,3.5],[12.293,-11.878],[-0.125,0],[-15.375,-7.25],[3,-4],[10.875,1.125],[-0.125,2.875]],"v":[[22.445,61.625],[24.224,81.029],[52.841,82.346],[55.603,60.207],[38.195,46.5],[27.695,26.375],[47.445,18.875],[59.072,28.439]],"c":false}},"o":{"k":100},"x":{"k":0},"nm":"Masque 1"},{"inv":false,"mode":"n","pt":{"k":{"i":[[0.842,0],[-13.195,-1.404],[2.246,-8.984],[5.896,-1.123],[0,0],[-3.088,-11.511],[-5.896,0.281],[0.281,3.088]],"o":[[-0.842,0],[13.195,1.404],[-2.246,8.984],[-0.281,5.053],[0,0],[3.088,11.511],[5.896,-0.281],[-0.281,-3.088]],"v":[[59.799,30.04],[69.906,33.971],[85.909,50.535],[70.749,58.957],[67.38,65.414],[81.136,79.452],[91.524,97.139],[100.789,89.84]],"c":false}},"o":{"k":100},"x":{"k":0},"nm":"Masque 2"}],"ef":[{"ty":22,"nm":"Trait","mn":"ADBE Stroke","ix":1,"ef":[{"ty":3,"nm":"Chemin","mn":"ADBE Stroke-0001","ix":1,"v":{"k":2}},{"ty":7,"nm":"Tous les masques","mn":"ADBE Stroke-0010","ix":2,"v":{"k":1}},{"ty":7,"nm":"Contour séquentiel","mn":"ADBE Stroke-0011","ix":3,"v":{"k":1}},{"ty":2,"nm":"Couleur","mn":"ADBE Stroke-0002","ix":4,"v":{"k":[0.91,0,0,1]}},{"ty":0,"nm":"Epaisseur","mn":"ADBE Stroke-0003","ix":5,"v":{"k":16.1}},{"ty":0,"nm":"Dureté","mn":"ADBE Stroke-0004","ix":6,"v":{"k":0.75}},{"ty":0,"nm":"Opacité","mn":"ADBE Stroke-0005","ix":7,"v":{"k":1}},{"ty":0,"nm":"Début","mn":"ADBE Stroke-0008","ix":8,"v":{"k":0}},{"ty":0,"nm":"Fin","mn":"ADBE Stroke-0009","ix":9,"v":{"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"n":["0p833_0p833_0p167_0p167"],"t":0,"s":[0],"e":[100]},{"t":96}]}},{"ty":7,"nm":"Espacement","mn":"ADBE Stroke-0006","ix":10,"v":{"k":15}},{"ty":7,"nm":"Style de peinture","mn":"ADBE Stroke-0007","ix":11,"v":{"k":3}}]}],"ip":0,"op":1007,"st":0,"bm":0,"sr":1},{"ddd":0,"ind":1,"ty":2,"nm":"Logo_StephenRichard.ai","cl":"ai","refId":"image_0","ks":{"o":{"k":15},"r":{"k":0},"p":{"k":[110,105,0]},"a":{"k":[55,52.5,0]},"s":{"k":[200,200,100]}},"ao":0,"hasMask":true,"masksProperties":[{"inv":false,"mode":"n","pt":{"k":{"i":[[0,0],[-3.54,-4.72],[-9.542,12.957],[0.125,0],[13.119,6.186],[-3,4],[-11.828,-1.224],[0.125,-2.875]],"o":[[0,0],[2.625,3.5],[12.293,-11.878],[-0.125,0],[-15.375,-7.25],[3,-4],[10.875,1.125],[-0.125,2.875]],"v":[[22.445,61.625],[24.224,81.029],[52.841,82.346],[55.603,60.207],[38.195,46.5],[27.695,26.375],[47.445,18.875],[59.072,28.439]],"c":false}},"o":{"k":100},"x":{"k":0},"nm":"Masque 1"},{"inv":false,"mode":"n","pt":{"k":{"i":[[0.842,0],[-13.195,-1.404],[2.246,-8.984],[5.896,-1.123],[0,0],[-3.088,-11.511],[-5.896,0.281],[0.281,3.088]],"o":[[-0.842,0],[13.195,1.404],[-2.246,8.984],[-0.281,5.053],[0,0],[3.088,11.511],[5.896,-0.281],[-0.281,-3.088]],"v":[[59.799,30.04],[69.906,33.971],[85.909,50.535],[70.749,58.957],[67.38,65.414],[81.136,79.452],[91.524,97.139],[100.789,89.84]],"c":false}},"o":{"k":100},"x":{"k":0},"nm":"Masque 2"}],"ip":0,"op":1007,"st":0,"bm":0,"sr":1}],"v":"4.5.2","ddd":0,"ip":0,"op":105,"fr":30,"w":220,"h":210}'
-
-      var animationLogo = bodyMovin.loadAnimation({
-        container: this.$refs.logoIntro,
-        renderer: 'svg',
-        loop: false,
-        autoplay: true,
-        prerender: false,
-        animationData: JSON.parse(animationData)
-      })
-
-      animationLogo.play()
+      // GSAP ANIMATIONS
+      var timelineIntro = new TimelineLite()
+      timelineIntro
+        // .to(this.$refs.logoIntro, 3, {
+        //   repeat: 0,
+        //   backgroundPosition: '-22880px',
+        //   ease: SteppedEase.config(104) })
+        .add(function () {
+          bodyMovin.loadAnimation({
+            container: that.$refs.logoIntro, // the dom element
+            renderer: 'svg',
+            loop: false,
+            autoplay: true,
+            animationData: dataAnimation // the animation data
+          })
+          bodyMovin.setSpeed(1.2)
+        })
+        .add('endLogo', 3.2)
+        // .add(function () { that.$store.commit('BACKGROUND_VIDEO_STATE', true) })
+        .to(this.$refs.introCircles, 0.6, { y: 0, opacity: 1 }, 'endLogo')
+        .to(this.$refs.introDesc, 0.4, { y: 0, opacity: 1, delay: 0.4 }, 'endLogo')
     },
     methods: {
       // Entering
@@ -132,17 +142,24 @@
 <style lang="sass">
   @import '../stylesheets/common/vars'
 
+  $steps: 104
+
   #intro
     position: absolute
     width: 100%
     height: 100%
-    z-index: 2
+    z-index: 3
 
     .logo
       position: absolute
       top: 50%
       left: 50%
       transform: translate3d(-50%, -50%, 0)
+      width: 220px
+      height: 210px
+      // background-image: url('../assets/images/anim-logo.png')
+      background-position: left center
+      // animation: playAnimation 3s steps($steps) 1s forwards
 
       img
         width: 50%
@@ -159,6 +176,8 @@
       display: flex
       align-items: center
       justify-content: flex-start
+      opacity: 0
+      transform: translateY(60px)
       
       .top-circle
         position: relative
@@ -168,7 +187,7 @@
         padding: 10px 10px 8px 0px
         box-sizing: initial
         border-radius: 50%
-        z-index: 2
+        z-index: 4
         
         .circle
           position: absolute
@@ -182,6 +201,12 @@
           &.circle-main
 
           &.circle-blink
+            background-color: transparent
+            box-shadow: none
+            border: 1px solid $white
+            transform-origin: center center
+            opacity: 0
+            animation: grow-and-fade 2s cubic-bezier(0.165, 0.84, 0.44, 1) infinite
             
 
       .line
@@ -227,16 +252,22 @@
       margin-top: 20px
       color: $grey-intro
       font-size: 14px
+      opacity: 0
+      transform: translateY(30px)
 
   @keyframes grow-and-fade
     0%
-      width: 30px
-      height: 30px
-    80% 
-      opacity: 1
+      transform: scale(1)
+    60% 
+      opacity: 0.2
     100% 
-      width: 120px
-      height: 120px
+      transform: scale(2)
       opacity: 0
+
+  @keyframes playAnimation
+    0%
+      background-position: 0px
+    100%
+      background-position: -220px * $steps
 
 </style>

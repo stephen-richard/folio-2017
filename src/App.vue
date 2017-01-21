@@ -6,7 +6,9 @@
     <intro v-if="!isIntroSkipped"></intro>
     <router-view v-if="isIntroSkipped"></router-view>
     <footerElement v-if="isIntroSkipped" v-show="getPage != 'detail'"></footerElement>
-    <video v-if="getPage != 'detail'" id="video-bg" autoplay loop>
+
+    <div class="video-intro-mask" ref="videoMask"></div>
+    <video v-show="getPage != 'detail'" id="video-bg" autoplay loop>
       <source src="./static/video/background.mp4" type="video/mp4">
       <source src="./static/video/background.webm" type="video/webm">
     </video>
@@ -22,6 +24,7 @@
   import Intro from './components/Intro'
   import BurgerMenu from './components/BurgerMenu'
   import Footer from './components/FooterElement'
+  import { TweenMax } from 'gsap'
 
   import { mapGetters } from 'vuex'
 
@@ -33,7 +36,8 @@
         'getWorkCount',
         'isLoading',
         'isIntroSkipped',
-        'getPage'
+        'getPage',
+        'shouldPlay'
       ])
     },
     components: {
@@ -47,6 +51,8 @@
     mounted () {
       console.log('App mounted')
 
+      console.log(this.shouldPlay)
+
       var that = this
       // Handle arrow navigation
       document.addEventListener('keyup', function (e) {
@@ -58,6 +64,11 @@
           that.goNext()
         }
       }, false)
+
+      // GSAP ANIMATIONS
+      // I'LL MAYBE REMOVE THIS ONE
+      TweenMax.set(this.$refs.videoMask, { opacity: 1 })
+      TweenMax.to(this.$refs.videoMask, 2, { opacity: 0, zIndex: 1, delay: 1 })
     },
     beforeMount () {
       // this.$store.commit('SET_IS_LOADING', true)
@@ -119,14 +130,28 @@
     text-align: center
     background-color: $bg-color
 
-  #video-bg
+  .video-intro-mask
     position: fixed
     left: 0
     top: 0
     width: 100%
     height: 100%
-    background-image: url("../static/background-poster.png")
+    background-color: $bg-color
+    z-index: 2
+
+  #video-bg
+    position: fixed
+    top: 50%
+    left: 50%
+    min-width: 100%
+    min-height: 100%
+    width: auto
+    height: auto
+    transform: translateX(-50%) translateY(-50%)
+    background-image: url("./assets/images/background-poster.png")
     background-size: cover
+    background-repeat: no-repeat
+    // background-position: center center
     z-index: 1
 
   .container
