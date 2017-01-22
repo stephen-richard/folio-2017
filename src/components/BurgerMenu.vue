@@ -9,6 +9,11 @@
             <img src="../assets/images/line_1.svg" alt="" class="line before">
             <img src="../assets/images/line_1.svg" alt="" class="line after">
           </div>
+          <div class="menu-work-burger">
+            <img src="../assets/images/line_1.svg" alt="" class="line before">
+            <img src="../assets/images/line_1.svg" alt="" class="line after">
+            <img src="../assets/images/line_1.svg" alt="" class="line after">
+          </div>
         </div>
 
         <div class="menu-work-list" v-show="isMenuOpen" ref="menuPanel">
@@ -228,6 +233,22 @@
         //   background-color: $white
         //   transition: transform .4s ease .2s
   
+      // .menu-work-burger
+      //   position: absolute
+      //   top: 16px
+      //   left: 20px
+        
+      //   img
+      //     display: block
+      //     width: 60px
+
+      //     &:first-child
+      //       top: -12px
+
+      //     &:last-child
+      //       top: 12px
+          
+
   .menu-work-list
     position: fixed
     display: flex

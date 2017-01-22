@@ -68,7 +68,7 @@
       // GSAP ANIMATIONS
       // I'LL MAYBE REMOVE THIS ONE
       TweenMax.set(this.$refs.videoMask, { opacity: 1 })
-      TweenMax.to(this.$refs.videoMask, 2, { opacity: 0, zIndex: 1, delay: 1 })
+      TweenMax.to(this.$refs.videoMask, 3, { opacity: 0, zIndex: 1, delay: 1 })
     },
     beforeMount () {
       // this.$store.commit('SET_IS_LOADING', true)

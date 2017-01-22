@@ -80,8 +80,8 @@
 
   .next-prev-work
     position: absolute
-    top: 50%
-    transform: translateY(-50%)
+    top: 46%
+    // transform: translateY(-50%)
     text-align: left
     transition: transform .7s cubic-bezier(0.86, 0, 0.07, 1)
     z-index: 5
@@ -132,6 +132,7 @@
     &__name
       position: absolute
       display: inline-block
+      left: 0
       padding-top: 15px
       color: $white
       font-size: 20px

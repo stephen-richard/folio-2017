@@ -59,18 +59,19 @@
   @import '../stylesheets/common/_vars'
   
   .page-about
-    position: absolute
+    position: relative
     width: 75%
-    height: 72%
+    height: 72vh
     max-height: 670px
-    top: 50%
-    left: 50%
-    transform: translateX(-50%) translateY(-50%)
+    margin: 130px auto 0 auto
+    // top: 50%
+    // left: 50%
+    // transform: translate3d(-50%, -50%, 0)
     padding: 5% 20px 25px 4%
     text-align: left
     color: $white
     text-decoration: none
-    // overflow: hidden
+    overflow: hidden
     background-image: url(../assets/images/about-bg.png)
     background-position: center center
     background-size: cover
