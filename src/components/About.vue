@@ -4,6 +4,10 @@
 
       <span class="about-cover"></span>
 
+      <router-link class="go-back-home" to="/">
+        <span class="arrow"></span>
+      </router-link>
+
       <div class="left">
         <h1>{{ name }}</h1>
         <h2>Front-end developer at <a href="http://www.hetic.net/" target="_blank">HETIC</a></h2>
@@ -38,6 +42,9 @@
     beforeMount () {
       console.log('before mount About')
     },
+    mounted () {
+      this.$store.commit('SET_PAGE', 'about')
+    },
     methods: {
       onEnter (e) {
         TweenMax.set(this.$refs.aboutPage, { opacity: 0 })
@@ -63,7 +70,7 @@
     text-align: left
     color: $white
     text-decoration: none
-    overflow: hidden
+    // overflow: hidden
     background-image: url(../assets/images/about-bg.png)
     background-position: center center
     background-size: cover
@@ -111,7 +118,40 @@
 
           &:last-child
             margin-right: 10px
+    
+    .go-back-home
+      position: absolute
+      width: 48px
+      height: 48px
+      top: 50%
+      left: -100px
 
+      &:hover
 
+        .arrow
+          transform: translateX(-5px)
+
+      .arrow
+        position: absolute
+        top: 21px
+        left: 10px
+        transition: transform .3s ease
+        
+        &:before,
+        &:after
+          position: absolute
+          content: ''
+          left: 0
+          width: 20px
+          height: 2px
+          background-color: $white
+
+        &:before
+          top: -6px
+          transform: rotate(-45deg)
+
+        &:after
+          top: 7px
+          transform: rotate(45deg)
     
 </style>

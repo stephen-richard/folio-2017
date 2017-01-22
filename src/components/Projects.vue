@@ -53,6 +53,7 @@
     mounted () {
       var that = this
 
+      this.$store.commit('SET_PAGE', 'home')
       this.$store.commit('CHANGE_INDICATORS_STATE', false)
 
       $('.current-work__bg').ripples({

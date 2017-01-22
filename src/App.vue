@@ -176,7 +176,8 @@
         z-index: -1
         transition: height .3s ease
 
-      &:hover
+      &:hover,
+      &.router-link-active
         color: $bg-color
 
         &:before

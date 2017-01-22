@@ -49,6 +49,7 @@
   import ProjectSwitcher from '../components/ProjectSwitcher'
 
   import { TweenMax, TimelineLite, Power1 } from 'gsap'
+  import ScrollToPlugin from '../../node_modules/gsap/src/minified/plugins/ScrollToPlugin.min.js'
 
   import { mapGetters } from 'vuex'
 
@@ -90,8 +91,8 @@
         this.$router.push('/')
       }
     },
-    beforeDestroy () {
-      this.$store.commit('SET_PAGE', 'home')
+    updated () {
+      TweenMax.to(window, 0.7, {scrollTo: 0})
     },
     methods: {
       onEnter (e) {

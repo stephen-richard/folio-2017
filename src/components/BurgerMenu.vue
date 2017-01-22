@@ -3,7 +3,7 @@
     v-on:enter="onEnter">
     <div id="burger-menu">
       <div class="wrapper">
-        <div :class="menuClasses" v-on:click="toggleMenu" ref="menuToggle">
+        <div :class="menuClasses" v-on:click="toggleMenu" ref="menuToggle" v-if="getPage != 'about'">
           <div class="menu-work-indicator"><span class="current">{{ getCurrentWork + 1 }}</span> /{{ getWorkCount }}</div>
           <div class="menu-work-close">
             <img src="../assets/images/line_1.svg" alt="" class="line before">
@@ -64,7 +64,8 @@
       ...mapGetters([
         'getCurrentWork',
         'getWorkCount',
-        'isMenuOpen'
+        'isMenuOpen',
+        'getPage'
       ])
     },
     beforeMount () {

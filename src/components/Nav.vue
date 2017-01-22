@@ -62,11 +62,9 @@
         text-transform: lowercase
         color: #fefefe
 
-        &:hover 
-          color: $bg-color
-
+        &:hover,
         &.router-link-active
-          text-decoration: underline
+          color: $bg-color
     
 
 </style>

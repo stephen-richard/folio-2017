@@ -124,13 +124,17 @@
       .intro-circles
         margin: 0 auto
         width: 225px
+        opacity: 1
+        transform: none
 
       .intro-desc
         margin-top: 10px
+        opacity: 1
+        transform: none
 
         span
           display: inline-block
-          margin-top: 20px
+          margin-top: 10px
           font-family: $moha
           font-size: 32px
 
