@@ -16,8 +16,7 @@
 <script>
   import projectsData from '../assets/datas.json'
   import ProjectSlider from '../components/Projects'
-  import 'pixi.js'
-  // import 'pixi-filters'
+  import { TweenLite } from 'gsap'
 
   export default {
     name: 'home',
@@ -31,44 +30,6 @@
     },
     components: {
       projects: ProjectSlider
-    },
-    mounted () {
-      // console.log('Mounted home, ready to PIXI')
-      // var PIXI = window.PIXI
-      // console.log(PIXI)
-      // this.renderer = PIXI.autoDetectRenderer()
-      // this.renderer.view.style.position = 'absolute'
-      // this.renderer.view.style.left = 0
-      // this.renderer.view.style.width = window.innerWidth + 'px'
-      // this.renderer.view.style.height = window.innerHeight + 'px'
-      // // Add canvas to the dom container
-      // document.getElementById('pixiContainer').appendChild(this.renderer.view)
-      // this.stage = new PIXI.Container(0xFFFFFF, true)
-      // // Init image texture
-      // // @TODO AssetLoader :3
-      // var myImage = PIXI.Texture.fromImage('../static/potte.jpg')
-      // // My sprite
-      // var cat = new window.PIXI.Sprite(myImage)
-      // cat.position.x = 0
-      // cat.position.y = 0
-      // cat.height = this.renderer.height
-      // cat.width = this.renderer.width
-      // // Add filter TEST 1
-      // var myTwistFilter = new PIXI.filters.TwistFilter()
-      // myTwistFilter.radius = 1
-      // myTwistFilter.angle = 3
-      // myTwistFilter.offset.x = 0.55
-      // myTwistFilter.offset.y = 0.2
-      // // FILTER TEST BLUR WORKING
-      // // var myBlurFilter = new PIXI.filters.BlurFilter()
-      // // console.log(myBlurFilter)
-      // // myBlurFilter.blur = 20
-      // // Attach filter to sprite
-      // cat.filters = [
-      //   myTwistFilter
-      // ]
-      // this.stage.addChild(cat)
-      // this.renderPixi()
     },
     methods: {
       renderPixi () {

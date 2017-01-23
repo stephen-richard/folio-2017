@@ -83,20 +83,20 @@
     top: 46%
     // transform: translateY(-50%)
     text-align: left
-    transition: transform .7s cubic-bezier(0.86, 0, 0.07, 1)
+    transition: transform .7s ease
     z-index: 5
 
     &.prev-work
       left: -15px
 
       &.hidden
-        transform: translateY(-50%) translateX(-100%)
+        transform: translateX(-100%)
 
     &.next-work
       right: -15px
 
       &.hidden
-        transform: translateY(-50%) translateX(100%)
+        transform: translateX(100%)
 
     &:hover
       .next-prev-work__image

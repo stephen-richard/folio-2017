@@ -1,19 +1,24 @@
 <template>
   <div id="app">
     <!-- <bgCanvas></bgCanvas> -->
-    <burgerMenu v-if="isIntroSkipped"></burgerMenu>
-    <navbar v-if="isIntroSkipped"></navbar>
-    <intro v-if="!isIntroSkipped"></intro>
-    <router-view v-if="isIntroSkipped"></router-view>
-    <footerElement v-if="isIntroSkipped" v-show="getPage != 'detail'"></footerElement>
+    <div v-if="!isMobile">
+      <burgerMenu v-if="isIntroSkipped"></burgerMenu>
+      <navbar v-if="isIntroSkipped"></navbar>
+      <intro v-if="!isIntroSkipped"></intro>
+      <router-view v-if="isIntroSkipped"></router-view>
+      <footerElement v-if="isIntroSkipped" v-show="getPage != 'detail'"></footerElement>
 
-    <div class="video-intro-mask" ref="videoMask"></div>
-    <video v-show="getPage != 'detail'" id="video-bg" autoplay loop>
-      <source src="./static/video/background.mp4" type="video/mp4">
-      <source src="./static/video/background.webm" type="video/webm">
-    </video>
+      <div class="video-intro-mask" ref="videoMask"></div>
+      <video v-show="getPage != 'detail'" id="video-bg" autoplay loop>
+        <source src="./static/video/background.mp4" type="video/mp4">
+        <source src="./static/video/background.webm" type="video/webm">
+      </video>
 
-    <loader v-bind:isLoading="isLoading"></loader>
+      <loader v-bind:isLoading="isLoading"></loader>
+    </div>
+    <div v-else>
+      <mobile></mobile>
+    </div>
   </div>
 </template>
 
@@ -24,12 +29,18 @@
   import Intro from './components/Intro'
   import BurgerMenu from './components/BurgerMenu'
   import Footer from './components/FooterElement'
+  import Mobile from './components/MobileVersion'
   import { TweenMax } from 'gsap'
 
   import { mapGetters } from 'vuex'
 
   export default {
     name: 'app',
+    data () {
+      return {
+        'mobileBreakpoint': 700
+      }
+    },
     computed: {
       ...mapGetters([
         'getCurrentWork',
@@ -37,7 +48,8 @@
         'isLoading',
         'isIntroSkipped',
         'getPage',
-        'shouldPlay'
+        'shouldPlay',
+        'isMobile'
       ])
     },
     components: {
@@ -46,14 +58,24 @@
       navbar: NavBar,
       Loader,
       bgCanvas: BGCanvas,
-      footerElement: Footer
+      footerElement: Footer,
+      Mobile
     },
     mounted () {
-      console.log('App mounted')
-
-      console.log(this.shouldPlay)
-
       var that = this
+
+      // Handle window resizing to display mobile version
+      window.addEventListener('resize', function (e) {
+        if (that.isMobile) {
+          if (e.target.innerWidth > that.mobileBreakpoint) {
+            that.$store.commit('SET_MOBILE_STATE', false)
+          }
+        } else {
+          if (e.target.innerWidth < that.mobileBreakpoint) {
+            that.$store.commit('SET_MOBILE_STATE', true)
+          }
+        }
+      })
       // Handle arrow navigation
       document.addEventListener('keyup', function (e) {
         if (e.keyCode === 37) {
@@ -66,12 +88,17 @@
       }, false)
 
       // GSAP ANIMATIONS
-      // I'LL MAYBE REMOVE THIS ONE
-      TweenMax.set(this.$refs.videoMask, { opacity: 1 })
-      TweenMax.to(this.$refs.videoMask, 3, { opacity: 0, zIndex: 1, delay: 1 })
+      if (!this.isMobile) {
+        console.log('remove mask opacity')
+        TweenMax.set(this.$refs.videoMask, { opacity: 1 })
+        TweenMax.to(this.$refs.videoMask, 3, { opacity: 0, zIndex: 1, delay: 1 })
+      }
     },
     beforeMount () {
       // this.$store.commit('SET_IS_LOADING', true)
+      if (window.innerWidth < this.mobileBreakpoint) {
+        this.$store.commit('SET_MOBILE_STATE', true)
+      }
     },
     methods: {
       goNext () {
@@ -182,6 +209,8 @@
 
         &:before
           height: 100%
-
+  
+  .underline
+    text-decoration: underline
 
 </style>

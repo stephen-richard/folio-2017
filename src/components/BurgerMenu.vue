@@ -7,11 +7,7 @@
           <div class="menu-work-indicator"><span class="current">{{ getCurrentWork + 1 }}</span> /{{ getWorkCount }}</div>
           <div class="menu-work-close">
             <img src="../assets/images/line_1.svg" alt="" class="line before">
-            <img src="../assets/images/line_1.svg" alt="" class="line after">
-          </div>
-          <div class="menu-work-burger">
-            <img src="../assets/images/line_1.svg" alt="" class="line before">
-            <img src="../assets/images/line_1.svg" alt="" class="line after">
+            <img src="../assets/images/line_1.svg" alt="" class="line">
             <img src="../assets/images/line_1.svg" alt="" class="line after">
           </div>
         </div>
@@ -178,22 +174,31 @@
       cursor: pointer
       z-index: 10
 
+      &:hover
+        .menu-work-close
+          .line
+            transform: translateX(0)
+
+        .menu-work-indicator
+          transform: translateX(-100px)
+
       &.open
 
         .menu-work-indicator
           transform: translateX(-120px)
         
         .menu-work-close
-          transform: translateX(0)
+          // transform: translateX(0)
 
-          &:before,
           .before
-            transform: rotate(45deg)
+            transform: translateY(10px) rotate(45deg)
             transition-delay: 0s
 
-          &:after,
+          .line:nth-child(2)
+            transform: translateX(-60px)
+
           .after
-            transform: rotate(-45deg)
+            transform: translateY(-10px) rotate(-45deg)
             transition-delay: 0s
 
       .menu-work-indicator
@@ -206,48 +211,32 @@
       .menu-work-close
         position: absolute
         top: 16px
-        left: 20px
+        left: 15px
         display: block
-        width: 42px
-        height: 42px
+        width: 50px
+        height: 50px
         z-index: 10
-        transform: translateX(-120px)
-        transition: transform .3s ease .4s
+        overflow: hidden
+
+        // @for $i from 1 through 4
+        //   .line:nth-child(#{$i})
+        //     transition: transform .3s ease .1s * $i
 
         .line
           position: absolute
-          left: 0
+          left: -5px
           width: 60px
           // width: 42px
           // height: 2px
-          transition: transform .4s ease .2s
+          transform: translateX(-80px)
+          transform-origin: center center
+          transition: transform .3s ease
 
-        // &:before,
-        // &:after
-        //   position: absolute
-        //   content: ''
-        //   left: 10px
-        //   top: 28px
-        //   width: 36px
-        //   height: 1px
-        //   background-color: $white
-        //   transition: transform .4s ease .2s
-  
-      // .menu-work-burger
-      //   position: absolute
-      //   top: 16px
-      //   left: 20px
-        
-      //   img
-      //     display: block
-      //     width: 60px
+          &:first-child
+            top: -10px
 
-      //     &:first-child
-      //       top: -12px
-
-      //     &:last-child
-      //       top: 12px
-          
+          &:last-child
+            top: 10px        
 
   .menu-work-list
     position: fixed
@@ -286,8 +275,6 @@
       width: 80%
       height: 90%
       // max-height: 670px
-      
-      // max-height: 670px
       background-size: cover
       background-position: center center
       transform: scale(1)
@@ -296,7 +283,6 @@
 
       &.changing
         animation: reduce .7s cubic-bezier(0.175, 0.885, 0.32, 1.275)
-        // animation: reduce .7s cubic-bezier(0.6, -0.28, 0.735, 0.045)
 
     ul
       position: relative
@@ -342,25 +328,6 @@
 
           .line-after
             right: -140px
-
-          // &:before,
-          // &:after
-          //   position: absolute
-          //   content: ''
-          //   top: 13px 
-          //   width: 120px
-          //   height: 1px
-          //   border-radius: 10px
-          //   // background-color: $white
-          //   background-image: url("../assets/images/line.svg")
-          //   opacity: 0
-          //   pointer-events: none
-          
-          // &:before
-          //   left: -140px
-
-          // &:after
-          //   right: -140px
 
   @keyframes reduce
     0%

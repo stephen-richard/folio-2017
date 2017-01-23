@@ -6,7 +6,8 @@ const state = {
   page: '',
   menuOpen: false,
   videoIntroPlay: false,
-  indicatorsHidden: true
+  indicatorsHidden: true,
+  mobile: false
 }
 
 const getters = {
@@ -27,6 +28,9 @@ const getters = {
   },
   isIndicatorHidden: state => {
     return state.indicatorsHidden
+  },
+  isMobile: state => {
+    return state.mobile
   }
 }
 
@@ -48,6 +52,9 @@ const mutations = {
   },
   [types.CHANGE_INDICATORS_STATE] (state, indicatorState) {
     state.indicatorsHidden = indicatorState
+  },
+  [types.SET_MOBILE_STATE] (state, mobileState) {
+    state.mobile = mobileState
   }
 }
 
