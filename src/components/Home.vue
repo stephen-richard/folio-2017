@@ -1,11 +1,5 @@
 <template>
-  <transition
-    v-on:before-enter="beforeEnter"
-    v-on:enter="enter"
-    v-on:after-enter="afterEnter"
-
-    v-on:before-leave="beforeLeave"
-    v-on:leave="leave">
+  <transition>
     <div class="page page-home">
       <projects></projects>
       <!-- <div id="pixiContainer"></div> -->
@@ -40,21 +34,6 @@
 
         // console.log('Mouse is ' + mousePosX + ' : ' + mousePosY)
         // window.requestAnimationFrame(this.renderPixi)
-      },
-      // ENTERING
-      beforeEnter: function (el) {
-      },
-      enter: function (el, done) {
-        console.log('entered home')
-        done()
-      },
-      afterEnter: function (el) {
-      },
-      // LEAVING
-      beforeLeave: function (el) {
-      },
-      leave: function (el, done) {
-        done()
       }
     }
   }

@@ -1,8 +1,6 @@
 <template>
   <transition
-    v-on:enter="enter"
-    v-on:before-leave="beforeLeave"
-    v-on:leave="leave">
+    v-on:enter="enter">
     <div id="intro" ref="intro">
       <div class="logo" ref="logoIntro"></div>
       <!-- <img src="../assets/images/logo-2x.png" alt="Stephen richard front-end developer"> -->
@@ -43,7 +41,7 @@
 </template>
 
 <script>
-  import { TweenMax, Power4, TimelineLite, Draggable, SteppedEase } from 'gsap'
+  import { TweenLite, Power4, TimelineLite, Draggable, SteppedEase } from 'gsap'
   import bodyMovin from 'bodymovin'
   import dataAnimation from '../assets/data-animation-logo.json'
 
@@ -73,7 +71,7 @@
         },
         onDragEnd: function (e) {
           if (!this.target.classList.contains('dropped')) {
-            TweenMax.to(this.target, 1, {
+            TweenLite.to(this.target, 1, {
               x: -10,
               ease: Power4.easeOut
             })
@@ -124,14 +122,6 @@
       // Entering
       enter: function (el, done) {
         console.log('i entered')
-        done()
-      },
-      // Leaving
-      beforeLeave: function (el) {
-        console.log('care ill leave')
-      },
-      leave: function (el, done) {
-        console.log('im leaving cya folks !')
         done()
       }
     }

@@ -59,10 +59,12 @@
       ])
     },
     methods: {
-      onEnter: function (el) {
+      onEnter: function (el, done) {
         console.log('entering')
         TweenLite.set(el, { opacity: 0 })
         TweenLite.to(el, 0.7, { opacity: 1 })
+
+        done()
       }
     }
   }

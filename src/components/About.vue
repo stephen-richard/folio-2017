@@ -48,9 +48,11 @@
       this.$store.commit('SET_PAGE', 'about')
     },
     methods: {
-      onEnter (e) {
+      onEnter (e, done) {
         TweenMax.set(this.$refs.aboutPage, { opacity: 0 })
-        TweenMax.to(this.$refs.aboutPage, 0.7, { opacity: 1, ease: Power1.easeOut })
+        TweenMax.to(this.$refs.aboutPage, 1, { opacity: 1, ease: Power1.easeOut })
+
+        done()
       }
     }
   }

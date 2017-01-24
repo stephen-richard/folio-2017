@@ -1,16 +1,19 @@
 <template>
-	<div class="footer">
-    <div class="footer-container" v-show="getPage == 'home'">
+	<transition 
+    v-on:enter="onEnter">
+    <div class="footer">
+      <div class="hidden"></div>
       <div class="arrows-indicator">
         <img src="../assets/images/arrow.svg" alt="go previous project with left arrow">
         <img src="../assets/images/arrow.svg" alt="go next project with right arrow">
       </div>
       <a class="address link" :href="'mailto:' + email">{{ email }}</a>
-    </div>
-	</div>
+    </div> 
+  </transition>
 </template>
 
 <script>
+  import { TweenLite, Power2 } from 'gsap'
   import { mapGetters } from 'vuex'
 
   export default {
@@ -24,6 +27,12 @@
       ...mapGetters([
         'getPage'
       ])
+    },
+    methods: {
+      onEnter: function (el, done) {
+        TweenLite.to(el, 1, { y: 0, ease: Power2.easeInOut, delay: 1 })
+        done()
+      }
     }
   }
 </script>
@@ -32,12 +41,14 @@
 	
   .footer
     position: absolute
+    display: flex
+    align-items: center
+    justify-content: space-between
     bottom: 0
-    left: 50%
-    transform: translateX(-50%)
-    width: 100%
-    max-width: 1280px
-    padding: 40px 60px
+    left: 60px
+    right: 60px
+    transform: translateY(100%)
+    padding: 40px 0
     text-align: right
     z-index: 4
 

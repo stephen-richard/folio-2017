@@ -48,7 +48,7 @@
   import projectsData from '../assets/datas.json'
   import ProjectSwitcher from '../components/ProjectSwitcher'
 
-  import { TweenMax, TimelineLite, Power1 } from 'gsap'
+  import { TweenLite, TimelineLite, Power2 } from 'gsap'
   import ScrollToPlugin from '../../node_modules/gsap/src/minified/plugins/ScrollToPlugin.min.js'
 
   import { mapGetters } from 'vuex'
@@ -92,12 +92,14 @@
       }
     },
     updated () {
-      TweenMax.to(window, 0.7, {scrollTo: 0})
+      TweenLite.to(window, 0.7, {scrollTo: 0})
     },
     methods: {
-      onEnter (e) {
-        TweenMax.set(this.$refs.workContainer, { y: 100, opacity: 0 })
-        TweenMax.to(this.$refs.workContainer, 1, { y: 0, opacity: 1, ease: Power1.easeOut })
+      onEnter (el, done) {
+        TweenLite.set(this.$refs.workContainer, { y: 100, opacity: 0 })
+        TweenLite.to(this.$refs.workContainer, 1.6, { y: 0, opacity: 1, ease: Power2.easeOut, delay: 0.4 })
+
+        done()
       }
     }
   }

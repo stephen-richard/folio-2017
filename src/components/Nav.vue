@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  import { TweenMax, Power2 } from 'gsap'
+  import { TweenLite, Power2 } from 'gsap'
   export default {
     name: 'navbar',
     data () {
@@ -21,8 +21,9 @@
       }
     },
     methods: {
-      onEnter: function (el) {
-        TweenMax.to(el, 0.7, { y: 0, ease: Power2.easeInOut })
+      onEnter: function (el, done) {
+        TweenLite.to(el, 0.7, { y: 0, ease: Power2.easeInOut, delay: 0.4 })
+        done()
       }
     }
   }

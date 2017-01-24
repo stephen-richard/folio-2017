@@ -5,7 +5,7 @@
 			"slug": "psg-esports",
 			"year": 2016,
 			"url": "http://psg-esports.com/",
-			"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam nec iaculis odio, non egestas ligula. Praesent gravida rhoncus dolor porttitor egestas. Sed sed nunc porttitor, sodales urna non, rhoncus tellus. Sed ipsum tortor, dictum vitae consectetur ac, dapibus in odio. Maecenas bibendum a mi ut ultrices.",
+			"description": "I had the chance to work on the brand new website for the newly created Paris Saint Germain (PSG for the soccer fans) eSport structure. The design was already defined and with my friend Benjamin, we had to develop a managable website so that the team responsible for the site could add news, update teams members or the latest results. I setted up the project and was in charge of the pages: team, single news and news archives. I had to code a custom slider with two active items and custom transitions. The main difficulty was on the archive page (like always in wordpress) that use ajax calls to switch between all the news montly and yearly.",
 			"context": "Freelance",
 			"role": "Front/Back-end developer",
 			"techno": "Wordpress, Scss, Gulp, Ajax",
@@ -25,7 +25,7 @@
 			"slug": "les-enfants-du-web",
 			"year": 2016,
 			"url": "http://enfantsduweb.wtf/",
-			"description": "Vestibulum vel orci lacus. Cras sit amet erat ullamcorper, imperdiet diam a, feugiat urna. Cras faucibus in arcu et posuere. Cras quis magna diam. Ut porta velit ut posuere lacinia. Vestibulum urna purus, egestas eget leo vitae, laoreet malesuada metus. Etiam id sem ultricies, rutrum nulla at, efficitur augue. Maecenas nec consectetur nunc, tincidunt iaculis tortor. Morbi sem odio, molestie et consectetur at, ornare ultrices mauris.",
+			"description": "As a big 3d year project in Hetic, we had our first real client (excluding freelance of course). For my team it was Synerg'Hetic the school junior enterprise. Since they aready had a corporate website, we had to find another idea to highlight the greatest value of Synerg'hetic, its students and their creativity. They call themselves the 'web children' or 'Enfants du web' in french, we took it literally... We personified each student with a small baby, defined by its main skill (we ask student directly to get all our datas). It was the occasion for us to use React. The other developer handled the board movement and the form while I was in charge of the baby placement and all the interactions.",
 			"context": "School project",
 			"role": "Front-end developer",
 			"techno": "React, TweenMax, Interact.js, Scss",
@@ -45,7 +45,7 @@
 			"slug": "soroptimist-europe",
 			"year": 2016,
 			"url": "http://soroptimisteurope.org/",
-			"description": "Cras sit amet erat ullamcorper, imperdiet diam a, feugiat urna. Cras faucibus in arcu et posuere. Cras quis magna diam. Ut porta velit ut posuere lacinia. Vestibulum urna purus, egestas eget leo vitae, laoreet malesuada metus. Etiam id sem ultricies, rutrum nulla at, efficitur augue. Maecenas nec consectetur nunc, tincidunt iaculis tortor. Morbi sem odio, molestie et consectetur at, ornare ultrices mauris.",
+			"description": "Last summer I spent almost 4 month with the amazing FCINQ team. It was a great opportunity to improve my skills in PHP, Wordpress and responsive integration among the other developers. Soroptimist was not the only project I worked on (instantfrites.fr, suicidesquad.fr), but for this one I had an almost complete autonomy. This was the biggest and more complex project I've worked on, and a chance to learn all aspects of Wordpress.",
 			"context": "/w Agency FCINQ",
 			"role": "Front/Back-end developer",
 			"techno": "Wordpress, TweenMax, Google Maps API",
@@ -65,7 +65,7 @@
 			"slug": "skyyart",
 			"year": 2016,
 			"url": "http://skyyart.fr/",
-			"description": "Imperdiet diam a, feugiat urna. Cras faucibus in arcu et posuere. Cras quis magna diam. Ut porta velit ut posuere lacinia. Vestibulum urna purus, egestas eget leo vitae, laoreet malesuada metus. Etiam id sem ultricies, rutrum nulla at, efficitur augue. Maecenas nec consectetur nunc, tincidunt iaculis tortor. Morbi sem odio, molestie et consectetur at, ornare ultrices mauris.",
+			"description": "The first time I experienced freelance and joining an existing project at the same time. The development had already begun when I joined the team but the first integration wasn't adapted for the project needs of modularity and future evolution. With two other developers (one as back-end and another as front-end and mainly on the home-made live chat), I integrated all the new sketches just before adding dynamic datas provided by the two other developers.",
 			"context": "Freelance",
 			"role": "Integrator / Front-end developer",
 			"techno": "Meteor",
@@ -85,7 +85,7 @@
 			"slug": "geek-art",
 			"year": 2016,
 			"url": "http://geek-art.borislaporte.com/",
-			"description": "Sed sit amet elit id ligula egestas consequat sed non nisl. Mauris molestie pharetra diam at tempus. In faucibus nunc in tincidunt consequat. Sed pretium elit nunc, vitae hendrerit ipsum mollis sit amet. Fusce libero nunc, commodo ut accumsan sit amet, viverra eu quam. Aliquam consequat varius sapien, euismod auctor sapien egestas eu.",
+			"description": "This website was developed for front-end project in the 3d year in Hetic. We had to realise a website that use object oriented javascript with gulp task manager and templating. We use that occasion to do a tribute to a book about Geek art that we loved. As 3 developers one was resonsible for the D3.js visualization, another one handleded the templating/navigation and I was in charge of all the integration and visual effects.",
 			"context": "School project",
 			"role": "Integrator / Front-end developer",
 			"techno": "Gulp, Handlebars, Scss",
@@ -99,23 +99,6 @@
 				"geek-art/geek-art-02.png",
 				"geek-art/geek-art-03.png"
 			]
-		},
-		{
-			"name": "O Mauvais Buisson",
-			"slug": "o-mauvais-buisson",
-			"year": 2016,
-			"url": "http://www.omauvaisbuisson.fr/",
-			"description": "Mauris sed viverra leo. Duis at malesuada mi. Sed non nibh id orci maximus dapibus. Duis porttitor nulla quis auctor sollicitudin. Vivamus aliquam justo erat, non laoreet metus ultrices id. Vivamus sodales velit a massa placerat maximus. Etiam ultricies diam tempus libero porttitor dictum. Fusce dapibus venenatis elementum. Cras rutrum dolor a justo laoreet, ac accumsan massa porttitor. Pellentesque vestibulum efficitur neque, nec sollicitudin leo.",
-			"context": "Freelance",
-			"role": "Front/Back-end developer",
-			"techno": "Wordpress, Scss",
-			"media_home": "omauvaisbuisson-home.png",
-			"color": "#FF435A",
-			"first_media": [
-				"",
-				"horizontal"
-			],
-			"medias": []
 		}
 	]
 }

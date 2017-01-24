@@ -82,9 +82,11 @@
       })
     },
     methods: {
-      onEnter: function (el) {
+      onEnter: function (el, done) {
         TweenMax.set(this.$refs.menuToggle, { x: -100 })
         TweenMax.to(this.$refs.menuToggle, 0.7, { x: 0, delay: 0.7, ease: Power2.easeInOut })
+
+        done()
       },
       toggleMenu: function (e) {
         // Set the currentWork already active
@@ -220,7 +222,7 @@
 
         // @for $i from 1 through 4
         //   .line:nth-child(#{$i})
-        //     transition: transform .3s ease .1s * $i
+        //     transition: transform .3s ease .15s * $i
 
         .line
           position: absolute
@@ -230,7 +232,7 @@
           // height: 2px
           transform: translateX(-80px)
           transform-origin: center center
-          transition: transform .3s ease
+          transition: transform .3s ease .3s
 
           &:first-child
             top: -10px
@@ -332,7 +334,7 @@
   @keyframes reduce
     0%
       opacity: 0.5
-      transform: scale(1.1)
+      transform: scale(1.05)
     100%
       opacity: 1
       transform: scale(1)

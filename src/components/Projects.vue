@@ -1,37 +1,40 @@
 <template>
-	<div class="projects" ref="projectsContainer">
-    
-    <prev-work v-if="hasPrevWork"></prev-work>
+	<transition 
+    v-on:enter="onEnter">
+    <div class="projects" ref="projectsContainer">
+       
+       <prev-work v-if="hasPrevWork"></prev-work>
 
-    <router-link 
-      class="current-work" 
-      :to="{ name: 'project', params: { project_name: projectsDatas[getCurrentWork].slug } }"
-      ref="workDropZone">
+       <router-link 
+         class="current-work" 
+         :to="{ name: 'project', params: { project_name: projectsDatas[getCurrentWork].slug } }"
+         ref="workDropZone">
 
-      <!-- <div class="current-work__bg" :style="{ 'background-image': 'url(../static/'+ projectsDatas[getCurrentWork].media_home +')' }" ref="workBg"></div> -->
+         <!-- <div class="current-work__bg" :style="{ 'background-image': 'url(../static/'+ projectsDatas[getCurrentWork].media_home +')' }" ref="workBg"></div> -->
 
-      <div class="current-work__bg" ref="workBg"></div>
-      <div class="current-work__drop-cover" ref="workDropCover">
-        <p>Drop it like it's hot</p>
-      </div>
+         <div class="current-work__bg" ref="workBg"></div>
+         <div class="current-work__drop-cover" ref="workDropCover">
+           <p>Drop it like it's hot</p>
+         </div>
 
-      <div class="current-work__datas">
-        <h1>{{ projectsDatas[getCurrentWork].name }}</h1>
-        <p class="link"><img src="../assets/images/line.png" class="line before"/>Discover <img src="../assets/images/line.png" class="line after"/></p>
-      </div>
-    </router-link>
+         <div class="current-work__datas">
+           <h1>{{ projectsDatas[getCurrentWork].name }}</h1>
+           <p class="link"><img src="../assets/images/line.png" class="line before"/>Discover <img src="../assets/images/line.png" class="line after"/></p>
+         </div>
+       </router-link>
 
-    <next-work v-if="hasNextWork"></next-work>
+       <next-work v-if="hasNextWork"></next-work>
 
-  </div>
+     </div> 
+  </transition>
 </template>
 
 <script>
   import projectsData from '../assets/datas.json'
   import PrevWork from '../components/PrevWork'
   import NextWork from '../components/NextWork'
-  import { TweenMax, Power4 } from 'gsap'
   import Draggable from '../../node_modules/gsap/src/minified/utils/Draggable.min.js'
+  import { TweenLite } from 'gsap'
   import $ from 'jquery'
   import '../../node_modules/jquery.ripples/jquery.ripples-min.js'
 
@@ -81,6 +84,13 @@
         'isMenuOpen',
         'webGlContextInitiated'
       ])
+    },
+    methods: {
+      onEnter: function (el, done) {
+        TweenLite.set(el.querySelector('.current-work'), { opacity: 0 })
+        TweenLite.to(el.querySelector('.current-work'), 1, { opacity: 1, delay: 0.5 })
+        done()
+      }
     }
   }
 </script>
