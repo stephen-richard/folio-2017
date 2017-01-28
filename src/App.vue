@@ -2,7 +2,7 @@
   <div id="app">
     <!-- <bgCanvas></bgCanvas> -->
     
-    <burgerMenu v-if="isIntroSkipped"></burgerMenu>
+    <burgerMenu v-if="isIntroSkipped" v-show="getPage != 'about'"></burgerMenu>
     <navbar v-if="isIntroSkipped"></navbar>
     <intro v-if="!isIntroSkipped"></intro>
     <router-view v-if="isIntroSkipped"></router-view>
@@ -156,18 +156,22 @@
 
   #video-bg
     position: fixed
-    top: 50%
-    left: 50%
-    min-width: 100%
-    min-height: 100%
-    width: auto
-    height: auto
-    transform: translateX(-50%) translateY(-50%)
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
     // background-position: center center
     z-index: 1
 
     video
-      position: relative
+      position: absolute
+      top: 50%
+      left: 50%
+      min-width: 100%
+      min-height: 100%
+      width: auto
+      height: auto
+      transform: translateX(-50%) translateY(-50%)
       background-image: url("./assets/images/background-poster.png")
       background-size: cover
       background-repeat: no-repeat
@@ -223,6 +227,26 @@
         left: 0px
         color: $white
         // transition: transform .3s ease
+
+    &.social-link
+      position: relative
+      height: 32px
+      overflow: hidden
+      color: transparent
+
+      &:hover
+
+        span
+          animation: linkSlideEffect .4s
+
+      span
+        position: absolute
+        display: inline-block
+        left: 0px
+
+      svg
+        &.to-hide
+          opacity: 0
   
   .underline
     text-decoration: underline
