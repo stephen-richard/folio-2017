@@ -1,40 +1,40 @@
 <template>
   <transition v-on:enter="onEnter">
     <div class="project container" ref="workContainer">
-      <span class="project__main-picture" ref="workMainPicture" :style="{'background-image': 'url(./static/' + projectsDatas[getCurrentWork].media_home + ')'}"></span>
+      <span class="project__main-picture" ref="workMainPicture" :style="{'background-image': 'url(./static/' + getProjects[getCurrentWork].media_home + ')'}"></span>
       
       <div class="project__datas">
-        <h1 ref="workName" :style="{ 'color': projectsDatas[getCurrentWork].color }">{{ projectsDatas[getCurrentWork].name }}</h1>
-        <h2 ref="workRole">{{ projectsDatas[getCurrentWork].role }}</h2>
+        <h1 ref="workName" :style="{ 'color': getProjects[getCurrentWork].color }">{{ getProjects[getCurrentWork].name }}</h1>
+        <h2 ref="workRole">{{ getProjects[getCurrentWork].role }}</h2>
 
         <div class="project-data-container">
           <div>
             <p class="title">Description</p>
-            <p>{{ projectsDatas[getCurrentWork].description }}</p>
+            <p>{{ getProjects[getCurrentWork].description }}</p>
           </div>
 
           <div>
             <p class="title">Client / context</p>
-            <p>{{ projectsDatas[getCurrentWork].context }}</p>
+            <p>{{ getProjects[getCurrentWork].context }}</p>
 
             <p class="title">Year</p>
-            <p>{{ projectsDatas[getCurrentWork].year }}</p>
+            <p>{{ getProjects[getCurrentWork].year }}</p>
 
             <p class="title">Techno / tools</p>
-            <p>{{ projectsDatas[getCurrentWork].techno }}</p>
+            <p>{{ getProjects[getCurrentWork].techno }}</p>
 
             <p class="title">Link</p>
-            <a :href="projectsDatas[getCurrentWork].url" target="_blank">See the project</a>
+            <a :href="getProjects[getCurrentWork].url" target="_blank">See the project</a>
           </div>
         </div>
         
       </div>
 
       <div class="medias">
-        <div :class="'picture picture-first ' + projectsDatas[getCurrentWork].first_media[1]" :style="{ 'background-color': projectsDatas[getCurrentWork].color }">
-          <img :src="'../static/' + projectsDatas[getCurrentWork].first_media[0]" alt="">
+        <div :class="'picture picture-first ' + getProjects[getCurrentWork].first_media[1]" :style="{ 'background-color': getProjects[getCurrentWork].color }">
+          <img :src="'../static/' + getProjects[getCurrentWork].first_media[0]" alt="">
         </div>
-        <div v-for="(picture, index) in projectsDatas[getCurrentWork].medias" class="picture">
+        <div v-for="(picture, index) in getProjects[getCurrentWork].medias" class="picture">
           <img :src="'../static/' + picture" alt="">
         </div>
       </div>
@@ -45,7 +45,6 @@
 </template>
 
 <script>
-  import projectsData from '../assets/datas.json'
   import ProjectSwitcher from '../components/ProjectSwitcher'
 
   import { TweenLite, TimelineLite, Power2 } from 'gsap'
@@ -58,12 +57,12 @@
     data () {
       return {
         msg: 'Projects page',
-        param: this.$route.params.project_name,
-        projectsDatas: projectsData.projects
+        param: this.$route.params.project_name
       }
     },
     computed: {
       ...mapGetters([
+        'getProjects',
         'getCurrentWork',
         'getWorkCount',
         'hasNextWork'
@@ -81,8 +80,8 @@
       var pageFound = false
       var counter = 0
 
-      for (var i = 0; i < this.projectsDatas.length; i++) {
-        if (this.projectsDatas[i].slug === this.param) {
+      for (var i = 0; i < this.getProjects.length; i++) {
+        if (this.getProjects[i].slug === this.param) {
           pageFound = true
         }
       }

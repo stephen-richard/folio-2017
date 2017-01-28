@@ -15,18 +15,18 @@
         <div class="menu-work-list" v-show="isMenuOpen" ref="menuPanel">
           <span 
             class="work-bg" 
-            :style="{ 'background-image': 'url(../static/'+ projectsDatas[lastHoveredWork].media_home +')' }"
+            :style="{ 'background-image': 'url(../static/'+ getProjects[lastHoveredWork].media_home +')' }"
             ref="workBg"></span>
 
           <ul>
             <li
-              v-for="(work, index) in projectsDatas"
+              v-for="(work, index) in getProjects"
               v-on:mouseover="hoverMenuLink"
               v-on:mouseleave="hoverLeaveMenuLink"
               v-on:click="clickMenuLink"
               :data-index="index">
               <span class="work-id">{{ index + 1 }}</span>
-              <router-link :to="{ name: 'project', params: { project_name: projectsDatas[index].slug } }" :data-index="index" :data-color="work.color"><img src="../assets/images/line.png" alt="" class="line-before">{{ work.name }}<img src="../assets/images/line.png" class="line-after"/></router-link>
+              <router-link :to="{ name: 'project', params: { project_name: getProjects[index].slug } }" :data-index="index" :data-color="work.color"><img src="../assets/images/line.png" alt="" class="line-before">{{ work.name }}<img src="../assets/images/line.png" class="line-after"/></router-link>
             </li>
           </ul>
         </div>
@@ -36,7 +36,6 @@
 </template>
 
 <script>
-  import projectsData from '../assets/datas.json'
   import { TweenMax, TimelineLite, Power2 } from 'gsap'
   
   import { mapGetters } from 'vuex'
@@ -45,7 +44,6 @@
     name: 'burgerMenu',
     data () {
       return {
-        projectsDatas: projectsData.projects,
         lastHoveredWork: 0,
         links: document.querySelectorAll('li')
       }
@@ -63,6 +61,7 @@
         }
       },
       ...mapGetters([
+        'getProjects',
         'getCurrentWork',
         'getWorkCount',
         'isMenuOpen',
@@ -71,7 +70,7 @@
     },
     beforeMount () {
       // this.$store.commit('SET_IS_LOADING', true)
-      this.$store.commit('SET_WORK_COUNT', this.projectsDatas.length)
+      this.$store.commit('SET_WORK_COUNT', this.getProjects.length)
     },
     mounted () {
       var that = this

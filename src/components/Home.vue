@@ -8,7 +8,6 @@
 </template>
 
 <script>
-  import projectsData from '../assets/datas.json'
   import ProjectSlider from '../components/Projects'
   import { TweenLite } from 'gsap'
 
@@ -16,7 +15,6 @@
     name: 'home',
     data () {
       return {
-        projectsDatas: projectsData.projects,
         renderer: null,
         stage: null,
         currentWorkIndex: 0

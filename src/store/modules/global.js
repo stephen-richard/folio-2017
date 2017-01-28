@@ -7,7 +7,8 @@ const state = {
   menuOpen: false,
   videoIntroPlay: false,
   indicatorsHidden: true,
-  mobile: false
+  mobile: false,
+  projects: {}
 }
 
 const getters = {
@@ -31,6 +32,9 @@ const getters = {
   },
   isMobile: state => {
     return state.mobile
+  },
+  getProjects: state => {
+    return state.projects
   }
 }
 
@@ -55,6 +59,9 @@ const mutations = {
   },
   [types.SET_MOBILE_STATE] (state, mobileState) {
     state.mobile = mobileState
+  },
+  [types.SAVE_PROJECTS] (state, projectsState) {
+    state.projects = projectsState
   }
 }
 

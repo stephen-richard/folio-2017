@@ -9,10 +9,12 @@
     <footerElement v-if="isIntroSkipped" v-show="getPage != 'detail'"></footerElement>
 
     <div class="video-intro-mask" ref="videoMask"></div>
-    <video v-show="getPage != 'detail'" id="video-bg" autoplay loop>
-      <source src="./static/video/background.mp4" type="video/mp4">
-      <source src="./static/video/background.webm" type="video/webm">
-    </video>
+    <div id="video-bg" v-show="getPage != 'detail'">
+      <video autoplay loop>
+        <source src="./static/video/background.mp4" type="video/mp4">
+        <source src="./static/video/background.webm" type="video/webm">
+      </video>
+    </div>
 
     <loader v-bind:isLoading="isLoading"></loader>
     
@@ -29,6 +31,8 @@
   import Footer from './components/FooterElement'
   import Mobile from './components/MobileVersion'
   import { TweenMax } from 'gsap'
+
+  import projectsData from './assets/datas.json'
 
   import { mapGetters } from 'vuex'
 
@@ -72,6 +76,9 @@
         }
       }, false)
 
+      // Store projects in vuex
+      this.$store.commit('SAVE_PROJECTS', projectsData.projects)
+
       // GSAP ANIMATIONS
       if (!this.isMobile) {
         console.log('remove mask opacity')
@@ -110,8 +117,6 @@
             this.$store.commit('CHANGE_CURRENT_WORK', this.getCurrentWork - 1)
           }
         }
-
-        console.log('Switched to work: ' + this.getCurrentWork)
       }
     }
   }
@@ -158,11 +163,25 @@
     width: auto
     height: auto
     transform: translateX(-50%) translateY(-50%)
-    background-image: url("./assets/images/background-poster.png")
-    background-size: cover
-    background-repeat: no-repeat
     // background-position: center center
     z-index: 1
+
+    video
+      position: relative
+      background-image: url("./assets/images/background-poster.png")
+      background-size: cover
+      background-repeat: no-repeat
+      z-index: 1
+
+    // &:before
+    //   position: absolute
+    //   content: ''
+    //   left: 0
+    //   top: 0
+    //   width: 100%
+    //   height: 100%
+    //   background-image: url(./assets/images/trame.png)
+    //   z-index: 20
 
   .container
     max-width: 1280px
@@ -187,16 +206,16 @@
         span
           animation: linkSlideEffect .6s
       
-      &:before
-        position: absolute
-        content: ''
-        left: 0
-        top: 0
-        width: 100%
-        height: 100%
-        transform: translateX(calc(-100% - 1px))
-        opacity: 0.7
-        background-color: $white
+      // &:before
+      //   position: absolute
+      //   content: ''
+      //   left: 0
+      //   top: 0
+      //   width: 100%
+      //   height: 100%
+      //   transform: translateX(calc(-100% - 1px))
+      //   opacity: 0.7
+      //   background-color: $white
 
       span
         position: absolute
@@ -213,9 +232,9 @@
     0%
       transform: translateY(0)
     49%
-      transform: translateY(120%)
+      transform: translateY(110%)
     50%
-      transform: translateY(-120%)
+      transform: translateY(-100%)
     100%
       transform: translateY(0)
 

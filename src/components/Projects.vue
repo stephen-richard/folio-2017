@@ -3,14 +3,14 @@
     v-on:enter="onEnter">
     <div class="projects" ref="projectsContainer">
        
-       <prev-work v-if="hasPrevWork"></prev-work>
+       <prev-work></prev-work>
 
        <router-link 
          class="current-work" 
-         :to="{ name: 'project', params: { project_name: projectsDatas[getCurrentWork].slug } }"
+         :to="{ name: 'project', params: { project_name: getProjects[getCurrentWork].slug } }"
          ref="workDropZone">
 
-         <!-- <div class="current-work__bg" :style="{ 'background-image': 'url(../static/'+ projectsDatas[getCurrentWork].media_home +')' }" ref="workBg"></div> -->
+         <!-- <div class="current-work__bg" :style="{ 'background-image': 'url(../static/'+ getProjects[getCurrentWork].media_home +')' }" ref="workBg"></div> -->
 
          <div class="current-work__bg" ref="workBg"></div>
          <div class="current-work__drop-cover" ref="workDropCover">
@@ -18,19 +18,18 @@
          </div>
 
          <div class="current-work__datas">
-           <h1>{{ projectsDatas[getCurrentWork].name }}</h1>
+           <h1>{{ getProjects[getCurrentWork].name }}</h1>
            <p class="link"><img src="../assets/images/line.png" class="line before"/>Discover <img src="../assets/images/line.png" class="line after"/></p>
          </div>
        </router-link>
 
-       <next-work v-if="hasNextWork"></next-work>
+       <next-work></next-work>
 
      </div> 
   </transition>
 </template>
 
 <script>
-  import projectsData from '../assets/datas.json'
   import PrevWork from '../components/PrevWork'
   import NextWork from '../components/NextWork'
   import Draggable from '../../node_modules/gsap/src/minified/utils/Draggable.min.js'
@@ -48,7 +47,6 @@
     },
     data () {
       return {
-        projectsDatas: projectsData.projects,
         screenWidth: 0,
         projectWidth: window.innerWidth / 2
       }
@@ -60,14 +58,14 @@
       this.$store.commit('CHANGE_INDICATORS_STATE', false)
 
       $('.current-work__bg').ripples({
-        imageUrl: '../static/' + this.projectsDatas[this.getCurrentWork].media_home,
+        imageUrl: '../static/' + this.getProjects[this.getCurrentWork].media_home,
         dropRadius: 30,
         perturbance: 0.015,
         interactive: true
       })
     },
     updated () {
-      $('.current-work__bg').ripples('set', 'imageUrl', '../static/' + this.projectsDatas[this.getCurrentWork].media_home)
+      $('.current-work__bg').ripples('set', 'imageUrl', '../static/' + this.getProjects[this.getCurrentWork].media_home)
     },
     beforeDestroy () {
       $('.current-work__bg').ripples('destroy')
@@ -77,6 +75,7 @@
     },
     computed: {
       ...mapGetters([
+        'getProjects',
         'getCurrentWork',
         'getWorkCount',
         'hasPrevWork',
