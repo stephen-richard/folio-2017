@@ -3,7 +3,7 @@
     v-on:enter="onEnter">
     <div id="burger-menu">
       <div class="wrapper">
-        <div :class="menuClasses" v-on:click="toggleMenu" ref="menuToggle" v-if="getPage != 'about'">
+        <div :class="menuClasses" v-on:click="toggleMenu" ref="menuToggle">
           <div class="menu-work-indicator"><span class="current">{{ getCurrentWork + 1 }}</span> /{{ getWorkCount }}</div>
           <div class="menu-work-close">
             <img src="../assets/images/line_1.svg" alt="" class="line before">
@@ -275,7 +275,7 @@
       // right: 80px
       
       width: 80%
-      height: 90%
+      height: 70%
       // max-height: 670px
       background-size: cover
       background-position: center center
@@ -330,6 +330,10 @@
 
           .line-after
             right: -140px
+
+  @media (max-width: 768px)  
+    #burgerMenu
+      display: none
 
   @keyframes reduce
     0%

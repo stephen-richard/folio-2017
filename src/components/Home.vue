@@ -29,8 +29,8 @@
       renderPixi () {
         this.renderer.render(this.stage)
 
-        var mousePosX = this.renderer.plugins.interaction.mouse.global.x
-        var mousePosY = this.renderer.plugins.interaction.mouse.global.y
+        // var mousePosX = this.renderer.plugins.interaction.mouse.global.x
+        // var mousePosY = this.renderer.plugins.interaction.mouse.global.y
 
         // console.log('Mouse is ' + mousePosX + ' : ' + mousePosY)
         // window.requestAnimationFrame(this.renderPixi)

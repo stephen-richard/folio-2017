@@ -75,6 +75,7 @@
 
   #mobile
     position: absolute
+    display: none
     left: 0
     top: 0
     width: 100%
@@ -82,6 +83,7 @@
 
     .mobile-container
       position: relative
+      width: 100%
       padding: 20px 6% 40px
       text-align: left
       color: $white
@@ -122,5 +124,9 @@
           display: inline-block
           margin-right: 10px
           padding: 10px 10px 10px 0
+
+  @media screen and (max-width: 768px)
+    #mobile
+      display: block
 
 </style>

@@ -58,6 +58,9 @@
         }
       })
     },
+    updated () {
+      console.log('i got updated')
+    },
     computed: {
       classObject: function () {
         return {

@@ -3,11 +3,11 @@
     v-on:enter="onEnter">
     <div class="footer">
       <div class="hidden"></div>
-      <div class="arrows-indicator">
+      <div class="arrows-indicator" v-show="getPage != 'about'">
         <img src="../assets/images/arrow.svg" alt="go previous project with left arrow">
         <img src="../assets/images/arrow.svg" alt="go next project with right arrow">
       </div>
-      <a class="address link" :href="'mailto:' + email">{{ email }}</a>
+      <a class="address link" :href="'mailto:' + email">{{ email }}<span>{{ email }}</span></a>
     </div> 
   </transition>
 </template>
@@ -58,11 +58,18 @@
       left: 50%
       transform: translateX(-50%)
 
+      @media (max-height: 710px)
+        opacity: 0
+
       img:nth-child(2)
         -webkit-transform: scaleX(-1) /* Webkit */
           -moz-transform: scaleX(-1)    /* Gecko */
             -o-transform: scaleX(-1)      /* Opera */
               transform: scaleX(-1)         /* Standard */
               filter: FlipH;
+
+  @media (max-width: 768px)
+    .footer
+      display: none
 
 </style>

@@ -5,7 +5,7 @@
        <div class="hidden"></div>
        <router-link to="/" class="logo"><img src="../assets/images/logo-home-2x.png" alt="stephen richard portfolio 2017"></router-link>
        <div class="nav-links">
-         <router-link to="/about" class="nav-link link">About</router-link>
+         <router-link to="/about" class="nav-link link">About<span>About</span></router-link>
        </div>
     </div> 
   </transition>
@@ -61,11 +61,10 @@
         padding: 0 5px
         text-decoration: none
         text-transform: lowercase
-        color: #fefefe
 
-        &:hover,
-        &.router-link-active
-          color: $bg-color
+  @media (max-width: 768px)
+    .nav
+      display: none
     
 
 </style>

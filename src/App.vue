@@ -1,24 +1,22 @@
 <template>
   <div id="app">
     <!-- <bgCanvas></bgCanvas> -->
-    <div v-if="!isMobile">
-      <burgerMenu v-if="isIntroSkipped"></burgerMenu>
-      <navbar v-if="isIntroSkipped"></navbar>
-      <intro v-if="!isIntroSkipped"></intro>
-      <router-view v-if="isIntroSkipped"></router-view>
-      <footerElement v-if="isIntroSkipped" v-show="getPage != 'detail'"></footerElement>
+    
+    <burgerMenu v-if="isIntroSkipped"></burgerMenu>
+    <navbar v-if="isIntroSkipped"></navbar>
+    <intro v-if="!isIntroSkipped"></intro>
+    <router-view v-if="isIntroSkipped"></router-view>
+    <footerElement v-if="isIntroSkipped" v-show="getPage != 'detail'"></footerElement>
 
-      <div class="video-intro-mask" ref="videoMask"></div>
-      <video v-show="getPage != 'detail'" id="video-bg" autoplay loop>
-        <source src="./static/video/background.mp4" type="video/mp4">
-        <source src="./static/video/background.webm" type="video/webm">
-      </video>
+    <div class="video-intro-mask" ref="videoMask"></div>
+    <video v-show="getPage != 'detail'" id="video-bg" autoplay loop>
+      <source src="./static/video/background.mp4" type="video/mp4">
+      <source src="./static/video/background.webm" type="video/webm">
+    </video>
 
-      <loader v-bind:isLoading="isLoading"></loader>
-    </div>
-    <div v-else>
-      <mobile></mobile>
-    </div>
+    <loader v-bind:isLoading="isLoading"></loader>
+    
+    <mobile></mobile>
   </div>
 </template>
 
@@ -63,19 +61,6 @@
     },
     mounted () {
       var that = this
-
-      // Handle window resizing to display mobile version
-      window.addEventListener('resize', function (e) {
-        if (that.isMobile) {
-          if (e.target.innerWidth > that.mobileBreakpoint) {
-            that.$store.commit('SET_MOBILE_STATE', false)
-          }
-        } else {
-          if (e.target.innerWidth < that.mobileBreakpoint) {
-            that.$store.commit('SET_MOBILE_STATE', true)
-          }
-        }
-      })
       // Handle arrow navigation
       document.addEventListener('keyup', function (e) {
         if (e.keyCode === 37) {
@@ -92,12 +77,6 @@
         console.log('remove mask opacity')
         TweenMax.set(this.$refs.videoMask, { opacity: 1 })
         TweenMax.to(this.$refs.videoMask, 3, { opacity: 0, zIndex: 1, delay: 1 })
-      }
-    },
-    beforeMount () {
-      // this.$store.commit('SET_IS_LOADING', true)
-      if (window.innerWidth < this.mobileBreakpoint) {
-        this.$store.commit('SET_MOBILE_STATE', true)
       }
     },
     methods: {
@@ -157,6 +136,10 @@
     text-align: center
     background-color: $bg-color
 
+  .page
+    @media (max-width: 768px)
+      display: none
+
   .video-intro-mask
     position: fixed
     left: 0
@@ -188,29 +171,58 @@
   a
     text-decoration: none
     color: $white
+    line-height: 21px
 
     &.link
       position: relative
+      overflow: hidden
+      color: transparent
+      
+      &:hover,
+      &.router-link-active
+
+        &:before
+          animation: slideAndFade .5s .1s
+        
+        span
+          animation: linkSlideEffect .6s
       
       &:before
         position: absolute
         content: ''
-        bottom: 0
         left: 0
+        top: 0
         width: 100%
-        height: 0
+        height: 100%
+        transform: translateX(calc(-100% - 1px))
+        opacity: 0.7
         background-color: $white
-        z-index: -1
-        transition: height .3s ease
 
-      &:hover,
-      &.router-link-active
-        color: $bg-color
-
-        &:before
-          height: 100%
+      span
+        position: absolute
+        display: inline-block
+        left: 0px
+        color: $white
+        // transition: transform .3s ease
   
   .underline
     text-decoration: underline
+
+
+  @keyframes linkSlideEffect
+    0%
+      transform: translateY(0)
+    49%
+      transform: translateY(120%)
+    50%
+      transform: translateY(-120%)
+    100%
+      transform: translateY(0)
+
+  @keyframes slideAndFade
+    0%
+      transform: translateX(calc(-100% - 1px))
+    100%
+      transform: translateX(101%)
 
 </style>

@@ -158,7 +158,7 @@
         div:first-child
           float: left
           width: 75%
-          padding-right: 20px
+          padding-right: 4%
 
           .title
             margin-bottom: 10px
@@ -172,6 +172,16 @@
 
             &:first-child
               margin-top: 0
+
+        @media (max-width: 980px)
+          div:first-child
+            margin-bottom: 40px
+
+          div:first-child,
+          div:last-child
+            float: none
+            display: block
+            width: 100%
 
   .medias
     display: block

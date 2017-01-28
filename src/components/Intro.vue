@@ -245,6 +245,10 @@
       opacity: 0
       transform: translateY(30px)
 
+  @media (max-width: 768px)
+    #intro
+      display: none
+
   @keyframes grow-and-fade
     0%
       transform: scale(1)
