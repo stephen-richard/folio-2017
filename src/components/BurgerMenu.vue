@@ -13,10 +13,14 @@
         </div>
 
         <div class="menu-work-list" v-show="isMenuOpen" ref="menuPanel">
-          <span 
-            class="work-bg" 
-            :style="{ 'background-image': 'url(../static/'+ getProjects[lastHoveredWork].media_home +')' }"
-            ref="workBg"></span>
+          <div class="work-bgs">
+            <span 
+              class="work-bg"
+              v-for="(work, index) in getProjects"
+              :data-work="index"
+              :style="{ 'background-image': 'url(../static/'+ work.media_home +')' }"
+              ref="workBg"></span>
+          </div>
 
           <ul>
             <li
@@ -25,8 +29,10 @@
               v-on:mouseleave="hoverLeaveMenuLink"
               v-on:click="clickMenuLink"
               :data-index="index">
-              <span class="work-id">{{ index + 1 }}</span>
-              <router-link :to="{ name: 'project', params: { project_name: getProjects[index].slug } }" :data-index="index" :data-color="work.color"><img src="../assets/images/line.png" alt="" class="line-before">{{ work.name }}<img src="../assets/images/line.png" class="line-after"/></router-link>
+              <router-link :to="{ name: 'project', params: { project_name: getProjects[index].slug } }" :data-index="index" :data-color="work.color">
+                <span class="work-id">{{ index + 1 }}</span>
+                <img src="../assets/images/line.png" alt="" class="line-before"><span class="work-name">{{ work.name }}</span><img src="../assets/images/line.png" class="line-after"/>
+              </router-link>
             </li>
           </ul>
         </div>
@@ -36,7 +42,7 @@
 </template>
 
 <script>
-  import { TweenMax, TimelineLite, Power2 } from 'gsap'
+  import { TweenLite, TimelineLite, Power2 } from 'gsap'
   
   import { mapGetters } from 'vuex'
 
@@ -45,12 +51,16 @@
     data () {
       return {
         lastHoveredWork: 0,
+        currentWorkBg: null,
         links: document.querySelectorAll('li')
       }
     },
     watch: {
       lastHoveredWork: function (workId) {
         this.lastHoveredWork = workId
+      },
+      currentWorkBg: function (el) {
+        this.lastHoveredWork = el
       }
     },
     computed: {
@@ -82,8 +92,8 @@
     },
     methods: {
       onEnter: function (el, done) {
-        TweenMax.set(this.$refs.menuToggle, { x: -100 })
-        TweenMax.to(this.$refs.menuToggle, 0.7, { x: 0, delay: 0.7, ease: Power2.easeInOut })
+        TweenLite.set(this.$refs.menuToggle, { x: -100 })
+        TweenLite.to(this.$refs.menuToggle, 0.7, { x: 0, delay: 0.7, ease: Power2.easeInOut })
 
         done()
       },
@@ -97,10 +107,12 @@
           this.$store.commit('SET_IS_MENU_OPEN', true)
           this.$store.commit('CHANGE_INDICATORS_STATE', true)
 
-          TweenMax.to(this.$refs.menuPanel, 0.7, { opacity: 1 })
+          TweenLite.to(this.$refs.menuPanel, 0.7, { opacity: 1 })
 
           // HERE I change the menu background
-          this.lastHoveredWork = this.getCurrentWork
+          // this.lastHoveredWork = this.getCurrentWork
+          this.currentWorkBg = document.querySelector('.work-bg[data-work="' + this.getCurrentWork + '"]')
+          TweenLite.set(this.currentWorkBg, { opacity: 1 })
           // Reset all previous active links
           this.removeAllActive(document.querySelectorAll('li'))
           // Set the currentWork link as active
@@ -109,23 +121,34 @@
       },
       hoverMenuLink: function (e) {
         var that = this
-        var elem = e.target
+        var link = e.target
+        var listItem = e.target.parentNode
 
-        if (elem.tagName === 'LI') {
-          var links = elem.parentNode.querySelectorAll('li')
-          var workId = elem.getAttribute('data-index')
-          var workName = elem.querySelector('a')
-          var linkColor = workName.getAttribute('data-color')
+        if (link.nodeName === 'A') {
+          var links = listItem.parentNode.querySelectorAll('li')
+          var workId = link.getAttribute('data-index')
+          var workName = link.querySelector('.work-name')
+          var linkColor = link.getAttribute('data-color')
 
           // Remove class active from all links
           this.removeAllActive(links)
 
           // Add active for current hovered link
-          elem.classList += ' active'
+          listItem.classList += ' active'
 
-          this.$refs.workBg.classList += ' changing'
+          // Handle background smooth switch
+          var newBg = document.querySelector('.work-bg[data-work="' + workId + '"]')
+          var tl = new TimelineLite()
+          tl.set(newBg, { scale: 1.05 })
+            .add('enScale')
+            .to(newBg, 0.6, { opacity: 1 }, 'enScale')
+            .to(newBg, 1, { scale: 1, ease: Power2.easeOut }, 'enScale')
+          TweenLite.to(this.currentWorkBg, 0.4, { opacity: 0 })
+
+          this.currentWorkBg = document.querySelector('.work-bg[data-work="' + workId + '"]')
           this.lastHoveredWork = workId
-          workName.style.color = linkColor
+
+          link.style.color = linkColor
         }
       },
       hoverLeaveMenuLink: function (e) {
@@ -265,22 +288,30 @@
       background-color: rgba($bg-color, .5)
       z-index: 2
 
-    .work-bg
+    .work-bgs
       position: absolute
       display: block
       // top: 80px
       // left: 80px
       // bottom: 80px
       // right: 80px
-      
       width: 80%
       height: 70%
       // max-height: 670px
-      background-size: cover
-      background-position: center center
-      transform: scale(1)
       z-index: 1
+      overflow: hidden
       transition: transform ease
+
+      .work-bg
+        position: absolute
+        left: 0
+        top: 0
+        width: 100%
+        height: 100%
+        background-size: cover
+        background-position: center center
+        transform: scale(1)
+        opacity: 0
 
       &.changing
         animation: reduce .7s cubic-bezier(0.175, 0.885, 0.32, 1.275)
@@ -316,12 +347,16 @@
           font-size: 25px
           font-family: $moha
           color: $title-color
+          transition: color .3s
+
+          .work-name
+            pointer-events: none
 
           .line-before,
           .line-after
             position: absolute
             width: 120px
-            top: 13px
+            top: 35px
             opacity: 0
 
           .line-before
