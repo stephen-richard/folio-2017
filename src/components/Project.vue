@@ -46,9 +46,9 @@
 
 <script>
   import ProjectSwitcher from '../components/ProjectSwitcher'
-
   import { TweenLite, TimelineLite, Power2 } from 'gsap'
   import ScrollToPlugin from '../../node_modules/gsap/src/minified/plugins/ScrollToPlugin.min.js'
+  import ScrollReveal from 'scrollreveal'
 
   import { mapGetters } from 'vuex'
 
@@ -74,6 +74,12 @@
     mounted () {
       this.$store.commit('SET_PAGE', 'detail')
 
+      window.sr = ScrollReveal()
+      window.sr.reveal('.project-data-container', { duration: 400, distance: '5px' })
+      window.sr.reveal('.picture-first', { duration: 400 })
+      window.sr.reveal('.picture', { duration: 400 })
+      window.sr.reveal('.project-switcher', { duration: 400 })
+  
       // document.removeEventListener('keyup', function (e) {})
     },
     beforeMount () {
@@ -150,7 +156,7 @@
         color: $title-color
 
       .project-data-container
-        margin-top: 80px
+        margin-top: 120px
         text-align: left
         overflow: hidden
 
