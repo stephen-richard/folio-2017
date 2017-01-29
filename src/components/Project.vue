@@ -34,7 +34,7 @@
         <div :class="'picture picture-first ' + getProjects[getCurrentWork].first_media[1]" :style="{ 'background-color': getProjects[getCurrentWork].color }">
           <img :src="'../static/' + getProjects[getCurrentWork].first_media[0]" alt="">
         </div>
-        <div v-for="(picture, index) in getProjects[getCurrentWork].medias" class="picture">
+        <div v-for="(picture, index) in getProjects[getCurrentWork].medias" class="picture picture-single">
           <img :src="'../static/' + picture" alt="">
         </div>
       </div>
@@ -75,13 +75,7 @@
       this.$store.commit('SET_PAGE', 'detail')
 
       window.sr = ScrollReveal()
-      window.sr.reveal('.project__main-picture', { duration: 800 })
-      window.sr.reveal('h1', { duration: 700, delay: 300 })
-      window.sr.reveal('h2', { duration: 700, delay: 300 })
-      window.sr.reveal('.project-data-container', { duration: 400, distance: '5px' })
-      window.sr.reveal('.picture-first', { duration: 400 })
-      window.sr.reveal('.picture', { duration: 400 })
-      window.sr.reveal('.project-switcher', { duration: 400 })
+      window.sr.reveal('.project__datas, .project-data-container, .medias, .picture-single, .project-switcher', { duration: 400, delay: 200, reset: true })
   
       // document.removeEventListener('keyup', function (e) {})
     },
