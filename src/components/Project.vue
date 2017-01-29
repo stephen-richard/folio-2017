@@ -75,6 +75,9 @@
       this.$store.commit('SET_PAGE', 'detail')
 
       window.sr = ScrollReveal()
+      window.sr.reveal('.project__main-picture', { duration: 800 })
+      window.sr.reveal('h1', { duration: 700, delay: 300 })
+      window.sr.reveal('h2', { duration: 700, delay: 300 })
       window.sr.reveal('.project-data-container', { duration: 400, distance: '5px' })
       window.sr.reveal('.picture-first', { duration: 400 })
       window.sr.reveal('.picture', { duration: 400 })
@@ -101,8 +104,8 @@
     },
     methods: {
       onEnter (el, done) {
-        TweenLite.set(this.$refs.workContainer, { y: 100, opacity: 0 })
-        TweenLite.to(this.$refs.workContainer, 1.6, { y: 0, opacity: 1, ease: Power2.easeOut, delay: 0.4 })
+        // TweenLite.set(this.$refs.workContainer, { y: 100, opacity: 0 })
+        // TweenLite.to(this.$refs.workContainer, 1.6, { y: 0, opacity: 1, ease: Power2.easeOut, delay: 0.4 })
 
         done()
       }
