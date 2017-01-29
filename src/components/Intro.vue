@@ -174,7 +174,7 @@
         display: inline-block
         width: 21px
         height: 21px
-        padding: 10px 10px 8px 0px
+        padding: 10px 10px 8px 10px
         box-sizing: initial
         border-radius: 50%
         z-index: 4
@@ -183,7 +183,7 @@
           position: absolute
           width: 21px
           height: 21px
-          left: 0
+          left: 10px
           background-color: $white
           border-radius: 50%
           box-shadow: 0 0 20px 0 rgba($white-grey, 0.51);

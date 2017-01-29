@@ -77,9 +77,12 @@
     color: $white
     text-decoration: none
     // overflow: scroll
-    background-image: url(../assets/images/about-bg.png)
-    background-position: center center
-    background-size: cover
+    background-image: url(../assets/images/about-bg.jpg)
+    background-position: right center
+    background-size: auto 100%
+    background-repeat: no-repeat
+    background-color: #666666
+    // background-size: cover
     z-index: 2
 
     @media (max-height: 710px)
