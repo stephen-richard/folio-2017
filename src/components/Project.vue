@@ -153,21 +153,23 @@
         color: $title-color
 
       .project-data-container
+        width: 96%
+        margin: 0 auto
         margin-top: 120px
         text-align: left
         overflow: hidden
 
         div:first-child
           float: left
-          width: 75%
-          padding-right: 4%
+          width: 77%
 
           .title
             margin-bottom: 10px
 
         div:last-child
           float: right
-          width: 25%
+          width: 23%
+          padding-left: 4%
 
           .title
             margin-top: 10px

@@ -141,9 +141,9 @@
           var tl = new TimelineLite()
           tl.set(newBg, { scale: 1.05 })
             .add('enScale')
-            .to(newBg, 0.6, { opacity: 1 }, 'enScale')
+            .to(newBg, 0.4, { opacity: 1 }, 'enScale')
             .to(newBg, 1, { scale: 1, ease: Power2.easeOut }, 'enScale')
-          TweenLite.to(this.currentWorkBg, 0.4, { opacity: 0 })
+          TweenLite.to(this.currentWorkBg, 0.6, { opacity: 0 })
 
           this.currentWorkBg = document.querySelector('.work-bg[data-work="' + workId + '"]')
           this.lastHoveredWork = workId

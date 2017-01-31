@@ -2,7 +2,7 @@
   <transition v-on:enter="onEnter">
     <div class="page page-about" ref="aboutPage">
 
-      <span class="about-cover"></span>
+      <img class="about-cover" src="../assets/images/stephen.png"/>
 
       <router-link class="go-back-home" to="/">
         <img src="../assets/images/line_1.svg" alt="" class="line before">
@@ -77,16 +77,21 @@
     color: $white
     text-decoration: none
     // overflow: scroll
-    background-image: url(../assets/images/about-bg.jpg)
-    background-position: right center
-    background-size: auto 100%
+    background-image: url(../assets/images/bg.jpg)
+    background-position: center center
+    background-size: cover
     background-repeat: no-repeat
-    background-color: #666666
-    // background-size: cover
     z-index: 2
 
     @media (max-height: 710px)
       padding: 3% 20px 15px 3%
+
+    .about-cover
+      position: absolute
+      right: 0
+      bottom: 0
+      height: 100%
+      z-index: 1
 
     h1
       font-size: 60px

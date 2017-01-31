@@ -184,6 +184,7 @@
 
       h1
         font-size: 55px
+        line-height: 55px
         font-family: 'mohavebold'
 
       .link

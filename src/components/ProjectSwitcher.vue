@@ -20,7 +20,6 @@
 		      <span class="dot"></span>
 		      <span class="dot"></span>
 		      <span class="dot"></span>
-		      <span class="dot"></span>
 		    </div>
 		    <div class="top-circle" ref="topCircle">
 		      <span class="circle circle-main"></span>
@@ -126,6 +125,11 @@
         width: 225px
         opacity: 1
         transform: none
+
+        .top-circle
+
+          .circle
+            left: 5px
 
       .intro-desc
         margin-top: 10px
