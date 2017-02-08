@@ -16,9 +16,10 @@
         <div class="paragraph">
           <p>I’m a 23 y/o freelance front-end developer living in Paris. Currently in 4th year in the webschool HETIC.</p>
           <p>I build interactive websites for school, freelance or just for my pleasure. I compiled the latest ones on this folio. In all those projects I had the chance to use <span class="strong">Wordpress</span>, <span class="strong">Scss</span>, <span class="strong">Gulp</span>, <span class="strong">Rails</span>, <span class="strong">React</span>, <span class="strong">Android</span> and currently learning <span class="strong">VueJs</span></p>
-          <p><a href="http://www.old.stephenrichard.fr" class="underline">Here</a> you can see the previous version of my portfolio</p>
+          <p><a href="http://www.old.stephenrichard.fr" class="underline" target="_blank">Here</a> you can see the previous version of my portfolio</p>
+          <h4>Design by <a href="http://paulinetaveneau.fr/" class="link strong">Pauline Taveneau<span>Pauline Taveneau</span></a></h4>
         </div>
-        <h3>By the way i’m looking for a <span class="strong">6 month internship abroad</span> starting july 2017. Feel free to <a href="mailto:stephen.richard44@gmail.com" class="link underline">contact me.</a></h3>
+        <h3>By the way i’m looking for a <span class="strong">6 month internship abroad</span> starting july 2017. Feel free to <a href="mailto:stephen.richard44@gmail.com" class="underline">contact me.</a></h3>
       </div>
 
       <div class="socials">
@@ -120,6 +121,14 @@
         font-size: 22px
         line-height: 32px
 
+      a
+        line-height: 30px
+
+    h4
+      display: inline-block
+      font-size: 16px
+      overflow: hidden
+
     p
       line-height: 23px
 
@@ -135,9 +144,14 @@
         margin-bottom: 10px
 
     .left
+      position: relative
       float: left
       height: 100%
       width: 98%
+      z-index: 2
+    
+      // a.link
+      //   color: white
 
     .socials
       position: absolute

@@ -130,10 +130,13 @@
   
   *
     box-sizing: border-box
+
   body
-    width: 100%
+    min-width: 100%
+    min-height: 100%
     overflow-x: scroll
     margin: 0
+    background-color: $bg-color
   
   #app 
     width: 100%
