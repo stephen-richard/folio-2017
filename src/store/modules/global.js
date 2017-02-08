@@ -2,6 +2,8 @@ import * as types from '../mutations-types'
 
 const state = {
   loading: false,
+  placeholder: false,
+  placeholderFullSize: false,
   introSkipped: false,
   page: '',
   menuOpen: false,
@@ -14,6 +16,12 @@ const state = {
 const getters = {
   isLoading: state => {
     return state.loading
+  },
+  isPlaceholder: state => {
+    return state.placeholder
+  },
+  isPlaceholderFullSize: state => {
+    return state.placeholderFullSize
   },
   isIntroSkipped: state => {
     return state.introSkipped
@@ -41,6 +49,12 @@ const getters = {
 const mutations = {
   [types.SET_IS_LOADING] (state, loadingState) {
     state.loading = loadingState
+  },
+  [types.SET_PLACEHOLDER] (state, placeholderState) {
+    state.placeholder = placeholderState
+  },
+  [types.SET_PLACEHOLDER_SIZE] (state, placeholderSizeState) {
+    state.placeholderFullSize = placeholderSizeState
   },
   [types.SET_INTRO_SKIPPED] (state, introState) {
     state.introSkipped = introState

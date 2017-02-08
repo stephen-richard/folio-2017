@@ -1,6 +1,11 @@
 <template>
-  <transition v-on:enter="onEnter">
+  <transition 
+    @enter="onEnter"
+    @leave="onLeave">
     <div class="project container" ref="workContainer">
+      
+      <div class="project__placeholder" ref="placeholder"></div>
+
       <span class="project__main-picture" ref="workMainPicture" :style="{'background-image': 'url(./static/' + getProjects[getCurrentWork].media_home + ')'}"></span>
       
       <div class="project__datas">
@@ -98,9 +103,28 @@
     },
     methods: {
       onEnter (el, done) {
-        // TweenLite.set(this.$refs.workContainer, { y: 100, opacity: 0 })
-        // TweenLite.to(this.$refs.workContainer, 1.6, { y: 0, opacity: 1, ease: Power2.easeOut, delay: 0.4 })
+        var tl = new TimelineLite()
+        tl.add('reduceAndFade')
+        tl.to(this.$refs.placeholder, 1, {
+          x: '-50%',
+          y: 0,
+          width: '75%',
+          height: 520,
+          left: '50%',
+          top: 115,
+          delay: 0.4,
+          ease: Power2.easeOut
+        }, 'reduceAndFade')
+        tl.to(this.$refs.placeholder, 0.8, { opacity: 0, delay: 1.2 }, 'reduceAndFade')
 
+        done()
+      },
+      onLeave (el, done) {
+        // var tl = new TimelineLite()
+        // tl.to(this.$refs.placeholder, 0.6, { opacity: 1 })
+        // tl.add(function () {
+        //   done()
+        // })
         done()
       }
     }
@@ -112,7 +136,7 @@
   @import '../stylesheets/common/vars'
 
   .project
-    position: relative
+    // position: relative
     width: 74%
     padding-top: 115px
     padding-bottom: 100px
@@ -130,11 +154,22 @@
       font-family: 'mohavebold'
       text-transform: none
 
+    &__placeholder
+      position: absolute
+      width: 100%
+      height: 100%
+      top: 50%
+      left: 50%
+      transform: translateX(-50%) translateY(-50%)
+      z-index: 10
+      transform-origin: 50% 50%
+      background-color: $bg-color
+
     &__main-picture
       position: relative
       display: block
       width: 100%
-      height: 600px
+      height: 520px
       background-size: cover
       background-position: center center
       overflow: hidden

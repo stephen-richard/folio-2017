@@ -11,7 +11,15 @@ import store from './store'
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/', component: Home },
+  { path: '/',
+    component: Home,
+    beforeRouteEnter: (to, from, next) => {
+      console.log('router enter')
+    },
+    beforeRouteLeave: (to, from, next) => {
+      console.log(this.$route.path)
+    }
+  },
   { path: '/about', component: About },
   { path: '/:project_name', name: 'project', component: Project },
   { path: '*', redirect: '/' }

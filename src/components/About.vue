@@ -112,8 +112,8 @@
         color: currentColor
 
     h3
-      font-size: 26px
-      line-height: 38px
+      font-size: 22px
+      line-height: 30px
       width: 60%
 
       @media (max-height: 710px)
@@ -145,6 +145,7 @@
       bottom: 25px
       display: flex
       justify-content: flex-end
+      z-index: 3
 
       a
         display: inline-block

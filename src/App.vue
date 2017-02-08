@@ -16,7 +16,8 @@
       </video>
     </div>
 
-    <loader v-bind:isLoading="isLoading"></loader>
+    <!-- <placeholder></placeholder> -->
+    <!-- <loader v-bind:isLoading="isLoading"></loader> -->
     
     <mobile></mobile>
   </div>
@@ -26,6 +27,7 @@
   import NavBar from './components/Nav'
   import BGCanvas from './components/BGCanvas'
   import Loader from './components/Loader'
+  import Placeholder from './components/ProjectPlaceholder'
   import Intro from './components/Intro'
   import BurgerMenu from './components/BurgerMenu'
   import Footer from './components/FooterElement'
@@ -59,6 +61,7 @@
       burgerMenu: BurgerMenu,
       navbar: NavBar,
       Loader,
+      Placeholder,
       bgCanvas: BGCanvas,
       footerElement: Footer,
       Mobile

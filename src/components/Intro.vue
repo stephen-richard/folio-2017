@@ -41,7 +41,7 @@
 </template>
 
 <script>
-  import { TweenLite, Power4, TimelineLite, Draggable, SteppedEase } from 'gsap'
+  import { TweenMax, Power4, TimelineLite, Draggable, SteppedEase } from 'gsap'
   import bodyMovin from 'bodymovin'
   import dataAnimation from '../assets/data-animation-logo.json'
 
@@ -71,7 +71,7 @@
         },
         onDragEnd: function (e) {
           if (!this.target.classList.contains('dropped')) {
-            TweenLite.to(this.target, 1, {
+            TweenMax.to(this.target, 1, {
               x: -10,
               ease: Power4.easeOut
             })
@@ -90,6 +90,7 @@
                 ease: Power4.easeOut,
                 onComplete: function () {
                   that.$store.commit('SET_INTRO_SKIPPED', true)
+                  // that.$store.commit('SET_PLACEHOLDER', true)
                 }
               })
           }
@@ -204,6 +205,7 @@
         width: 160px
         pointer-events: none
         outline: none
+        z-index: 1
 
         .dot
           display: inline-block
@@ -212,6 +214,7 @@
           width: calc((160px / 15) - 4px)
           height: 1px
           border-radius: 10px
+          pointer-events: none
           outline: none
 
       .target-circle
@@ -221,6 +224,7 @@
         height: 34px
         border-radius: 50%
         border: 1px dashed $white
+        z-index: 4
 
         &.dropped
           .target-confirmed

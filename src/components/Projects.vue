@@ -1,6 +1,7 @@
 <template>
-	<transition 
-    v-on:enter="onEnter">
+	<transition
+    v-on:enter="onEnter"
+    v-on:leave="onLeave">
     <div class="projects" ref="projectsContainer">
        
        <prev-work></prev-work>
@@ -33,9 +34,9 @@
   import PrevWork from '../components/PrevWork'
   import NextWork from '../components/NextWork'
   import Draggable from '../../node_modules/gsap/src/minified/utils/Draggable.min.js'
-  import { TweenLite } from 'gsap'
+  import { TweenLite, TimelineLite } from 'gsap'
   import $ from 'jquery'
-  import '../../node_modules/jquery.ripples/jquery.ripples-min.js'
+  import '../../node_modules/jquery.ripples/jquery.ripples.js'
 
   import { mapGetters } from 'vuex'
 
@@ -63,13 +64,16 @@
         perturbance: 0.015,
         interactive: true
       })
+
+      this.$store.commit('SET_PLACEHOLDER', false)
     },
     updated () {
       $('.current-work__bg').ripples('set', 'imageUrl', '../static/' + this.getProjects[this.getCurrentWork].media_home)
+      this.$store.commit('SET_PLACEHOLDER', false)
     },
     beforeDestroy () {
-      $('.current-work__bg').ripples('destroy')
       // Hide menu items with the nice animation
+      $('.current-work__bg').ripples('destroy')
       this.$store.commit('CHANGE_INDICATORS_STATE', true)
       document.removeEventListener('keyup', function (e) {})
     },
@@ -86,8 +90,17 @@
     },
     methods: {
       onEnter: function (el, done) {
-        TweenLite.set(el.querySelector('.current-work'), { opacity: 0 })
-        TweenLite.to(el.querySelector('.current-work'), 1, { opacity: 1, delay: 0.5 })
+        var tl = new TimelineLite()
+        tl.set(el.querySelector('.current-work__bg'), { opacity: 0 })
+        tl.to(el.querySelector('.current-work__bg'), 0.8, { opacity: 1, delay: 0.5 })
+
+        console.log('entered')
+
+        done()
+      },
+      onLeave: function (el, done) {
+        console.log('Leaving')
+
         done()
       }
     }
@@ -121,6 +134,7 @@
     text-decoration: none
     overflow: hidden
     z-index: 2
+    background-color: $bg-color
 
     &:hover
       
