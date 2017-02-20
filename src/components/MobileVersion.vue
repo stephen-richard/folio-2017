@@ -2,10 +2,10 @@
 	<transition v-on:enter="onEnter">
     <div id="mobile">
        
-       <video id="video-bg" autoplay loop>
+       <!-- <video id="video-bg" autoplay loop>
          <source src="./static/video/background.mp4" type="video/mp4">
          <source src="./static/video/background.webm" type="video/webm">
-       </video>
+       </video> -->
 
       <div class="mobile-container">
          <header>
@@ -17,7 +17,7 @@
          <div class="paragraph">
            <p>I’m a 23 y/o freelance front-end developer living in Paris. Currently in 4th year in the webschool HETIC.</p>
            <p>I build interactive websites for school, freelance or just for my pleasure. I compiled the latest ones on this folio. In all those projects I had the chance to use <span class="strong">Wordpress</span>, <span class="strong">Scss</span>, <span class="strong">Gulp</span>, <span class="strong">Rails</span>, <span class="strong">React</span>, <span class="strong">Android</span> and currently learning <span class="strong">VueJs</span></p>
-           <p><a href="http://www.old.stephenrichard.fr" class="link underline">Here</a> you can see the latest version of my portfolio</p>
+           <p><a href="http://www.old.stephenrichard.fr" class="link underline" target="_blank">Here</a> you can see the latest version of my portfolio</p>
          </div>
 
          <h3>By the way i’m looking for a <span class="strong">6 month internship abroad</span> starting july 2017. Feel free to <a href="mailto:stephen.richard44@gmail.com" class="link underline">contact me.</a></h3>
@@ -87,6 +87,10 @@
       padding: 20px 6% 40px
       text-align: left
       color: $white
+      // background-image: url(../assets/images/background-poster.png)
+      background-position: center top
+      background-repeat: no-repeat
+      background-size: auto 100%
       z-index: 2
 
       header
@@ -108,6 +112,9 @@
         font-size: 18px
         line-height: 27px
 
+        a
+          color: white
+
       .strong
         font-weight: bold
 
@@ -117,13 +124,16 @@
         margin-bottom: 40px
         line-height: 23px
 
+        a
+          color: white
+
       footer
         margin-top: 60px
 
         a
           display: inline-block
           margin-right: 10px
-          padding: 10px 10px 10px 0
+          padding: 0 10px 10px 0
 
   @media screen and (max-width: 768px)
     #mobile

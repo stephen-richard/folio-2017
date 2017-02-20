@@ -322,7 +322,7 @@
 
       li
         display: block
-        margin-bottom: 10px
+        margin-bottom: 15px
         text-align: center
         cursor: pointer
 
@@ -335,7 +335,7 @@
 
         .work-id
           display: block
-          margin-bottom: 5px
+          margin-bottom: 10px
           font-family: $plant
           font-size: 24px
           color: $title-color

@@ -102,6 +102,9 @@
       &.hidden
         transform: translateX(-100%)
 
+      .next-prev-work__name
+        margin-left: 25px
+
     &.next-work
       right: -15px
 
@@ -135,6 +138,7 @@
         top: 0
         width: 100%
         height: 100%
+        z-index: 4
         background-color: rgba($bg-color, .3)
         transition: background .7s ease
 

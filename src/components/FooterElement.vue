@@ -61,12 +61,15 @@
       @media (max-height: 710px)
         opacity: 0
 
-      img:nth-child(2)
-        -webkit-transform: scaleX(-1) /* Webkit */
-          -moz-transform: scaleX(-1)    /* Gecko */
-            -o-transform: scaleX(-1)      /* Opera */
-              transform: scaleX(-1)         /* Standard */
-              filter: FlipH;
+      img
+        width: 36px
+
+        &:nth-child(2)
+          -webkit-transform: scaleX(-1) /* Webkit */
+            -moz-transform: scaleX(-1)    /* Gecko */
+              -o-transform: scaleX(-1)      /* Opera */
+                transform: scaleX(-1)         /* Standard */
+                filter: FlipH;
 
   @media (max-width: 768px)
     .footer

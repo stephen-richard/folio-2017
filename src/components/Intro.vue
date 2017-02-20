@@ -7,8 +7,9 @@
 
       <div class="intro-site-opener">
         <div class="intro-circles" ref="introCircles">
-          <div class="target-circle" ref="targetCircle">
-            <span class="target-confirmed" ref="targetConfirmed"></span>
+          <div class="top-circle" ref="topCircle">
+            <span class="circle circle-main"></span>
+            <span class="circle circle-blink"></span>
           </div>
           <div class="line">
             <span class="dot"></span>
@@ -27,9 +28,8 @@
             <span class="dot"></span>
             <span class="dot"></span>
           </div>
-          <div class="top-circle" ref="topCircle">
-            <span class="circle circle-main"></span>
-            <span class="circle circle-blink"></span>
+          <div class="target-circle" ref="targetCircle">
+            <span class="target-confirmed" ref="targetConfirmed"></span>
           </div>
         </div>
         <div class="intro-desc" ref="introDesc">
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-  import { TweenMax, Power4, TimelineLite, Draggable, SteppedEase } from 'gsap'
+  import { TweenLite, Power4, TimelineLite, Draggable, SteppedEase } from 'gsap'
   import bodyMovin from 'bodymovin'
   import dataAnimation from '../assets/data-animation-logo.json'
 
@@ -57,7 +57,7 @@
       Draggable.create(this.$refs.topCircle, {
         type: 'x',
         bounds: that.$refs.introCircles,
-        edgeResistance: 1,
+        edgeResistance: 0.95,
         dragResistance: 0.2,
         lockAxis: true,
         onDrag: function (e) {
@@ -71,8 +71,8 @@
         },
         onDragEnd: function (e) {
           if (!this.target.classList.contains('dropped')) {
-            TweenMax.to(this.target, 1, {
-              x: -10,
+            TweenLite.to(this.target, 1, {
+              x: 0,
               ease: Power4.easeOut
             })
 
@@ -100,10 +100,6 @@
       // GSAP ANIMATIONS
       var timelineIntro = new TimelineLite()
       timelineIntro
-        // .to(this.$refs.logoIntro, 3, {
-        //   repeat: 0,
-        //   backgroundPosition: '-22880px',
-        //   ease: SteppedEase.config(104) })
         .add(function () {
           bodyMovin.loadAnimation({
             container: that.$refs.logoIntro, // the dom element
@@ -115,7 +111,6 @@
           bodyMovin.setSpeed(1.2)
         })
         .add('endLogo', 3.2)
-        // .add(function () { that.$store.commit('BACKGROUND_VIDEO_STATE', true) })
         .to(this.$refs.introCircles, 0.6, { y: 0, opacity: 1 }, 'endLogo')
         .to(this.$refs.introDesc, 0.4, { y: 0, opacity: 1, delay: 0.4 }, 'endLogo')
     },

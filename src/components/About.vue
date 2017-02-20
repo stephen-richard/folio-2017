@@ -15,9 +15,8 @@
         <h2>Front-end developer / Student <a href="http://www.hetic.net/" target="_blank">HETIC</a></h2>
         <div class="paragraph">
           <p>I’m a 23 y/o freelance front-end developer living in Paris. Currently in 4th year in the webschool HETIC.</p>
-          <p>I build interactive websites for school, freelance or just for my pleasure. I compiled the latest ones on this folio. In all those projects I had the chance to use <span class="strong">Wordpress</span>, <span class="strong">Scss</span>, <span class="strong">Gulp</span>, <span class="strong">Rails</span>, <span class="strong">React</span>, <span class="strong">Android</span> and currently learning <span class="strong">VueJs</span></p>
-          <p><a href="http://www.old.stephenrichard.fr" class="underline" target="_blank">Here</a> you can see the previous version of my portfolio</p>
-          <h4>Design by <a href="http://paulinetaveneau.fr/" class="link strong">Pauline Taveneau<span>Pauline Taveneau</span></a></h4>
+          <p>I build interactive websites for school, freelance or just for my pleasure. In all those projects I had the chance to use <span class="strong">Wordpress</span>, <span class="strong">Scss</span>, <span class="strong">Gulp</span>, <span class="strong">Rails</span>, <span class="strong">React</span>, <span class="strong">Android</span> and currently learning <span class="strong">VueJs</span></p>
+          <h4>Design by <a href="http://paulinetaveneau.fr/" class="link strong" target="_blank">Pauline Taveneau<span>Pauline Taveneau</span></a></h4>
         </div>
         <h3>By the way i’m looking for a <span class="strong">6 month internship abroad</span> starting july 2017. Feel free to <a href="mailto:stephen.richard44@gmail.com" class="underline">contact me.</a></h3>
       </div>
@@ -34,7 +33,7 @@
 </template>
 
 <script>
-  import { TweenMax, Power1 } from 'gsap'
+  import { TweenLite, Power1 } from 'gsap'
   export default {
     name: 'about',
     data () {
@@ -42,16 +41,13 @@
         name: 'Stephen Richard'
       }
     },
-    beforeMount () {
-      console.log('before mount About')
-    },
     mounted () {
       this.$store.commit('SET_PAGE', 'about')
     },
     methods: {
       onEnter (e, done) {
-        TweenMax.set(this.$refs.aboutPage, { opacity: 0 })
-        TweenMax.to(this.$refs.aboutPage, 1, { opacity: 1, ease: Power1.easeOut })
+        TweenLite.set(this.$refs.aboutPage, { opacity: 0 })
+        TweenLite.to(this.$refs.aboutPage, 1, { opacity: 1, ease: Power1.easeOut })
 
         done()
       }
@@ -73,7 +69,7 @@
     top: 50%
     left: 50%
     transform: translate3d(-50%, -50%, 0)
-    padding: 5% 20px 25px 4%
+    padding: 4% 20px 25px 4%
     text-align: left
     color: $white
     text-decoration: none
@@ -86,6 +82,9 @@
 
     @media (max-height: 710px)
       padding: 3% 20px 15px 3%
+
+    @media (max-height: 680px)
+      height: 80%
 
     .about-cover
       position: absolute
@@ -138,10 +137,20 @@
     .paragraph
       width: 55%
       margin-top: 30px
-      margin-bottom: 40px
+      margin-bottom: 30px
+
+      @media (max-height: 710px)
+        margin-top: 20px
+        margin-bottom: 20px
+
+      @media (max-width: 1180px)
+        width: 65%
       
       p
         margin-bottom: 10px
+
+        @media (max-width: 1180px)
+          margin-bottom: 5px
 
     .left
       position: relative

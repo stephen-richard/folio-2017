@@ -9,6 +9,7 @@
     <footerElement v-if="isIntroSkipped" v-show="getPage != 'detail'"></footerElement>
 
     <div class="video-intro-mask" ref="videoMask"></div>
+    
     <div id="video-bg" v-show="getPage != 'detail'">
       <video autoplay loop>
         <source src="./static/video/background.mp4" type="video/mp4">
@@ -32,7 +33,7 @@
   import BurgerMenu from './components/BurgerMenu'
   import Footer from './components/FooterElement'
   import Mobile from './components/MobileVersion'
-  import { TweenMax } from 'gsap'
+  import { TweenLite } from 'gsap'
 
   import projectsData from './assets/datas.json'
 
@@ -85,8 +86,8 @@
       // GSAP ANIMATIONS
       if (!this.isMobile) {
         console.log('remove mask opacity')
-        TweenMax.set(this.$refs.videoMask, { opacity: 1 })
-        TweenMax.to(this.$refs.videoMask, 3, { opacity: 0, zIndex: 1, delay: 1 })
+        TweenLite.set(this.$refs.videoMask, { opacity: 1 })
+        TweenLite.to(this.$refs.videoMask, 3, { opacity: 0, zIndex: -1, delay: 1 })
       }
     },
     methods: {
@@ -168,6 +169,9 @@
     height: 100%
     // background-position: center center
     z-index: 1
+
+    @media screen and (max-width: 768px)
+      display: none
 
     video
       position: absolute

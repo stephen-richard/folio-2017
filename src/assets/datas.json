@@ -45,7 +45,7 @@
 			"slug": "soroptimist-europe",
 			"year": 2016,
 			"url": "http://soroptimisteurope.org/",
-			"description": "Last summer I spent almost 4 month with the amazing FCINQ team. It was a great opportunity to improve my skills in PHP, Wordpress and responsive integration among the other developers. Soroptimist was not the only project I worked on (instantfrites.fr, suicidesquad.fr), but for this one I had an almost complete autonomy. This was the biggest and more complex project I've worked on, and a chance to learn all aspects of Wordpress.",
+			"description": "Last summer I spent almost 4 month with the amazing FCINQ team. It was a great opportunity to improve my skills in PHP, Wordpress and responsive integration among the other developers. Soroptimist was not the only project I worked on (instantfrites.fr, suicidesquad.fr), but for this one I had an almost complete autonomy. This was the biggest and most complex project I've worked on, and a chance to learn all aspects of Wordpress.",
 			"context": "/w Agency FCINQ",
 			"role": "Front/Back-end developer",
 			"techno": "Wordpress, TweenMax, Google Maps API",
@@ -98,6 +98,26 @@
 			"medias": [
 				"geek-art/geek-art-02.png",
 				"geek-art/geek-art-03.png"
+			]
+		},
+		{
+			"name": "Folio 2016",
+			"slug": "folio-2016",
+			"year": 2016,
+			"url": "http://old.stephenrichard.fr/",
+			"description": "The previous version of this Portfolio (it was already the V4) made last year. It was the first I was really proud of when I put it online and a great occasion to use and pratice gulp and fancy animation with TweenMax.",
+			"context": "Personnal project",
+			"role": "Designer / developer",
+			"techno": "Gulp, TweenMax, Scss",
+			"media_home": "2016-home.png",
+			"color": "#38AF88",
+			"first_media": [
+				"folio-2016/folio-2016-01.png",
+				"horizontal"
+			],
+			"medias": [
+				"folio-2016/folio-2016-02.png",
+				"folio-2016/folio-2016-03.png"
 			]
 		}
 	]

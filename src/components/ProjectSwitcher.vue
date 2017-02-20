@@ -2,9 +2,10 @@
 	<div class="project-switcher">
 		<div class="intro-site-opener">
 		  <div class="intro-circles" ref="introCircles">
-		    <div class="target-circle" ref="targetCircle">
-		      <span class="target-confirmed" ref="targetConfirmed"></span>
-		    </div>
+        <div class="top-circle" ref="topCircle">
+          <span class="circle circle-main"></span>
+          <span class="circle circle-blink"></span>
+        </div>
 		    <div class="line">
 		      <span class="dot"></span>
 		      <span class="dot"></span>
@@ -21,10 +22,9 @@
 		      <span class="dot"></span>
 		      <span class="dot"></span>
 		    </div>
-		    <div class="top-circle" ref="topCircle">
-		      <span class="circle circle-main"></span>
-		      <span class="circle circle-blink"></span>
-		    </div>
+        <div class="target-circle" ref="targetCircle">
+          <span class="target-confirmed" ref="targetConfirmed"></span>
+        </div>
 		  </div>
 		  <div class="intro-desc">
 		    <p>Next</p>
@@ -37,7 +37,7 @@
 <script>
   import projectsData from '../assets/datas.json'
   import { mapGetters } from 'vuex'
-  import { TweenMax, TimelineLite, Power4, Draggable } from 'gsap'
+  import { TweenLite, TimelineLite, Power4, Draggable } from 'gsap'
 
   export default {
     name: 'project-switcher',
@@ -59,7 +59,7 @@
       Draggable.create(this.$refs.topCircle, {
         type: 'x',
         bounds: that.$refs.introCircles,
-        edgeResistance: 1,
+        edgeResistance: 0.95,
         dragResistance: 0.2,
         lockAxis: true,
         onDrag: function (e) {
@@ -73,8 +73,8 @@
         },
         onDragEnd: function (e) {
           if (!this.target.classList.contains('dropped')) {
-            TweenMax.to(this.target, 1, {
-              x: -10,
+            TweenLite.to(this.target, 1, {
+              x: 0,
               ease: Power4.easeOut
             })
 
@@ -92,8 +92,8 @@
                 ease: Power4.easeOut,
                 onComplete: function () {
                   that.$store.commit('CHANGE_CURRENT_WORK', that.getCurrentWork + 1)
-                  TweenMax.to(that.$refs.topCircle, 1, {
-                    x: -10,
+                  TweenLite.to(that.$refs.topCircle, 1, {
+                    x: 0,
                     ease: Power4.easeOut
                   })
                 }
@@ -127,6 +127,7 @@
         transform: none
 
         .top-circle
+          padding-right: 0px
 
           .circle
             left: 5px
