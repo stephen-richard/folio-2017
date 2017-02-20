@@ -62,7 +62,8 @@
         imageUrl: '../static/' + this.getProjects[this.getCurrentWork].media_home,
         dropRadius: 30,
         perturbance: 0.015,
-        interactive: true
+        interactive: true,
+        crossOrigin: 'anonymous'
       })
 
       this.$store.commit('SET_PLACEHOLDER', false)
@@ -170,7 +171,8 @@
         top: 0
         width: 100%
         height: 100%
-        background-color: rgba($black, 0.1)
+        background-color: rgba($bg-color, 1)
+        animation: fadeIn .7s ease .7s forwards
         z-index: 2
 
     &__drop-cover
@@ -224,5 +226,9 @@
 
           &.after
             left: 80px
+
+  @keyframes fadeIn
+    to
+      background-color: rgba($black, 0.1)
 
 </style>
