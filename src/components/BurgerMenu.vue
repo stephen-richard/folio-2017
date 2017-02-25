@@ -194,7 +194,7 @@
       top: 50%
       transform: translateY(-50%)
       color: $white
-      padding: 0 10px 10px 10px
+      padding: 10px 10px 0 10px
       cursor: pointer
       z-index: 10
 

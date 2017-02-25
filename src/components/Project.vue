@@ -81,8 +81,6 @@
 
       window.sr = ScrollReveal()
       window.sr.reveal('.project__datas, .project-data-container, .medias, .picture-single, .project-switcher', { duration: 400, delay: 200, reset: true })
-  
-      // document.removeEventListener('keyup', function (e) {})
     },
     beforeMount () {
       var pageFound = false
@@ -91,6 +89,7 @@
       for (var i = 0; i < this.getProjects.length; i++) {
         if (this.getProjects[i].slug === this.param) {
           pageFound = true
+          this.$store.commit('CHANGE_CURRENT_WORK', i)
         }
       }
 
