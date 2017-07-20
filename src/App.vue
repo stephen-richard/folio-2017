@@ -46,6 +46,26 @@
         'mobileBreakpoint': 700
       }
     },
+    head: {
+      title: {
+        inner: 'Stephen Richard | Front-end developer'
+      },
+      meta: [
+        { name: 'application-name', content: 'Stephen Richard portfolio' },
+        { name: 'description', content: 'I\'m Stephen Richard a Front end developer currently studying in Paris in the webschool Hetic. Looking for a 6 month internship in 2017.', id: 'desc' },
+        // Twitter
+        { n: 'twitter:title', c: 'Stephen RICHARD french Front-End Developer' },
+        { n: 'twitter:url', c: 'http://www.stephenrichard.fr/' },
+        { n: 'twitter:image', c: 'http://www.stephenrichard.fr/static/share-screen.png' },
+        // ...
+        { p: 'og:image', c: 'http://www.stephenrichard.fr/static/share-screen.png' }
+      ],
+      link: [
+        { rel: 'icon', href: '/static/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+        /* shorthand property */
+        { r: 'icon', h: '/static/favicon-32x32.png', sz: '32x32', t: 'image/png' }
+      ]
+    },
     computed: {
       ...mapGetters([
         'getCurrentWork',
@@ -85,7 +105,6 @@
 
       // GSAP ANIMATIONS
       if (!this.isMobile) {
-        console.log('remove mask opacity')
         TweenLite.set(this.$refs.videoMask, { opacity: 1 })
         TweenLite.to(this.$refs.videoMask, 3, { opacity: 0, zIndex: -1, delay: 1 })
       }

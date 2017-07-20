@@ -60,6 +60,7 @@
         edgeResistance: 0.95,
         dragResistance: 0.2,
         lockAxis: true,
+        cursor: 'grab',
         onDrag: function (e) {
           if (this.hitTest(dropArea, overlapThreshold)) {
             if (!this.target.classList.contains('dropped')) {
@@ -117,7 +118,6 @@
     methods: {
       // Entering
       enter: function (el, done) {
-        console.log('i entered')
         done()
       }
     }
@@ -173,6 +173,7 @@
         padding: 10px 10px 8px 10px
         box-sizing: initial
         border-radius: 50%
+        cursor: grab
         z-index: 4
         
         .circle

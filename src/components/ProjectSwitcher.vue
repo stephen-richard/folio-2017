@@ -62,6 +62,7 @@
         edgeResistance: 0.95,
         dragResistance: 0.2,
         lockAxis: true,
+        cursor: 'drag',
         onDrag: function (e) {
           if (this.hitTest(dropArea, overlapThreshold)) {
             if (!this.target.classList.contains('dropped')) {

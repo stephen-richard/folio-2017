@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import VueHead from 'vue-head'
 import App from './App'
 import Home from './components/Home'
 import Project from './components/Project'
@@ -9,6 +10,7 @@ import About from './components/About'
 import store from './store'
 
 Vue.use(VueRouter)
+Vue.use(VueHead)
 
 const routes = [
   { path: '/',
