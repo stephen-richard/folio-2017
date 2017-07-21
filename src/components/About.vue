@@ -14,11 +14,11 @@
         <h1>{{ name }}</h1>
         <h2>Front-end developer / Student <a href="http://www.hetic.net/" target="_blank">HETIC</a></h2>
         <div class="paragraph">
-          <p>I’m a 23 y/o freelance front-end developer living in Paris. Currently in 4th year in the webschool HETIC.</p>
-          <p>I build interactive websites for school, freelance or just for my pleasure. In all those projects I had the chance to use <span class="strong">Wordpress</span>, <span class="strong">Scss</span>, <span class="strong">Gulp</span>, <span class="strong">Rails</span>, <span class="strong">React</span>, <span class="strong">Android</span> and currently learning <span class="strong">VueJs</span></p>
+          <p>I’m a 23 y/o freelance front-end developer living in Paris. Just finished my 4th year in the webschool HETIC.</p>
+          <p>I build interactive websites for school, freelance and currently with the dev team at <a href="http://firstborn.com/" class="strong" target="_blank">Firstborn</a>. In all those projects I had the chance to use <span class="strong">Wordpress</span>, <span class="strong">Scss</span>, <span class="strong">Gulp</span>, <span class="strong">Rails</span>, <span class="strong">React</span>, <span class="strong">Android</span> and <span class="strong">VueJs</span></p>
           <h4>Design by <a href="http://paulinetaveneau.fr/" class="link strong" target="_blank">Pauline Taveneau<span>Pauline Taveneau</span></a></h4>
         </div>
-        <h3>By the way i’m looking for a <span class="strong">6 month internship abroad</span> starting july 2017. Feel free to <a href="mailto:stephen.richard44@gmail.com" class="underline">contact me.</a></h3>
+        <h3>I’m looking for a <span class="strong">6-12 month apprenticeship in Paris</span> starting jan 2018. Feel free to <a href="mailto:stephen.richard44@gmail.com" class="underline">contact me.</a></h3>
       </div>
 
       <div class="socials">
@@ -27,7 +27,7 @@
         <a href="http://codepen.io/stephenrichard/" class="social-link" target="_blank"><svg class="to-hide" width="30" height="31" viewBox="0 0 30 31" xmlns="http://www.w3.org/2000/svg"><title>codepen</title><path d="M3.616 19.856l4.503-3.013 5.59 3.733v6.01l-10.094-6.73zm-1.038-2.41v-4.32l3.23 2.16-3.23 2.16zm13.71 9.14v-6.01l5.593-3.733 4.504 3.013-10.095 6.73zM15 18.333l-4.554-3.047L15 12.24l4.554 3.046L15 18.333zM8.12 13.73l-4.504-3.015 10.095-6.73v6.01L8.12 13.73zm16.07 1.556l3.232-2.16v4.32l-3.23-2.16zm-2.31-1.557l-5.59-3.735v-6.01l10.094 6.73-4.503 3.014zM30 10.714c0-.418-.218-.837-.57-1.07L15.72.502C15.502.37 15.25.286 15 .286s-.502.083-.72.217L.57 9.643c-.352.235-.57.654-.57 1.072v9.14c0 .42.218.838.57 1.072l13.71 9.14c.218.135.47.22.72.22s.502-.085.72-.22l13.71-9.14c.352-.234.57-.652.57-1.07v-9.142z" fill="#E3E3E3" fill-rule="evenodd"/></svg><span><svg width="30" height="31" viewBox="0 0 30 31" xmlns="http://www.w3.org/2000/svg"><title>codepen</title><path d="M3.616 19.856l4.503-3.013 5.59 3.733v6.01l-10.094-6.73zm-1.038-2.41v-4.32l3.23 2.16-3.23 2.16zm13.71 9.14v-6.01l5.593-3.733 4.504 3.013-10.095 6.73zM15 18.333l-4.554-3.047L15 12.24l4.554 3.046L15 18.333zM8.12 13.73l-4.504-3.015 10.095-6.73v6.01L8.12 13.73zm16.07 1.556l3.232-2.16v4.32l-3.23-2.16zm-2.31-1.557l-5.59-3.735v-6.01l10.094 6.73-4.503 3.014zM30 10.714c0-.418-.218-.837-.57-1.07L15.72.502C15.502.37 15.25.286 15 .286s-.502.083-.72.217L.57 9.643c-.352.235-.57.654-.57 1.072v9.14c0 .42.218.838.57 1.072l13.71 9.14c.218.135.47.22.72.22s.502-.085.72-.22l13.71-9.14c.352-.234.57-.652.57-1.07v-9.142z" fill="#E3E3E3" fill-rule="evenodd"/></svg></span></a>
         <a href="https://www.linkedin.com/in/stephen-richard-7aa88160" class="social-link" target="_blank"><svg class="to-hide" width="26" height="27" viewBox="0 0 26 27" xmlns="http://www.w3.org/2000/svg"><title>linkedin square</title><path d="M3.968 22.243V10.625h3.867v11.618H3.968zm4.118-15.2c0 1.104-.837 2.008-2.193 2.008h-.017c-1.306 0-2.143-.903-2.143-2.008 0-1.138.87-2.01 2.193-2.01s2.143.872 2.16 2.01zm9.793 15.2v-6.21c0-1.574-.553-2.63-1.942-2.63-1.072 0-1.708.72-1.993 1.407-.1.25-.117.603-.117.938v6.495H9.96c.05-10.53 0-11.618 0-11.618h3.868v1.69h-.033c.502-.803 1.423-1.958 3.5-1.958 2.543 0 4.452 1.657 4.452 5.223v6.663H17.88zm7.834-16.707c0-2.662-2.16-4.822-4.82-4.822H4.82C2.16.714 0 2.874 0 5.536v16.07c0 2.663 2.16 4.823 4.82 4.823h16.073c2.662 0 4.82-2.16 4.82-4.823V5.537z" fill="#E3E3E3" fill-rule="evenodd"/></svg><span><svg width="26" height="27" viewBox="0 0 26 27" xmlns="http://www.w3.org/2000/svg"><title>linkedin square</title><path d="M3.968 22.243V10.625h3.867v11.618H3.968zm4.118-15.2c0 1.104-.837 2.008-2.193 2.008h-.017c-1.306 0-2.143-.903-2.143-2.008 0-1.138.87-2.01 2.193-2.01s2.143.872 2.16 2.01zm9.793 15.2v-6.21c0-1.574-.553-2.63-1.942-2.63-1.072 0-1.708.72-1.993 1.407-.1.25-.117.603-.117.938v6.495H9.96c.05-10.53 0-11.618 0-11.618h3.868v1.69h-.033c.502-.803 1.423-1.958 3.5-1.958 2.543 0 4.452 1.657 4.452 5.223v6.663H17.88zm7.834-16.707c0-2.662-2.16-4.822-4.82-4.822H4.82C2.16.714 0 2.874 0 5.536v16.07c0 2.663 2.16 4.823 4.82 4.823h16.073c2.662 0 4.82-2.16 4.82-4.823V5.537z" fill="#E3E3E3" fill-rule="evenodd"/></svg></span></a>
       </div>
-      
+
     </div>
   </transition>
 </template>
@@ -58,7 +58,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="sass" scoped>
   @import '../stylesheets/common/_vars'
-  
+
   .page-about
     position: absolute
     width: 74%
@@ -145,7 +145,7 @@
 
       @media (max-width: 1180px)
         width: 65%
-      
+
       p
         margin-bottom: 10px
 
@@ -158,7 +158,7 @@
       height: 100%
       width: 98%
       z-index: 2
-    
+
       // a.link
       //   color: white
 
@@ -176,7 +176,7 @@
 
         &:last-child
           margin-right: 10px
-    
+
     .go-back-home
       position: absolute
       width: 48px
@@ -207,5 +207,5 @@
 
         &.after
           transform: rotate(-45deg)
-    
+
 </style>

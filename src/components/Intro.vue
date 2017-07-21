@@ -99,21 +99,29 @@
       })
 
       // GSAP ANIMATIONS
-      var timelineIntro = new TimelineLite()
-      timelineIntro
-        .add(function () {
-          bodyMovin.loadAnimation({
-            container: that.$refs.logoIntro, // the dom element
-            renderer: 'svg',
-            loop: false,
-            autoplay: true,
-            animationData: dataAnimation // the animation data
-          })
-          bodyMovin.setSpeed(1.2)
-        })
-        .add('endLogo', 3.2)
-        .to(this.$refs.introCircles, 0.6, { y: 0, opacity: 1 }, 'endLogo')
-        .to(this.$refs.introDesc, 0.4, { y: 0, opacity: 1, delay: 0.4 }, 'endLogo')
+      // var timelineIntro = new TimelineLite()
+      // timelineIntro
+      //   .add(function () {
+      //
+      //   })
+      //   .add('endLogo', 3.2)
+      var anim = bodyMovin.loadAnimation({
+        container: that.$refs.logoIntro, // the dom element
+        renderer: 'svg',
+        loop: false,
+        autoplay: true,
+        animationData: dataAnimation // the animation data
+      })
+      bodyMovin.setSpeed(1.2)
+
+      anim.addEventListener('complete', function () {
+        that.$store.commit('SET_INTRO_SKIPPED', true)
+      })
+        // .to(this.$refs.introCircles, 0.6, { y: 0, opacity: 1 }, 'endLogo')
+        // .to(this.$refs.introDesc, 0.4, { y: 0, opacity: 1, delay: 0.4 }, 'endLogo')
+    },
+    beforeLeave () {
+      bodyMovin.removeEventListener('complete')
     },
     methods: {
       // Entering
@@ -149,8 +157,8 @@
 
       img
         width: 50%
-        height: auto 
-    
+        height: auto
+
   .intro-site-opener
     position: absolute
     left: 50%
@@ -164,7 +172,7 @@
       justify-content: flex-start
       opacity: 0
       transform: translateY(60px)
-      
+
       .top-circle
         position: relative
         display: inline-block
@@ -175,7 +183,7 @@
         border-radius: 50%
         cursor: grab
         z-index: 4
-        
+
         .circle
           position: absolute
           width: 21px
@@ -194,7 +202,7 @@
             transform-origin: center center
             opacity: 0
             animation: grow-and-fade 2s cubic-bezier(0.165, 0.84, 0.44, 1) infinite
-            
+
 
       .line
         position: relative
@@ -252,9 +260,9 @@
   @keyframes grow-and-fade
     0%
       transform: scale(1)
-    60% 
+    60%
       opacity: 0.2
-    100% 
+    100%
       transform: scale(2)
       opacity: 0
 

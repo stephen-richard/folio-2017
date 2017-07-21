@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- <bgCanvas></bgCanvas> -->
-    
+
     <burgerMenu v-if="isIntroSkipped" v-show="getPage != 'about'"></burgerMenu>
     <navbar v-if="isIntroSkipped"></navbar>
     <intro v-if="!isIntroSkipped"></intro>
@@ -9,7 +9,7 @@
     <footerElement v-if="isIntroSkipped" v-show="getPage != 'detail'"></footerElement>
 
     <div class="video-intro-mask" ref="videoMask"></div>
-    
+
     <div id="video-bg" v-show="getPage != 'detail'">
       <video autoplay loop>
         <source src="./static/video/background.mp4" type="video/mp4">
@@ -19,7 +19,7 @@
 
     <!-- <placeholder></placeholder> -->
     <!-- <loader v-bind:isLoading="isLoading"></loader> -->
-    
+
     <mobile></mobile>
   </div>
 </template>
@@ -52,7 +52,7 @@
       },
       meta: [
         { name: 'application-name', content: 'Stephen Richard portfolio' },
-        { name: 'description', content: 'I\'m Stephen Richard a Front end developer currently studying in Paris in the webschool Hetic. Looking for a 6 month internship in 2017.', id: 'desc' },
+        { name: 'description', content: 'I\'m Stephen Richard a Front end developer studying in Paris in the webschool Hetic. Dev intern at Firstborn.', id: 'desc' },
         // Twitter
         { n: 'twitter:title', c: 'Stephen RICHARD french Front-End Developer' },
         { n: 'twitter:url', c: 'http://www.stephenrichard.fr/' },
@@ -147,7 +147,7 @@
 
 <style lang="sass">
   @import './stylesheets/main'
-  
+
   *
     box-sizing: border-box
 
@@ -157,8 +157,8 @@
     overflow-x: scroll
     margin: 0
     background-color: $bg-color
-  
-  #app 
+
+  #app
     width: 100%
     height: 100%
     font-family: 'plantagenet', Helvetica, Arial, sans-serif
@@ -229,16 +229,16 @@
       position: relative
       overflow: hidden
       color: transparent
-      
+
       &:hover,
       &.router-link-active
 
         &:before
           animation: slideAndFade .5s .1s
-        
+
         span
           animation: linkSlideEffect .6s
-      
+
       // &:before
       //   position: absolute
       //   content: ''
@@ -276,7 +276,7 @@
       svg
         &.to-hide
           opacity: 0
-  
+
   .underline
     text-decoration: underline
 
