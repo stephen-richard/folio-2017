@@ -1,13 +1,13 @@
 <template>
-  <transition 
+  <transition
     @enter="onEnter"
     @leave="onLeave">
     <div class="project container" ref="workContainer">
-      
+
       <div class="project__placeholder" ref="placeholder"></div>
 
       <span class="project__main-picture" ref="workMainPicture" :style="{'background-image': 'url(./static/' + getProjects[getCurrentWork].media_home + ')'}"></span>
-      
+
       <div class="project__datas">
         <h1 ref="workName" :style="{ 'color': getProjects[getCurrentWork].color }">{{ getProjects[getCurrentWork].name }}</h1>
         <h2 ref="workRole">{{ getProjects[getCurrentWork].role }}</h2>
@@ -15,7 +15,7 @@
         <div class="project-data-container">
           <div>
             <p class="title">Description</p>
-            <p>{{ getProjects[getCurrentWork].description }}</p>
+            <p v-html="getProjects[getCurrentWork].description"></p>
           </div>
 
           <div>
@@ -32,7 +32,7 @@
             <a :href="getProjects[getCurrentWork].url" target="_blank">See the project</a>
           </div>
         </div>
-        
+
       </div>
 
       <div class="medias">
@@ -239,7 +239,7 @@
 
         &.vertical
           padding: 60px 60px 0 60px
-        
+
         img
           margin-bottom: -3px
           box-shadow: 0 2px 35px 0 rgba(0, 0, 0, 0.44)
@@ -247,7 +247,7 @@
       &:nth-child(even)
         margin-right: 12px
 
-      img 
+      img
         width: 100%
         height: auto
 </style>

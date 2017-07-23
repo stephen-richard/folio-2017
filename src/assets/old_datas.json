@@ -1,0 +1,24 @@
+{
+	"projects": [
+      {
+    	"name": "Folio 2016",
+    	"slug": "folio-2016",
+    	"year": 2016,
+    	"url": "http://old.stephenrichard.fr/",
+    	"description": "The previous version of this Portfolio (it was already the V4) made last year. It was the first I was really proud of when I put it online and a great occasion to use and pratice gulp and fancy animation with TweenMax.",
+    	"context": "Personnal project",
+    	"role": "Designer / developer",
+    	"techno": "Gulp, TweenMax, Scss",
+    	"media_home": "2016-home.png",
+    	"color": "#38AF88",
+    	"first_media": [
+    		"folio-2016/folio-2016-01.png",
+    		"horizontal"
+    	],
+    	"medias": [
+    		"folio-2016/folio-2016-02.png",
+    		"folio-2016/folio-2016-03.png"
+    	]
+    }
+  ]
+}

@@ -14,7 +14,7 @@
 
         <div class="menu-work-list" v-show="isMenuOpen" ref="menuPanel">
           <div class="work-bgs">
-            <span 
+            <span
               class="work-bg"
               v-for="(work, index) in getProjects"
               :data-work="index"
@@ -43,7 +43,7 @@
 
 <script>
   import { TweenLite, TimelineLite, Power2 } from 'gsap'
-  
+
   import { mapGetters } from 'vuex'
 
   export default {
@@ -210,7 +210,7 @@
 
         .menu-work-indicator
           transform: translateX(-120px)
-        
+
         .menu-work-close
           // transform: translateX(0)
 
@@ -260,7 +260,7 @@
             top: -10px
 
           &:last-child
-            top: 10px        
+            top: 10px
 
   .menu-work-list
     position: fixed
@@ -291,6 +291,9 @@
     .work-bgs
       position: absolute
       display: block
+      top: 50%
+      left: 50%
+      transform: translateX(-50%) translateY(-50%)
       // top: 80px
       // left: 80px
       // bottom: 80px
@@ -365,7 +368,7 @@
           .line-after
             right: -140px
 
-  @media (max-width: 768px)  
+  @media (max-width: 768px)
     #burgerMenu
       display: none
 

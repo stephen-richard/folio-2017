@@ -223,21 +223,23 @@
   a
     text-decoration: none
     color: $white
-    line-height: 21px
+    // line-height: 21px
 
     &.link
       position: relative
-      overflow: hidden
       color: transparent
+      max-height: 20px
+      overflow: hidden
 
       &:hover,
       &.router-link-active
 
-        &:before
-          animation: slideAndFade .5s .1s
+        // &:before
+        //   animation: slideAndFade .5s .1s
 
         span
-          animation: linkSlideEffect .6s
+          // animation: linkSlideEffect .6s
+          text-decoration: underline
 
       // &:before
       //   position: absolute

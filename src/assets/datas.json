@@ -1,6 +1,46 @@
 {
 	"projects": [
 		{
+			"name": "Julien Gozlan-Dantoni",
+			"slug": "julien-gozlan-portfolio",
+			"year": 2017,
+			"url": "http://www.juliengd.com",
+			"description": "With <a href='http://remibonnet.com' target='_blank' class='link'>Rémi<span>Rémi</span></a> we realised the portfolio of our friend <a href='http://www.juliengd.com' target='_blank' class='link'>Julien<span>Julien</span></a>, interactive art director. We used a starter build with Php and written is es6. The base structure was pretty simple but we had to add a lot of effects. Animations on mouse movement for the homepage, parallaxe effect in the case studies and adapting a PixiJs scripts to handle the distortion effect. The main difficulty was to make all our animations and special effects works together without breaking performances.",
+			"context": "Personnal",
+			"role": "Front-end developer",
+			"techno": "es6, zepto, iScroll, gsap",
+			"media_home": "julien-home.png",
+			"color": "#F4F4F4",
+			"first_media": [
+				"julien/julien-01.jpg",
+				"horizontal"
+			],
+			"medias": [
+				"/julien/julien-02.png",
+				"/julien/julien-03.jpg"
+			]
+		},
+		{
+			"name": "Matthieu Tourdes",
+			"slug": "matthieu-tourdes-portfolio",
+			"year": 2017,
+			"url": "http://matthieutourdes.com",
+			"description": "With <a href='http://benjaminbeguin.com' target='_blank' class='link'>Benjamin<span>Benjamin</span></a> we realised the portfolio of our friend <a href='http://matthieutourdes.com' target='_blank' class='link'>Matthieu<span>Matthieu</span></a>, motion designer. A good way for both of us to learn more and practice VueJs with animations, page transitions and loading.",
+			"context": "Personnal",
+			"role": "Front-end developer",
+			"techno": "VueJs",
+			"media_home": "matthieu-home.png",
+			"color": "#121639",
+			"first_media": [
+				"matthieu/matthieu-01.png",
+				"vertical"
+			],
+			"medias": [
+				"/matthieu/matthieu-02.png",
+				"/matthieu/matthieu-03.png"
+			]
+		},
+		{
 			"name": "Psg eSports",
 			"slug": "psg-esports",
 			"year": 2016,
@@ -44,8 +84,8 @@
 			"name": "Soroptimist Europe",
 			"slug": "soroptimist-europe",
 			"year": 2016,
-			"url": "http://soroptimisteurope.org/",
-			"description": "[Out soon] Last summer I spent almost 4 month with the amazing FCINQ team. It was a great opportunity to improve my skills in PHP, Wordpress and responsive integration among the other developers. Soroptimist was not the only project I worked on (instantfrites.fr, suicidesquad.fr), but for this one I had an almost complete autonomy. This was the biggest and most complex project I've worked on, and a chance to learn all aspects of Wordpress.",
+			"url": "http://www.soroptimisteurope.org/",
+			"description": "Last summer I spent almost 4 month with the amazing FCINQ team. It was a great opportunity to improve my skills in PHP, Wordpress and responsive integration among the other developers. Soroptimist was not the only project I worked on (instantfrites.fr, suicidesquad.fr), but for this one I had an almost complete autonomy. This was the biggest and most complex project I've worked on, and a chance to learn all aspects of Wordpress.",
 			"context": "/w Agency FCINQ",
 			"role": "Front/Back-end developer",
 			"techno": "Wordpress, TweenMax, Google Maps API",
@@ -98,26 +138,6 @@
 			"medias": [
 				"geek-art/geek-art-02.png",
 				"geek-art/geek-art-03.png"
-			]
-		},
-		{
-			"name": "Folio 2016",
-			"slug": "folio-2016",
-			"year": 2016,
-			"url": "http://old.stephenrichard.fr/",
-			"description": "The previous version of this Portfolio (it was already the V4) made last year. It was the first I was really proud of when I put it online and a great occasion to use and pratice gulp and fancy animation with TweenMax.",
-			"context": "Personnal project",
-			"role": "Designer / developer",
-			"techno": "Gulp, TweenMax, Scss",
-			"media_home": "2016-home.png",
-			"color": "#38AF88",
-			"first_media": [
-				"folio-2016/folio-2016-01.png",
-				"horizontal"
-			],
-			"medias": [
-				"folio-2016/folio-2016-02.png",
-				"folio-2016/folio-2016-03.png"
 			]
 		}
 	]
