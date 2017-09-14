@@ -62,7 +62,7 @@
         opacity: 0
 
       img
-        width: 36px
+        width: 26px
 
         &:nth-child(2)
           -webkit-transform: scaleX(-1) /* Webkit */

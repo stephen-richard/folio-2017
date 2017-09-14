@@ -2,10 +2,14 @@
   <transition
     v-on:enter="enter">
     <div id="intro" ref="intro">
-      <div class="logo" ref="logoIntro"></div>
+      <div :class="{'logo': true, 'loaded': isLoaded}" ref="logoIntro"></div>
       <!-- <img src="../assets/images/logo-2x.png" alt="Stephen richard front-end developer"> -->
 
-      <div class="intro-site-opener">
+      <span 
+        :class="{'loading-progress': true, 'loaded': isLoaded}"
+        :style="`transform: translateX(${loadingPercentage});`"></span>
+
+      <!-- <div class="intro-site-opener">
         <div class="intro-circles" ref="introCircles">
           <div class="top-circle" ref="topCircle">
             <span class="circle circle-main"></span>
@@ -35,93 +39,71 @@
         <div class="intro-desc" ref="introDesc">
           <p>Drag and drop to enter website</p>
         </div>
-      </div>
+      </div> -->
     </div>
   </transition>
 </template>
 
 <script>
   import { TweenLite, Power4, TimelineLite, Draggable, SteppedEase } from 'gsap'
+  import assetsLoader from 'assets-loader'
   import bodyMovin from 'bodymovin'
   import dataAnimation from '../assets/data-animation-logo.json'
 
   export default {
     name: 'intro',
-    beforeMount () {
+    data () {
+      return {
+        loader: null,
+        anim: null,
+        loadingPercentage: 0,
+        isAnimComplete: false,
+        isLoaded: false
+      }
     },
     mounted () {
       var that = this
-      var overlapThreshold = '70%'
-      var dropArea = this.$refs.targetCircle
 
-      Draggable.create(this.$refs.topCircle, {
-        type: 'x',
-        bounds: that.$refs.introCircles,
-        edgeResistance: 0.95,
-        dragResistance: 0.2,
-        lockAxis: true,
-        cursor: 'grab',
-        onDrag: function (e) {
-          if (this.hitTest(dropArea, overlapThreshold)) {
-            if (!this.target.classList.contains('dropped')) {
-              this.target.className += ' dropped'
-            }
-          } else {
-            this.target.className = 'top-circle'
-          }
-        },
-        onDragEnd: function (e) {
-          if (!this.target.classList.contains('dropped')) {
-            TweenLite.to(this.target, 1, {
-              x: 0,
-              ease: Power4.easeOut
-            })
-
-            that.$refs.targetCircle.className = 'target-circle'
-          } else {
-            that.$refs.targetCircle.className += ' dropped'
-
-            var tl = new TimelineLite()
-            tl.set(that.$refs.targetConfirmed, {width: 10, height: 10, opacity: 0})
-              .to(that.$refs.targetConfirmed, 0.4, {width: 80, height: 80, opacity: 0.7})
-              .to(that.$refs.targetConfirmed, 0.5, {
-                width: 100,
-                height: 100,
-                opacity: 0,
-                ease: Power4.easeOut,
-                onComplete: function () {
-                  that.$store.commit('SET_INTRO_SKIPPED', true)
-                  // that.$store.commit('SET_PLACEHOLDER', true)
-                }
-              })
-          }
-        }
-      })
-
-      // GSAP ANIMATIONS
-      // var timelineIntro = new TimelineLite()
-      // timelineIntro
-      //   .add(function () {
-      //
-      //   })
-      //   .add('endLogo', 3.2)
-      var anim = bodyMovin.loadAnimation({
+      this.anim = bodyMovin.loadAnimation({
         container: that.$refs.logoIntro, // the dom element
         renderer: 'svg',
-        loop: false,
+        loop: true,
         autoplay: true,
         animationData: dataAnimation // the animation data
       })
       bodyMovin.setSpeed(1.2)
 
-      anim.addEventListener('complete', function () {
-        that.$store.commit('SET_INTRO_SKIPPED', true)
+      this.loader = assetsLoader({
+        assets: [
+          'static/julien-home.png',
+          'static/matthieu-home.png',
+          'static/psg-home.jpg',
+          'static/sorop-home.jpg',
+          'static/edw-home.png',
+          'static/skyyart-home.png',
+          'static/geek-art-home.png',
+          'static/2016-home.png',
+          'static/video/background.mp4',
+          'static/video/background.webm'
+        ]
       })
-        // .to(this.$refs.introCircles, 0.6, { y: 0, opacity: 1 }, 'endLogo')
-        // .to(this.$refs.introDesc, 0.4, { y: 0, opacity: 1, delay: 0.4 }, 'endLogo')
+      .on('error', function (error) {
+        console.log(error)
+      })
+      .on('progress', function (progress) {
+        that.loadingPercentage = (progress * 100).toFixed() + '%'
+      })
+      .on('complete', function (assets) {
+        that.isLoaded = true
+        setTimeout(() => {
+          that.$store.commit('SET_INTRO_SKIPPED', true)
+        }, 400)
+      })
+      .start()
     },
     beforeLeave () {
-      bodyMovin.removeEventListener('complete')
+      this.loader.destroy()
+      this.anim.destroy()
     },
     methods: {
       // Entering
@@ -151,13 +133,29 @@
       transform: translate3d(-50%, -50%, 0)
       width: 220px
       height: 210px
+      opacity: 1
       // background-image: url('../assets/images/anim-logo.png')
       background-position: left center
       // animation: playAnimation 3s steps($steps) 1s forwards
+      transition: transform .4s ease-out, opacity .4s
+
+      &.loaded
+        transform: translate3d(-50%, 0, 0)
+        opacity: 0
 
       img
         width: 50%
         height: auto
+
+  .loading-progress
+    position: absolute
+    left: -100%
+    bottom: 0
+    width: 100vw
+    height: 6px
+    background-color: $white
+    transform: translateX(0)
+    transition: transform .3s ease
 
   .intro-site-opener
     position: absolute

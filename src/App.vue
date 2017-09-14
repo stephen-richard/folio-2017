@@ -2,25 +2,24 @@
   <div id="app">
     <!-- <bgCanvas></bgCanvas> -->
 
-    <burgerMenu v-if="isIntroSkipped" v-show="getPage != 'about'"></burgerMenu>
-    <navbar v-if="isIntroSkipped"></navbar>
-    <intro v-if="!isIntroSkipped"></intro>
-    <router-view v-if="isIntroSkipped"></router-view>
-    <footerElement v-if="isIntroSkipped" v-show="getPage != 'detail'"></footerElement>
+    <burgerMenu v-if="isIntroSkipped && !isMobile" v-show="getPage != 'about'"></burgerMenu>
+    <navbar v-if="isIntroSkipped && !isMobile"></navbar>
+    <intro v-if="!isIntroSkipped && !isMobile"></intro>
+
+    <router-view v-if="isIntroSkipped && !isMobile"></router-view>
+
+    <footerElement v-if="isIntroSkipped && !isMobile" v-show="getPage != 'detail'"></footerElement>
 
     <div class="video-intro-mask" ref="videoMask"></div>
 
-    <div id="video-bg" v-show="getPage != 'detail'">
+    <div id="video-bg" v-if="!isMobile" v-show="getPage != 'detail'">
       <video autoplay loop>
         <source src="./static/video/background.mp4" type="video/mp4">
         <source src="./static/video/background.webm" type="video/webm">
       </video>
     </div>
 
-    <!-- <placeholder></placeholder> -->
-    <!-- <loader v-bind:isLoading="isLoading"></loader> -->
-
-    <mobile></mobile>
+    <mobile v-if="isMobile"></mobile>
   </div>
 </template>
 
@@ -87,6 +86,9 @@
       footerElement: Footer,
       Mobile
     },
+    beforeMount () {
+      this.detectMobile()
+    },
     mounted () {
       var that = this
       // Handle arrow navigation
@@ -139,6 +141,15 @@
             // Switch to left previous work
             this.$store.commit('CHANGE_CURRENT_WORK', this.getCurrentWork - 1)
           }
+        }
+      },
+      detectMobile () {
+        if (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/webOS/i) ||
+          navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPad/i) ||
+          navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/BlackBerry/i) || navigator.userAgent.match(/Windows Phone/i)) {
+          this.$store.commit('SET_MOBILE_STATE', true)
+        } else {
+          this.$store.commit('SET_MOBILE_STATE', false)
         }
       }
     }

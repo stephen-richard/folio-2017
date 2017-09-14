@@ -39,7 +39,7 @@
         <div :class="'picture picture-first ' + getProjects[getCurrentWork].first_media[1]" :style="{ 'background-color': getProjects[getCurrentWork].color }">
           <img :src="'../static/' + getProjects[getCurrentWork].first_media[0]" alt="">
         </div>
-        <div v-for="(picture, index) in getProjects[getCurrentWork].medias" class="picture picture-single">
+        <div v-for="(picture, index) in getProjects[getCurrentWork].medias" :key="'project-picture' + index" class="picture picture-single">
           <img :src="'../static/' + picture" alt="">
         </div>
       </div>
