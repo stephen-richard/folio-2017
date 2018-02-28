@@ -14,11 +14,12 @@
         <h1>{{ name }}</h1>
         <h2>Front-end developer / Student <a href="http://www.hetic.net/" target="_blank">HETIC</a></h2>
         <div class="paragraph">
-          <p>I’m a 23 y/o freelance front-end developer living in Paris. Just finished my 4th year in the webschool HETIC.</p>
-          <p>I build interactive websites for school, freelance and currently with the dev team at <a href="http://firstborn.com/" class="strong" target="_blank">Firstborn</a>. In all those projects I had the chance to use <span class="strong">Wordpress</span>, <span class="strong">Scss</span>, <span class="strong">Gulp</span>, <span class="strong">Rails</span>, <span class="strong">React</span>, <span class="strong">Android</span> and <span class="strong">VueJs</span></p>
+          <p>I’m a {{ currentAge }} y/o freelance front-end developer living in Paris. In my 5th year in the webschool HETIC.</p>
+          <p>I build interactive websites for school, freelance and currently with the dev team at <a href="http://www.sourceinteractive.fr/" class="strong" target="_blank">Source interactive</a>. In all those projects I had the chance to use mostly <span class="strong">Wordpress</span>, <span class="strong">React</span>, <span class="strong">Android</span> and <span class="strong">VueJs</span></p>
+          <p>The past 4 years I've worked with <a href="https://www.firstborn.com/" class="strong" target="_blank">Firstborn</a> - <a href="https://www.fcinq.com/fr/" class="strong" target="_blank">Fcinq</a> - <a href="http://www.datagif.fr/" class="strong" target="_blank">Datagif</a></p>
           <h4>Design by <a href="http://paulinetaveneau.fr/" class="link strong" target="_blank">Pauline Taveneau<span>Pauline Taveneau</span></a></h4>
         </div>
-        <h3>I’m looking for a <span class="strong">6-12 month apprenticeship in Paris</span> starting jan 2018. Feel free to <a href="mailto:stephen.richard44@gmail.com" class="underline">contact me.</a></h3>
+        <h3>Feel free to <a href="mailto:stephen.richard44@gmail.com" class="underline">contact me.</a></h3>
       </div>
 
       <div class="socials">
@@ -50,6 +51,14 @@
         TweenLite.to(this.$refs.aboutPage, 1, { opacity: 1, ease: Power1.easeOut })
 
         done()
+      }
+    },
+    computed: {
+      currentAge: () => {
+        let birthday = new Date(1993, 10, 26)
+        var ageDifMs = Date.now() - birthday.getTime()
+        var ageDate = new Date(ageDifMs) // miliseconds from epoch
+        return Math.abs(ageDate.getUTCFullYear() - 1970)
       }
     }
   }
@@ -112,13 +121,13 @@
         color: currentColor
 
     h3
-      font-size: 22px
-      line-height: 30px
+      font-size: 18px
+      line-height: 26px
       width: 60%
 
       @media (max-height: 710px)
-        font-size: 22px
-        line-height: 32px
+        font-size: 20px
+        line-height: 30px
 
       a
         line-height: 30px
