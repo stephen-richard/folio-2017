@@ -36,7 +36,7 @@
   import Draggable from '../../node_modules/gsap/src/minified/utils/Draggable.min.js'
   import { TweenLite, TimelineLite } from 'gsap'
   import $ from 'jquery'
-  import '../../node_modules/jquery.ripples/jquery.ripples.js'
+  import '../../node_modules/jquery.ripples/dist/jquery.ripples.js'
 
   import { mapGetters } from 'vuex'
 

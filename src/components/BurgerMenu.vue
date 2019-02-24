@@ -359,7 +359,7 @@
           .line-after
             position: absolute
             width: 120px
-            top: 35px
+            top: 44px
             opacity: 0
 
           .line-before

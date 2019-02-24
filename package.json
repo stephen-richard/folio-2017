@@ -10,7 +10,7 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
-    "assets-loader": "^0.5.1",
+    "assets-loader": "^0.5.2",
     "gsap": "^1.20.2",
     "jquery": "^3.2.1",
     "jquery.ripples": "^0.6.0",
@@ -48,7 +48,7 @@
     "html-webpack-plugin": "^2.8.1",
     "http-proxy-middleware": "^0.17.2",
     "json-loader": "^0.5.4",
-    "node-sass": "^4.1.1",
+    "node-sass": "^4.11.0",
     "opn": "^4.0.2",
     "ora": "^0.3.0",
     "pixi-filters": "^1.0.6",

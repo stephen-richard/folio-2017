@@ -1,6 +1,26 @@
 {
 	"projects": [
 		{
+			"name": "Alexandre calvez",
+			"slug": "alexandre-calvez",
+			"year": 2018,
+			"url": "http://www.alexandrecalvez.com",
+			"description": "End 2017, early 2018 I had the chance to work for a talented french influencer Alexandre Calvez. He realize crash tests and unboxing and upload them on Facebook and Youtube, followed by nearly a million subscribers. I chose to use Nuxt.js to statically generate all the pages (one for each video). The content is fully editable through a Wordpress interface used by the website as a simple Rest API.",
+			"context": "Freelance",
+			"role": "Front/Back-end developer",
+			"techno": "Wordpress, Nuxt, Vue.js, gsap",
+			"media_home": "alexandre-home.png",
+			"color": "#B7C4FF",
+			"first_media": [
+				"alexandre/alexandre-01.png",
+				"horizontal"
+			],
+			"medias": [
+				"/alexandre/alexandre-02.png",
+				"/alexandre/alexandre-03.png"
+			]
+		},
+		{
 			"name": "Julien Gozlan-Dantoni",
 			"slug": "julien-gozlan-portfolio",
 			"year": 2017,
