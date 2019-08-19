@@ -12,12 +12,12 @@
 
       <div class="left">
         <h1>{{ name }}</h1>
-        <h2>Front-end developer / Student <a href="http://www.hetic.net/" target="_blank">HETIC</a></h2>
+        <h2>Front-end developer</h2>
         <div class="paragraph">
-          <p>I’m a {{ currentAge }} y/o freelance front-end developer living in Paris. Graduated from the webschool <a href="https://www.hetic.net/" class="strong" target="_blank">HETIC</a>.</p>
-          <p>I build interactive websites as a freelancer and currently with the dev team at <a href="http://www.source.paris/" class="strong" target="_blank">Source interactive</a>. In all those projects I had the chance to use mostly <span class="strong">React</span> and experiment with GatsbyJS, Next.js, <span class="strong">Wordpress</span>, and <span class="strong">VueJs</span></p>
+          <p>I’m a 🇫🇷 freelance front-end developer currently living in Tokyo 🇯🇵. Graduated from the webschool <a href="https://www.hetic.net/" class="strong" target="_blank">HETIC</a>.</p>
+          <p>I build interactive websites as a freelancer and currently with the dev team at <a href="https://www.source.paris/" class="strong" target="_blank">Source interactive</a>. In all those projects I had the chance to use mostly <span class="strong">React</span> and experiment with <span class="strong">GatsbyJS</span>, <span class="strong">Next.js</span>, <span class="strong">Wordpress</span>, and <span class="strong">VueJs</span></p>
           <p>The past 5 years I've worked with <a href="https://www.firstborn.com/" class="strong" target="_blank">Firstborn</a> - <a href="https://www.fcinq.com/fr/" class="strong" target="_blank">Fcinq</a> - <a href="http://www.datagif.fr/" class="strong" target="_blank">Datagif</a></p>
-          <h4>Design by <a href="http://paulinetaveneau.fr/" class="link strong" target="_blank">Pauline Taveneau<span>Pauline Taveneau</span></a></h4>
+          <h4>Design by <a href="https://paulinetaveneau.fr/" class="link strong" target="_blank">Pauline Taveneau<span>Pauline Taveneau</span></a> - (2017)</h4>
         </div>
         <h3>Feel free to <a href="mailto:stephen.richard44@gmail.com" class="underline">contact me.</a></h3>
       </div>
