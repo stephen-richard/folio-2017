@@ -167,9 +167,9 @@ assert@^1.1.1:
   dependencies:
     util "0.10.3"
 
-assets-loader@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/assets-loader/-/assets-loader-0.5.1.tgz#8095e4a029ec8fb9c127d27fc5cdf378e32a12e4"
+assets-loader@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/assets-loader/-/assets-loader-0.5.2.tgz#189cb2b443e0d81f3c2b0be966a9d6414e85c636"
 
 async-each@^1.0.0:
   version "1.0.1"
@@ -1251,8 +1251,8 @@ css-selector-tokenizer@^0.7.0:
     regexpu-core "^1.0.0"
 
 css-what@2.1:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/css-what/-/css-what-2.1.0.tgz#9467d032c38cfaefb9f2d79501253062f87fa1bd"
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/css-what/-/css-what-2.1.3.tgz#a6d7604573365fe74686c3f311c56513d88285f2"
 
 cssesc@^0.1.0:
   version "0.1.0"
